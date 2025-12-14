@@ -1,0 +1,12 @@
+# Updated requirements for Windows
+# Compatible with Python 3.9-3.12
+
+tensorflow==2.20.0
+numpy==1.26.4
+opencv-python==4.10.0.84
+Pillow==11.0.0
+scikit-image==0.24.0
+scikit-learn==1.5.2
+Flask==3.1.0
+Flask-CORS==5.0.0
+requests==2.32.3

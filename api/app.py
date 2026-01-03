@@ -1,5 +1,5 @@
 """
-Flask API for Sinhala Handwriting Recognition
+Flask API for Sinhala Handwriting Recognition - 454 Classes
 File: app.py
 """
 
@@ -16,71 +16,53 @@ from sinhala_model import SinhalaHandwritingModel
 app = Flask(__name__)
 CORS(app)
 
-# Initialize model
-model = SinhalaHandwritingModel(num_classes=59)
+# Initialize model with 454 classes
+model = SinhalaHandwritingModel(num_classes=454)
 
-# Sinhala Letters Dictionary
-SINHALA_LETTERS = {
-    0: {'name': 'අ', 'romanized': 'a'},
-    1: {'name': 'ආ', 'romanized': 'aa'},
-    2: {'name': 'ඇ', 'romanized': 'ae'},
-    3: {'name': 'ඈ', 'romanized': 'aae'},
-    4: {'name': 'ඉ', 'romanized': 'i'},
-    5: {'name': 'ඊ', 'romanized': 'ii'},
-    6: {'name': 'උ', 'romanized': 'u'},
-    7: {'name': 'ඌ', 'romanized': 'uu'},
-    8: {'name': 'ඍ', 'romanized': 'r'},
-    9: {'name': 'ඎ', 'romanized': 'rr'},
-    10: {'name': 'ඏ', 'romanized': 'l'},
-    11: {'name': 'ඐ', 'romanized': 'll'},
-    12: {'name': 'එ', 'romanized': 'e'},
-    13: {'name': 'ඒ', 'romanized': 'ee'},
-    14: {'name': 'ඓ', 'romanized': 'ai'},
-    15: {'name': 'ඔ', 'romanized': 'o'},
-    16: {'name': 'ඕ', 'romanized': 'oo'},
-    17: {'name': 'ඖ', 'romanized': 'au'},
-    18: {'name': 'ක', 'romanized': 'ka'},
-    19: {'name': 'ඛ', 'romanized': 'kha'},
-    20: {'name': 'ග', 'romanized': 'ga'},
-    21: {'name': 'ඝ', 'romanized': 'gha'},
-    22: {'name': 'ඞ', 'romanized': 'nga'},
-    23: {'name': 'ඟ', 'romanized': 'nnga'},
-    24: {'name': 'ච', 'romanized': 'ca'},
-    25: {'name': 'ඡ', 'romanized': 'cha'},
-    26: {'name': 'ජ', 'romanized': 'ja'},
-    27: {'name': 'ඣ', 'romanized': 'jha'},
-    28: {'name': 'ඤ', 'romanized': 'nya'},
-    29: {'name': 'ඥ', 'romanized': 'jnya'},
-    30: {'name': 'ඤ', 'romanized': 'nyja'},
-    31: {'name': 'ට', 'romanized': 'tta'},
-    32: {'name': 'ඨ', 'romanized': 'ttha'},
-    33: {'name': 'ඩ', 'romanized': 'dda'},
-    34: {'name': 'ඪ', 'romanized': 'ddha'},
-    35: {'name': 'ණ', 'romanized': 'nna'},
-    36: {'name': 'ඬ', 'romanized': 'nndda'},
-    37: {'name': 'ත', 'romanized': 'ta'},
-    38: {'name': 'ථ', 'romanized': 'tha'},
-    39: {'name': 'ද', 'romanized': 'da'},
-    40: {'name': 'ධ', 'romanized': 'dha'},
-    41: {'name': 'න', 'romanized': 'na'},
-    42: {'name': 'ඳ', 'romanized': 'nda'},
-    43: {'name': 'ප', 'romanized': 'pa'},
-    44: {'name': 'ඵ', 'romanized': 'pha'},
-    45: {'name': 'බ', 'romanized': 'ba'},
-    46: {'name': 'භ', 'romanized': 'bha'},
-    47: {'name': 'ම', 'romanized': 'ma'},
-    48: {'name': 'ඹ', 'romanized': 'mba'},
-    49: {'name': 'ය', 'romanized': 'ya'},
-    50: {'name': 'ර', 'romanized': 'ra'},
-    51: {'name': 'ල', 'romanized': 'la'},
-    52: {'name': 'ව', 'romanized': 'va'},
-    53: {'name': 'ශ', 'romanized': 'sha'},
-    54: {'name': 'ෂ', 'romanized': 'ssa'},
-    55: {'name': 'ස', 'romanized': 'sa'},
-    56: {'name': 'හ', 'romanized': 'ha'},
-    57: {'name': 'ළ', 'romanized': 'lla'},
-    58: {'name': 'ෆ', 'romanized': 'fa'},
-}
+# Complete Sinhala Letters Dictionary (454 classes)
+sinhala_classes = ["අ","ආ","ඇ","ඈ","ඉ","ඊ","උ","එ","ඒ","ඔ","ඕ",
+             "ක","කා","කැ","කෑ","කි","කී","කු","කූ","ක්","කෝ","ක්‍ර","ක්‍රි","ක්‍රී",
+             "ග","ගා","ගැ","ගෑ","ගි","ගී","ගු","ගූ","ග්","ගෝ","ග්‍ර","ග්‍රි","ග්‍රී",
+             "ච","චා","චැ","චෑ","චි","චී","චු","චූ","ච්","චෝ","ච්‍ර","ච්‍ර්","ච්‍රී",
+             "ජ","ජා","ජැ","ජෑ","ජි","ජී","ජු","ජූ","ජ්","ජෝ","ජ්‍ර","ජ්‍රි","ජ්‍රී",
+             "ට","ටා","ටැ","ටෑ","ටි","ටී","ටු","ටූ","ට්","ටෝ","ට්‍ර","ට්‍ර්","ට්‍රි",
+             "ඩ","ඩා","ඩැ","ඩෑ","ඩි","ඩී","ඩු","ඩූ","ඩ්","ඩෝ","ඩ්‍ර","ඩ්‍ර්","ඩ්‍රි",
+             "ණ","ණා","ණි",
+             "ත","තා","ති","තී","තු","තූ","ත්","තෝ","ත්‍ර","ත්‍රා","ත්‍රි","ත්‍රී",
+             "ද ","දා","දැ","දෑ","දි","දී","දු","දූ","ද්","දෝ","ද්‍ර","ද්‍රෝ","ද්‍රා","ද්‍රි","ද්‍රී",
+             "න","නා","නැ","නෑ","නි","නී","නු","නූ","න්","නෝ","න්‍ර","න්‍රා","න්‍රි","න්‍රී",
+             "ප","පා","පැ","පෑ","පි","පී","පු","පූ","ප්","ප්‍රෝ","පෝ","ප්‍ර","ප්‍රා","ප්‍රි","ප්‍රී",
+             "බ","බා","බැ","බෑ","බි","බී","බු","බූ","බ්","බ්‍රෝ","බ්‍ර","බ්‍රා","බ්‍රි","බ්‍රී","බ්‍රෝ",
+             "ම","මා","මැ","මෑ","මි","මී","මු","මූ","ම්","මෝ","ම්‍ර","ම්‍රා","ම්‍රි","ම්‍රී","ම්‍රෝ",
+             "ය","යා","යැ","යෑ","යි","යී","යු","යූ","ෝ","ය්","hda",
+             "ර","රා","රැ","රැ","රු","රූ","රි","රී",
+             "ල","ලා","ලැ","ලෑ","ලි","ලී","ලු","ලූ","ල්",",da",
+             "ව","වා","වැ","වෑ","වි","වී","වු","වූ","ව්","jda","ව්‍ර","ව්‍රා","ව්‍රැ","ව්‍රෑ","j%da",
+             "ශ","ශා","ශැ","ශෑ","ශි","ශී","ශු","ශූ","ශ්","Yda","ශ්‍ර","ශ්‍රා","ශ්‍රැ","ශ්‍රෑ","ශ්‍රි","ශ්‍රී","Y%da",
+             "ෂ","ෂා","ෂැ","ෂෑ","ෂි","ෂී","ෂු","ෂූ","ෂ්","Ida",
+             "ස","සා","සැ","සෑ","සි","සී","සු","සූ","ida","ස්‍ර","ස්‍රා","ස්‍රි","ස්‍රී","ස්",
+             "හ","හා","හැ","හෑ","හි","හී","හු","හූ","හ්","yda",
+             "ළ","ළා","ළැ","ළෑ","ළි","ළී",
+             "ළූ","ළූ",
+             "ෆ","ෆා","ෆැ","ෆෑ","ෆි","ෆී","ෆූ","ෆූ","ෆ්‍ර","ෆ්‍රි","ෆ්‍රී","ෆ්‍රැ","ෆ්‍රෑ","ෆ්","*da",
+             "ක්‍රා","ක්‍රැ","ක්‍රෑ","l%da",".%da",
+             "ඛ","ඛා","ඛි","ඛී","ඛ්",
+             "ඝ","ඝා","ඝැ","ඝෑ","ඝි","ඝී","ඝු","ඝූ",">da","ඝ්","ඝ්‍ර","ඝ්‍රා","ඝ්‍රි","ඝ්‍රී",
+             "ඳ","ඳා","ඳැ","ෑ","ඳෑ","ඳි","ඳී","ඳු","ඳූ","|da ","ඳ්",
+             "ඟ","ඟා","ඟැ","ඟෑ","ඟි","ඟී","ඟු","ඟූ","Õda","ඟ්",
+             "ඬ","ැ","ඬා","ඬැ","ඬෑ","ඬි","ඬී","ඬු","ඬූ","ඬda ","ඬ්",
+             "ඹ","ඹා","ඹැ","ඹෑ","ඹි","ඹී","ඹු","ඹූ","Uda","ඹ්",
+             "භ","භා","භැ","භෑ","භි","භී","භු","භූ","Nda","භ්",
+             "ධ","ධා","ධැ","ධෑ","ධි","ධී","ධු","ධූ","ධෝ","ධ්",
+             "ඨ","ඨා","ඨැ","ඨි","ඨී","ඨු","ඨූ","ඨ්","ඪ","ඪා","ඪි","Vda",
+             "ඵ","ඵා","ඵු","ඵි","Mda","ඵ් ","ථ","ථා","ථැ","ථ්","ා","ෟ","ණැ","ණෑ","ෘ","ණී","ණු","ණූ",
+             "Kda","ණ්","ඥ","ඥා","{da","ඤ","ඤා","ඤු","[da","ඤ්","ඣ","ඣා","ඣු","COda",
+             "ඣ්","ඦ","ඦා","ඦැ","ඦෑ","ඦි","ඦු","ඦූ","ඦෝ",
+             "ඦ්","ඡ","ඡා","ඡැ","ඡෑ","ඡි","ඡේ","තැ","තෑ","ත්‍රැ","ත්‍රෑ",";%da",
+             "ළු","ෲ","HQ","ff","f","H","Hq"]
+
+# Create dictionary from list
+SINHALA_LETTERS = {i: {'name': char, 'romanized': f'class_{i}'} for i, char in enumerate(sinhala_classes)}
 
 user_sessions = {}
 
@@ -89,7 +71,9 @@ def health_check():
     return jsonify({
         'status': 'healthy',
         'message': 'API is running',
-        'timestamp': datetime.now().isoformat()
+        'model_status': 'loaded' if model.model_loaded else 'mock_mode',
+        'timestamp': datetime.now().isoformat(),
+        'total_classes': len(SINHALA_LETTERS)
     })
 
 @app.route('/api/get-letter', methods=['GET'])
@@ -141,13 +125,17 @@ def submit_handwriting():
         result = model.calculate_score(image, correct_letter_id)
         feedback = generate_feedback(result['score'], result['is_correct'])
         
+        predicted_letter = SINHALA_LETTERS.get(result['predicted_class'], {'name': '?', 'romanized': 'unknown'})
+        
         return jsonify({
             'success': True,
             'score': round(result['score'], 2),
             'is_correct': result['is_correct'],
             'confidence': round(result['confidence'], 4),
             'feedback': feedback,
-            'predicted_letter': SINHALA_LETTERS[correct_letter_id]['name']
+            'predicted_letter': predicted_letter['name'],
+            'correct_letter': SINHALA_LETTERS[correct_letter_id]['name'],
+            'model_mode': result.get('model_mode', 'unknown')
         })
         
     except Exception as e:
@@ -178,17 +166,19 @@ def generate_feedback(score, is_correct):
 @app.route('/')
 def index():
     return jsonify({
-        'name': 'Sinhala Handwriting API',
+        'name': 'Sinhala Handwriting API - 454 Classes',
         'status': 'running',
-        'endpoints': ['/api/health', '/api/get-letter', '/api/submit-handwriting']
+        'total_classes': len(SINHALA_LETTERS),
+        'model_loaded': model.model_loaded,
+        'endpoints': ['/api/health', '/api/get-letter', '/api/submit-handwriting', '/api/get-all-letters']
     })
 
 if __name__ == '__main__':
     print("=" * 60)
-    print("Sinhala Handwriting Recognition API")
+    print("Sinhala Handwriting Recognition API - 454 Classes")
     print("=" * 60)
-    print(f"\nTotal letters: {len(SINHALA_LETTERS)}")
-    print("\n⚠️  Running in MOCK MODE (for testing)")
+    print(f"\nTotal classes: {len(SINHALA_LETTERS)}")
+    print(f"Model status: {'LOADED' if model.model_loaded else 'MOCK MODE'}")
     print("\nStarting server...")
     print("=" * 60 + "\n")
     

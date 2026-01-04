@@ -1,0 +1,97 @@
+[
+  {
+    "id": "story_dutugemunu",
+    "title": "King Dutugemunu (UPDATED VERSION)",
+    "type": "video_interactive",
+    "segments": {
+      "segment_1": {
+        "video_id": "video_1",
+        "start_time": 0,
+        "end_time": 10000, 
+        "next_segment_id": "interaction_1"
+      },
+      "segment_2": {
+        "video_id": "video_2",
+        "start_time": 0,
+        "end_time": 10000, 
+        "next_segment_id": "interaction_2"
+      },
+      "segment_3": {
+        "video_id": "video_3",
+        "start_time": 0,
+        "end_time": 10000,
+        "next_segment_id": "interaction_3"
+      },
+      "segment_4": {
+        "video_id": "video_4",
+        "start_time": 0,
+        "end_time": 10000,
+        "next_segment_id": "interaction_4"
+      },
+      "segment_5": {
+        "video_id": "video_5",
+        "start_time": 0,
+        "end_time": 10000,
+        "next_segment_id": "final_quiz_1"
+      }
+    },
+    "interactions": {
+      "interaction_1": {
+        "type": "quiz",
+        "text": "රාජතුමාට උදව් කරමුද? (Shall we help?)",
+        "options": [
+          { "text": "ඔව් (Yes)", "is_correct": true, "next_segment_id": "segment_2" }
+        ]
+      },
+      "interaction_2": {
+        "type": "quiz",
+        "text": "අපි ඊළඟට මොකද කරන්නේ? (What next?)",
+        "options": [
+          { "text": "දාගැබ හදමු (Build Stupa)", "is_correct": true, "next_segment_id": "segment_3" }
+        ]
+      },
+      "interaction_3": {
+        "type": "quiz",
+        "text": "වචනය ගලපන්න: 'දාගැබ'",
+        "options": [
+            { "text": "Stupa (Image)", "is_correct": true, "next_segment_id": "segment_4" },
+            { "text": "House (Image)", "is_correct": false, "next_segment_id": "segment_4" }
+        ]
+      },
+      "interaction_4": {
+        "type": "quiz",
+        "text": "පූජාව සඳහා සුදුසු දේ තෝරන්න",
+        "options": [
+            { "text": "මල් (Flowers)", "is_correct": true, "next_segment_id": "segment_5" },
+            { "text": "පුටු (Chairs)", "is_correct": false, "next_segment_id": "segment_5" }
+        ]
+      },
+      "final_quiz_1": {
+        "type": "quiz",
+        "text": "දුටුගැමුණු රජතුමා ගොඩනඟපු දාගැබේ නම මොකක්ද?",
+        "options": [
+            { "text": "රුවන්වැලි සෑය", "is_correct": true, "next_segment_id": "final_quiz_2" },
+            { "text": "සිගිරිය", "is_correct": false, "next_segment_id": "final_quiz_2" },
+            { "text": "පොළොන්නරුව", "is_correct": false, "next_segment_id": "final_quiz_2" }
+        ]
+      },
+      "final_quiz_2": {
+        "type": "quiz",
+        "text": "දාගැබ ගොඩනඟන්න උදව් කළේ කවුද?",
+        "options": [
+            { "text": "ගම්වැසියෝ", "is_correct": true, "next_segment_id": "final_quiz_3" },
+            { "text": "සතුන්", "is_correct": false, "next_segment_id": "final_quiz_3" },
+            { "text": "විදේශිකයෝ", "is_correct": false, "next_segment_id": "final_quiz_3" }
+        ]
+      },
+      "final_quiz_3": {
+        "type": "quiz",
+        "text": "භික්ෂූන් වහන්සේලා කළේ මොනවාද?",
+        "options": [
+            { "text": "ආශීර්වාද කළා", "is_correct": true, "next_segment_id": "end_screen" },
+            { "text": "සටන් කළා", "is_correct": false, "next_segment_id": "end_screen" }
+        ]
+      }
+    }
+  }
+]

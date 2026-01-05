@@ -14,6 +14,10 @@ import os
 import sys
 from datetime import datetime
 import random
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -156,6 +160,32 @@ def predict():
         # Get character info
         letter_info = SINHALA_LETTERS.get(predicted_class, {"name": "Unknown", "romanized": "unknown"})
         
+        # Get session info to verify correctness
+        session_id = data.get('session_id')
+        expected_letter = None
+        is_correct = False
+        
+        if session_id and session_id in user_sessions:
+            session = user_sessions[session_id]
+            expected_id = session['letter_id']
+            expected_letter = SINHALA_LETTERS.get(expected_id, {}).get('name', '?')
+            
+            # Verify if prediction matches expected
+            is_correct = (predicted_class == expected_id)
+        
+        # Calculate final score and feedback
+        score = confidence * 100
+        feedback = ""
+        
+        if expected_letter:
+            if is_correct:
+                feedback = f"Correct! You wrote {letter_info['name']} properly."
+            else:
+                score = max(0, score - 50) # Penalize wrong answer
+                feedback = f"Incorrect. expected {expected_letter}, but looks like {letter_info['name']}."
+        else:
+            feedback = f"Recognized as {letter_info['name']}"
+
         return jsonify({
             'success': True,
             'prediction': {
@@ -164,8 +194,10 @@ def predict():
                 'romanized': letter_info['romanized'],
                 'confidence': confidence
             },
-            'score': confidence * 100,  # Add score for frontend (0-100)
-            'feedback': f"Good job! Recognized as {letter_info['name']}" if confidence > 0.7 else "Keep practicing!"
+            'score': score,
+            'is_correct': is_correct,
+            'expected_letter': expected_letter,
+            'feedback': feedback
         })
         
     except Exception as e:

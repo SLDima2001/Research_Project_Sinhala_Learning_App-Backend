@@ -10,6 +10,8 @@
 
 
 
+Architectural Diagram
+<img width="1409" height="642" alt="image" src="https://github.com/user-attachments/assets/0ecbcbac-d523-4c49-82a1-4c06fc92455a" />
 
 
 

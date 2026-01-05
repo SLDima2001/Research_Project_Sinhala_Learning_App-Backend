@@ -21,4 +21,5 @@
 
 
 GitHub Repository Links
-Frontend-
+Frontend-https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App
+Backend-https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App-Backend

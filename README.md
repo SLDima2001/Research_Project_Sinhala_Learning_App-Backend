@@ -14,6 +14,7 @@ The app uses karaoke-style word highlighting while sentences are spoken using Te
 
 Immediate feedback is given through voice responses, points, and retry prompts to reinforce learning.
 
+
 The system also includes:
 
 Object recognition and pronunciation: Detected objects are identified and pronounced in Sinhala.

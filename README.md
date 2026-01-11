@@ -1,6 +1,6 @@
 # Sinhala learning app for 7-10  age children
 
-##  Project Overview
+##  Project Overview ##
 
 Purpose
 An offline-capable mobile app that teaches Sinhala to primary school children through AI-driven interactive learning combining pronunciation practice, AR experiences, cultural storytelling, visual learning, and handwriting development.

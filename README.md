@@ -5,7 +5,7 @@
 Purpose
 An offline-capable mobile app that teaches Sinhala to primary school children through AI-driven interactive learning combining pronunciation practice, AR experiences, cultural storytelling, visual learning, and handwriting development.
 
-##Core Architecture
+## Core Architecture ##
 
 **Platform:** React Native (Expo) - cross-platform mobile
 **Game Engine:** Unity - interactive storytelling
@@ -13,7 +13,7 @@ An offline-capable mobile app that teaches Sinhala to primary school children th
 **Offline-First:** Pre-downloaded models and cached content for rural accessibility
 
 
-##System Features
+## System Features ##
 
 1.**Real-Time Voice Feedback & Pronunciation**
 App speaks sentences with karaoke-style highlighting; child repeats; instant color-coded feedback (green=correct, red=mispronounced, gray=skipped); points awarded for accuracy.
@@ -39,7 +39,7 @@ Displays letter/word formation patterns; children trace on screen; scoring based
 Aggregates performance across all modules; visualizes strengths and improvement areas; provides adaptive learning recommendations; parent/teacher reports.
 
 
-##  Key Objectives
+##  Key Objectives ##
 
 1. **AI-Driven Real-Time Pronunciation Assessment**
 Develop an intelligent speech recognition system providing instant, color-coded word-level feedback on Sinhala pronunciation for independent self-correction.
@@ -52,10 +52,10 @@ Incorporate Sri Lankan folklore within gamified learning to enhance engagement a
 5. **AI-Powered Adaptive Learning Dashboard**
 Establish intelligent analytics tracking multi-module performance and providing personalized learning recommendations for each child.
 
-## Architectural Diagram
+## Architectural Diagram ##
 <img width="1409" height="642" alt="image" src="https://github.com/user-attachments/assets/0ecbcbac-d523-4c49-82a1-4c06fc92455a" />
 
-## Use cases
+## Use cases ##
 
 1.Real-Time Pronunciation Practice
 
@@ -72,7 +72,7 @@ Establish intelligent analytics tracking multi-module performance and providing 
 5.Progress Tracking and Adaptive Recommendations
 
 
-##  Contributions & Collaboration
+##  Contributions & Collaboration ##
 
 ---
 
@@ -85,9 +85,9 @@ Establish intelligent analytics tracking multi-module performance and providing 
 
 
 
-GitHub Repository Links
+## GitHub Repository Links ##
 
 
 
-Frontend-https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App
+  Frontend-https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App
 Backend-https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App-Backend

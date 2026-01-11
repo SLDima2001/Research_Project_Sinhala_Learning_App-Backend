@@ -17,14 +17,24 @@ An offline-capable mobile app that teaches Sinhala to primary school children th
 
 1.**Real-Time Voice Feedback & Pronunciation**
 App speaks sentences with karaoke-style highlighting; child repeats; instant color-coded feedback (green=correct, red=mispronounced, gray=skipped); points awarded for accuracy.
+
+
 2.**AR Object Recognition & Vocabulary Building**
 Point camera at real objects; app identifies and displays Sinhala names with pronunciation; builds personalized vocabulary from surroundings.
+
+
 3.**Gamified Sinhala Storytelling**
 Interactive Sri Lankan folk stories with decision-based progression; animated visuals, TTS narration; badges and points system; teaches vocabulary and cultural heritage.
+
+
 4.**Text-to-Image Generation**
 Capture or type Sinhala text; app generates matching images; reinforces visual comprehension and vocabulary through AI-generated illustrations.
+
+
 5.**Sinhala Handwriting Practice**
 Displays letter/word formation patterns; children trace on screen; scoring based on stroke accuracy and form.
+
+
 6.**AI-Driven Progress Dashboard**
 Aggregates performance across all modules; visualizes strengths and improvement areas; provides adaptive learning recommendations; parent/teacher reports.
 

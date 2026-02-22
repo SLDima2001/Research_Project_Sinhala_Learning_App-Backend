@@ -7,7 +7,7 @@ curl -s http://127.0.0.1:5001/health
 echo.
 
 echo Testing IP address connection...
-curl -s http://10.180.210.57:5001/health
+curl -s http://192.168.1.4:5001/health
 echo.
 
 echo.

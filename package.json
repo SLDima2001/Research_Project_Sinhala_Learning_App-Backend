@@ -1,0 +1,13 @@
+{
+    "name": "sinhala-learning-app-monorepo",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "concurrently --kill-others -n \"BACKEND,MOBILE,EMULATOR\" -c \"blue,green,magenta\" \"npm run backend\" \"npm run mobile\" \"npm run emulator\"",
+        "backend": "cd backend && uvicorn app.main:app --reload --host 0.0.0.0",
+        "mobile": "cd mobile-app && npm start",
+        "emulator": "~/Library/Android/sdk/emulator/emulator -avd Pixel_6_Pro_API_34 -netdelay none -netspeed full"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

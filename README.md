@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sinhala learning app for 7-10 age children
 
 ## Project Overview
@@ -380,3 +381,28 @@ Research_Project_Sinhala_Learning_App-Backend/
 5. **Review** `models/training_history.png`
 6. **Deploy** with Flask API
 
+=======
+# Research_Project_Sinhala_Learning_App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Git Repo Links- Backend-https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App-Backend/tree/real_time_feedback_Backend
+                Frontend-
+>>>>>>> origin/real_time_feedback_Backend

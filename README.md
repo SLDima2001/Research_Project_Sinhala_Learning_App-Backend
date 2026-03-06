@@ -1,4 +1,54 @@
-# 🎓 Sinhala Handwriting Recognition - AI Model Training System
+# Sinhala learning app for 7-10 age children
+
+## Project Overview
+
+**Purpose**
+An offline-capable mobile app that teaches Sinhala to primary school children through AI-driven interactive learning combining pronunciation practice, AR experiences, cultural storytelling, visual learning, and handwriting development.
+
+## Core Architecture
+
+**Platform:** React Native (Expo) - cross-platform mobile
+**Game Engine:** Unity - interactive storytelling
+**AI Capabilities:** Speech recognition, object detection, text-to-image generation
+**Offline-First:** Pre-downloaded models and cached content for rural accessibility
+
+## System Features
+
+1. **Real-Time Voice Feedback & Pronunciation**
+App speaks sentences with karaoke-style highlighting; child repeats; instant color-coded feedback (green=correct, red=mispronounced, gray=skipped); points awarded for accuracy.
+
+2. **AR Object Recognition & Vocabulary Building**
+Point camera at real objects; app identifies and displays Sinhala names with pronunciation; builds personalized vocabulary from surroundings.
+
+3. **Gamified Sinhala Storytelling**
+Interactive Sri Lankan folk stories with decision-based progression; animated visuals, TTS narration; badges and points system; teaches vocabulary and cultural heritage.
+
+4. **Text-to-Image Generation**
+Capture or type Sinhala text; app generates matching images; reinforces visual comprehension and vocabulary through AI-generated illustrations.
+
+5. **Sinhala Handwriting Practice**
+Displays letter/word formation patterns; children trace on screen; scoring based on stroke accuracy and form.
+
+6. **AI-Driven Progress Dashboard**
+Aggregates performance across all modules; visualizes strengths and improvement areas; provides adaptive learning recommendations; parent/teacher reports.
+
+## Contributions & Collaboration
+
+| Name | IT Number | Contribution |
+|-----|-----|-----|
+| **Fernando S K​​** | IT22904782 | Interactive Sinhala Culture & History Modules with Gamified Narratives​ |
+| **Karunadasa M S T​​** | IT22007056 | Sinhala learning app with real time voice feedback and AR integration  |
+| **Hettiarachchi M H A S K** |IT22322944 | An Interactive Sinhala Learning App With Text-to-imageClassification  |
+| **Praveen K.K.G.D** | IT22900968  | AI-Powered Dashboard for Tracking Child Learning Progress with Sinhala Handwriting Recognition​  |
+
+## GitHub Repository Links
+
+Frontend - https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App
+Backend - https://github.com/SLDima2001/Research_Project_Sinhala_Learning_App-Backend
+
+---
+
+# 🎓 Sinhala Handwriting Recognition - AI Model Training System (Backend)
 
 ## 🚀 START HERE
 
@@ -27,32 +77,10 @@ python train_sinhala_model.py
 Read these in order:
 
 1. **[QUICK_START.md](QUICK_START.md)** ⭐ (5 min)
-   - 30-second quick start
-   - Prerequisites checklist
-   - Step-by-step training
-   - Common tasks
-
 2. **[VISUAL_SUMMARY.md](VISUAL_SUMMARY.md)** (10 min)
-   - Visual overview
-   - Training pipeline diagram
-   - Expected results
-   - Configuration options
-
 3. **[SETUP_SUMMARY.md](SETUP_SUMMARY.md)** (10 min)
-   - What was created
-   - File descriptions
-   - Next steps
-
 4. **[TRAINING_GUIDE.md](TRAINING_GUIDE.md)** (20 min)
-   - Detailed training guide
-   - Configuration options
-   - Troubleshooting
-   - Performance tips
-
 5. **[FILE_INDEX.md](FILE_INDEX.md)** (reference)
-   - Complete file index
-   - File dependencies
-   - Usage guide
 
 ---
 
@@ -196,14 +224,6 @@ cd api
 python check_dataset.py
 ```
 
-Expected output:
-```
-✅ Train folder exists!
-✅ Total classes: 454
-✅ Total training images: 26,000+
-🎉 Dataset looks PERFECT! Ready to train!
-```
-
 ### Step 2: Install Dependencies
 ```bash
 pip install -r requirements.txt
@@ -213,8 +233,6 @@ pip install -r requirements.txt
 ```bash
 python train_sinhala_model.py
 ```
-
-Or on Windows, double-click `train.bat`
 
 ### Step 4: Monitor Training
 Watch the console output for:
@@ -244,18 +262,6 @@ BATCH_SIZE = 32                         # Batch size
 AUGMENTATION_FACTOR = 2                 # Data augmentation
 VALIDATION_SPLIT = 0.15                 # Validation percentage
 TEST_SPLIT = 0.15                       # Test percentage
-```
-
-### Preset Configurations
-
-```python
-from training_config import PresetConfigs
-
-PresetConfigs.quick_test()              # 5 epochs (5 min)
-PresetConfigs.balanced()                # 100 epochs (recommended)
-PresetConfigs.high_accuracy()           # 200 epochs (best results)
-PresetConfigs.gpu_optimized()           # GPU optimized
-PresetConfigs.cpu_optimized()           # CPU optimized
 ```
 
 ---
@@ -374,112 +380,3 @@ Research_Project_Sinhala_Learning_App-Backend/
 5. **Review** `models/training_history.png`
 6. **Deploy** with Flask API
 
----
-
-## 💡 Key Features
-
-✅ **Advanced Data Augmentation**
-- Random rotation, shift, zoom
-- Noise addition
-- Configurable augmentation factor
-
-✅ **Production-Ready Model**
-- 4 convolutional blocks
-- Batch normalization
-- Dropout regularization
-- 454 output classes
-
-✅ **Smart Training**
-- Early stopping
-- Model checkpointing
-- Learning rate reduction
-- Comprehensive logging
-
-✅ **Comprehensive Testing**
-- Batch prediction
-- Confusion matrix
-- Classification reports
-- Performance visualization
-
-✅ **Easy Configuration**
-- Preset configurations
-- Centralized management
-- Save/load from JSON
-
-✅ **Detailed Documentation**
-- 5 comprehensive guides
-- Inline code comments
-- Troubleshooting section
-- Usage examples
-
----
-
-## 🎓 Learning Resources
-
-- **QUICK_START.md** - Get started in 5 minutes
-- **TRAINING_GUIDE.md** - Comprehensive training guide
-- **Code Comments** - Detailed inline documentation
-- **Examples** - Usage examples in docstrings
-
----
-
-## 📞 Support
-
-For issues:
-1. Check [QUICK_START.md](QUICK_START.md) troubleshooting
-2. Read [TRAINING_GUIDE.md](TRAINING_GUIDE.md)
-3. Review code comments in Python files
-4. Check error messages carefully
-
----
-
-## 🎉 Summary
-
-You now have a **complete, professional-grade training system** for Sinhala handwriting recognition with:
-
-- ✅ 7 new Python/Batch scripts
-- ✅ 5 comprehensive documentation files
-- ✅ ~2,500 lines of well-commented code
-- ✅ ~5,000 lines of documentation
-- ✅ Complete training pipeline
-- ✅ Testing and validation utilities
-- ✅ Configuration management
-- ✅ Error handling and logging
-
-**Everything is ready to train your model!**
-
----
-
-## 🚀 Ready to Train?
-
-### Windows Users
-```
-1. Open: api/train.bat
-2. Double-click it
-3. Wait 2-4 hours
-4. Done!
-```
-
-### Command Line
-```bash
-cd api
-python train_sinhala_model.py
-```
-
----
-
-**Version**: 2.0  
-**Status**: Production Ready  
-**Dataset**: 454 classes, 26,000+ images  
-**Model**: CNN with 4 convolutional blocks  
-**Documentation**: 5 comprehensive guides  
-**Code**: ~2,500 lines with full comments  
-
-**Let's train your Sinhala handwriting recognition model! 🚀**
-
----
-
-For detailed information, see:
-- [QUICK_START.md](QUICK_START.md) - Quick start guide
-- [TRAINING_GUIDE.md](TRAINING_GUIDE.md) - Detailed guide
-- [FILE_INDEX.md](FILE_INDEX.md) - Complete file index

@@ -13,9 +13,9 @@ print("=" * 60)
 # Check 1: Python version
 print("\n1. Checking Python version...")
 py_version = sys.version_info
-print(f"   ✓ Python {py_version.major}.{py_version.minor}.{py_version.micro}")
+print(f"   [OK] Python {py_version.major}.{py_version.minor}.{py_version.micro}")
 if py_version.major < 3 or (py_version.major == 3 and py_version.minor < 8):
-    print("   ✗ WARNING: Python 3.8+ recommended")
+    print("   [ERROR] WARNING: Python 3.8+ recommended")
 
 # Check 2: Model files exist
 print("\n2. Checking model files...")
@@ -37,9 +37,9 @@ all_files_exist = True
 for file in required_files:
     file_path = os.path.join(MODEL_PATH, file)
     if os.path.exists(file_path):
-        print(f"   ✓ {file}")
+        print(f"   [OK] {file}")
     else:
-        print(f"   ✗ MISSING: {file}")
+        print(f"   [ERROR] MISSING: {file}")
         all_files_exist = False
 
 if not all_files_exist:
@@ -64,9 +64,9 @@ missing_packages = []
 for module_name, display_name in packages:
     try:
         __import__(module_name)
-        print(f"   ✓ {display_name}")
+        print(f"   [OK] {display_name}")
     except ImportError:
-        print(f"   ✗ MISSING: {display_name}")
+        print(f"   [ERROR] MISSING: {display_name}")
         missing_packages.append(module_name)
 
 if missing_packages:
@@ -81,11 +81,11 @@ try:
     
     processor = Wav2Vec2Processor.from_pretrained(MODEL_PATH, local_files_only=True)
     model = Wav2Vec2ForCTC.from_pretrained(MODEL_PATH, local_files_only=True)
-    print("   ✓ Model loaded successfully!")
-    print(f"   ✓ Vocab size: {len(processor.tokenizer)}")
+    print("   [OK] Model loaded successfully!")
+    print(f"   [OK] Vocab size: {len(processor.tokenizer)}")
     
 except Exception as e:
-    print(f"   ✗ ERROR: {str(e)}")
+    print(f"   [ERROR] ERROR: {str(e)}")
     sys.exit(1)
 
 # Check 5: Test inference
@@ -105,11 +105,11 @@ try:
     predicted_ids = torch.argmax(logits, dim=-1)
     transcription = processor.batch_decode(predicted_ids)[0]
     
-    print(f"   ✓ Inference successful!")
-    print(f"   ✓ Test transcription: '{transcription}'")
+    print(f"   [OK] Inference successful!")
+    print(f"   [OK] Test transcription: '{transcription}'")
     
 except Exception as e:
-    print(f"   ✗ ERROR: {str(e)}")
+    print(f"   [ERROR] ERROR: {str(e)}")
     sys.exit(1)
 
 # Check 6: Verify folder structure
@@ -121,13 +121,13 @@ required_dirs = [
 
 for dir_path in required_dirs:
     if os.path.exists(dir_path):
-        print(f"   ✓ {dir_path}/")
+        print(f"   [OK] {dir_path}/")
     else:
-        print(f"   ✗ Creating: {dir_path}/")
+        print(f"   [ERROR] Creating: {dir_path}/")
         os.makedirs(dir_path, exist_ok=True)
 
 print("\n" + "=" * 60)
-print("ALL CHECKS PASSED! ✓")
+print("ALL CHECKS PASSED! [OK]")
 print("=" * 60)
 print("\nYou can now start the backend server:")
 print("   python app.py")

@@ -62,8 +62,8 @@ class SinhalaModelTrainer:
         
         self.class_names = [d.name for d in class_folders]
         
-        print(f"\n✓ Found {len(self.class_names)} letter classes")
-        print(f"✓ Dataset path: {self.dataset_path.absolute()}")
+        print(f"\n[OK] Found {len(self.class_names)} letter classes")
+        print(f"[OK] Dataset path: {self.dataset_path.absolute()}")
         
         total_images_found = 0
         
@@ -119,7 +119,7 @@ class SinhalaModelTrainer:
         X = np.expand_dims(X, axis=-1)
         
         print(f"\n{'=' * 70}")
-        print(f"✓ Dataset loaded successfully!")
+        print(f"[OK] Dataset loaded successfully!")
         print(f"  Total images: {len(X)}")
         print(f"  Image shape: {X.shape[1:]}")
         print(f"  Number of classes: {len(self.class_names)}")
@@ -194,7 +194,7 @@ class SinhalaModelTrainer:
         y_aug = np.array(augmented_labels)
         
         print(f"\n{'=' * 70}")
-        print(f"✓ Data augmentation completed!")
+        print(f"[OK] Data augmentation completed!")
         print(f"  Original dataset size: {len(images)}")
         print(f"  Augmented dataset size: {len(X_aug)}")
         print(f"  Augmentation factor: {len(X_aug) / len(images):.1f}x")
@@ -255,7 +255,7 @@ class SinhalaModelTrainer:
             metrics=['accuracy']
         )
         
-        print(f"\n✓ Model architecture created!")
+        print(f"\n[OK] Model architecture created!")
         print(f"\nModel Summary:")
         model.summary()
         
@@ -273,7 +273,7 @@ class SinhalaModelTrainer:
             X, y, test_size=validation_split, random_state=42, stratify=y
         )
         
-        print(f"\n✓ Data split completed!")
+        print(f"\n[OK] Data split completed!")
         print(f"  Training samples: {len(X_train)}")
         print(f"  Validation samples: {len(X_val)}")
         print(f"  Training epochs: {epochs}")
@@ -337,7 +337,7 @@ class SinhalaModelTrainer:
         
         test_loss, test_accuracy = self.model.evaluate(X_test, y_test, verbose=0)
         
-        print(f"\n✓ Evaluation completed!")
+        print(f"\n[OK] Evaluation completed!")
         print(f"  Test Loss: {test_loss:.4f}")
         print(f"  Test Accuracy: {test_accuracy * 100:.2f}%")
         
@@ -374,7 +374,7 @@ class SinhalaModelTrainer:
         plt.tight_layout()
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         plt.savefig(save_path, dpi=100, bbox_inches='tight')
-        print(f"✓ Training history plot saved to: {save_path}")
+        print(f"[OK] Training history plot saved to: {save_path}")
         plt.close()
     
     def save_model(self, save_path='models/sinhala_model.keras'):
@@ -387,7 +387,7 @@ class SinhalaModelTrainer:
         
         # Save Keras model
         self.model.save(save_path)
-        print(f"\n✓ Model saved to: {save_path}")
+        print(f"\n[OK] Model saved to: {save_path}")
         
         # Save class names
         class_info = {
@@ -403,7 +403,7 @@ class SinhalaModelTrainer:
         info_path = save_path.replace('.keras', '_info.json')
         with open(info_path, 'w', encoding='utf-8') as f:
             json.dump(class_info, f, ensure_ascii=False, indent=2)
-        print(f"✓ Model info saved to: {info_path}")
+        print(f"[OK] Model info saved to: {info_path}")
         
         # Save training history
         if self.history:
@@ -412,10 +412,10 @@ class SinhalaModelTrainer:
                           for k, vals in self.history.history.items()}
             with open(history_path, 'w') as f:
                 json.dump(history_dict, f, indent=2)
-            print(f"✓ Training history saved to: {history_path}")
+            print(f"[OK] Training history saved to: {history_path}")
         
         print(f"\n{'=' * 70}")
-        print("✓ Model saved successfully!")
+        print("[OK] Model saved successfully!")
         print(f"{'=' * 70}\n")
 
 
@@ -482,7 +482,7 @@ def main():
         trainer.save_model('models/sinhala_model.keras')
         
         print("\n" + "=" * 70)
-        print("✓ TRAINING COMPLETED SUCCESSFULLY!")
+        print("[OK] TRAINING COMPLETED SUCCESSFULLY!")
         print("=" * 70)
         print(f"Completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("\nNext steps:")
@@ -493,7 +493,7 @@ def main():
         print("=" * 70 + "\n")
         
     except Exception as e:
-        print(f"\n✗ ERROR: {e}")
+        print(f"\n[ERROR] ERROR: {e}")
         print("\nPlease check:")
         print("1. Dataset path is correct")
         print("2. Dataset has proper folder structure (class folders with images)")

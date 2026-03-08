@@ -75,9 +75,9 @@ STORIES_DATA_PATH = os.path.join(PROJECT_ROOT, "data", "stories.json")
 # Primary Handwriting Model (454 classes)
 try:
     handwriting_model = SinhalaHandwritingModel()
-    print("✓ Primary Handwriting Model (454 classes) Initialized")
+    print("[OK] Primary Handwriting Model (454 classes) Initialized")
 except Exception as e:
-    print(f"✗ Failed to load Primary Handwriting Model: {e}")
+    print(f"[ERROR] Failed to load Primary Handwriting Model: {e}")
     handwriting_model = None
 
 # Secondary Handwriting Model (75 classes for Text-to-Image)
@@ -101,9 +101,9 @@ try:
             with open(LABELS_75_PATH, "r", encoding="utf-8") as f:
                 raw_labels = json.load(f)
                 idx_to_label_75 = {int(k): v for k, v in raw_labels.items()}
-        print(f"✓ Secondary Model loaded with {len(idx_to_label_75) if idx_to_label_75 else 0} labels")
+        print(f"[OK] Secondary Model loaded with {len(idx_to_label_75) if idx_to_label_75 else 0} labels")
 except Exception as e:
-    print(f"✗ Secondary Model failed to load: {e}")
+    print(f"[ERROR] Secondary Model failed to load: {e}")
 
 # ============================================================
 # DATA STORAGE (In-Memory Sessions)

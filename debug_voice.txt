@@ -1,0 +1,717 @@
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'සැමට සෑමවිටම විදුලිය දැන් යථාර්ථයක් වෙලා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'සැමට', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'සෑමවිටම', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විදුලිය', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දැන්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'යථාර්ථයක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'සැමට සෑමවිටම විදුලිය දැන් යථාර්ථයක් වෙලා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'සැමට', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'සෑමවිටම', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විදුලිය', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දැන්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'යථාර්ථයක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ගයාන්ට මීට කලිනුත් ඔයවගේ සම්බන්ධකම් තිබුණා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'ගයාන්ට', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'මීට', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කලිනුත්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඔයවගේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'සම්බන්ධකම්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'තිබුණා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'එනමුදු විනෝදාස්වාදයට වැඩිපුර වියදම් කිරීමෙන් වළකින්න'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'එනමුදු', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විනෝදාස්වාදයට', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වැඩිපුර', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වියදම්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කිරීමෙන්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වළකින්න', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'දකුණේ ඇතැම් කොටසකුත් දුක් විඳිමින් ඉන්නවා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'දකුණේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඇතැම්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කොටසකුත්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දුක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විඳිමින්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'දකුණේ ඇතැම් කොටසකුත් දුක් විඳිමින් ඉන්නවා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'දකුණේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඇතැම්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කොටසකුත්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දුක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විඳිමින්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/temp_20260308_174217.wav': Format not recognised.
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'දකුණේ ඇතැම් කොටසකුත් දුක් විඳිමින් ඉන්නවා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'දකුණේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඇතැම්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කොටසකුත්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දුක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විඳිමින්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/temp_20260308_174239.wav': Format not recognised.
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'වාඩිවෙලා ඉන්දැද්දී වාඩිවෙලා ඉන්නවා කියල දැනගන්නවා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'වාඩිවෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්දැද්දී', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වාඩිවෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කියල', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දැනගන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/stream_temp_DJPSPI4huZD5Yd0yAAAD.wav': Format not recognised.
+
+EXCEPTION IN get_word_timestamps:
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\modules\speech_feedback\processor.py", line 50, in get_word_timestamps
+    speech, sr = sf.read(audio_path, dtype='float32')
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 305, in read
+    with SoundFile(file, 'r', samplerate, channels,
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   subtype, endian, format, closefd) as f:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 690, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\soundfile.py", line 1265, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening 'uploads/temp_20260308_174348.wav': Format not recognised.
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'වාඩිවෙලා ඉන්දැද්දී වාඩිවෙලා ඉන්නවා කියල දැනගන්නවා'
+Raw Timestamps (Spoken): []
+Final Feedback: {'words': [{'word': 'වාඩිවෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්දැද්දී', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වාඩිවෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කියල', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දැනගන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+

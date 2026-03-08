@@ -91,7 +91,7 @@ def load_artifacts():
 
         model = tf.keras.models.Model(inputs=base_model.input, outputs=predictions)
         model.load_weights(MODEL_PATH, by_name=True, skip_mismatch=True)
-        print(f"✓ Model weights loaded from {MODEL_PATH}")
+        print(f"[OK] Model weights loaded from {MODEL_PATH}")
 
     except Exception as e:
         print(f"Manual reconstruction failed: {e}")
@@ -100,7 +100,7 @@ def load_artifacts():
     with open(LABELS_PATH, "r", encoding="utf-8") as f:
         raw = json.load(f)
         idx_to_label = {int(k): v for k, v in raw.items()}
-    print(f"✓ Loaded {len(idx_to_label)} labels")
+    print(f"[OK] Loaded {len(idx_to_label)} labels")
 
 
 load_error = None
@@ -108,7 +108,7 @@ try:
     load_artifacts()
 except Exception as e:
     load_error = str(e)
-    print(f"✗ Failed to load artifacts: {e}")
+    print(f"[ERROR] Failed to load artifacts: {e}")
 
 
 def preprocess_image(file_bytes: bytes) -> np.ndarray:
@@ -153,7 +153,7 @@ def get_cached_image(search_term: str) -> Optional[bytes]:
         with open(cache_path, "rb") as f:
             data = f.read()
             if len(data) > 1000:  # Ensure it's a real image, not empty
-                print(f"  ✓ Using cached image for '{search_term}'")
+                print(f"  [OK] Using cached image for '{search_term}'")
                 return data
     return None
 
@@ -163,7 +163,7 @@ def save_to_cache(search_term: str, image_bytes: bytes):
     cache_path = get_cache_path(search_term)
     with open(cache_path, "wb") as f:
         f.write(image_bytes)
-    print(f"  ✓ Cached image for '{search_term}'")
+    print(f"  [OK] Cached image for '{search_term}'")
 
 
 def search_wikimedia(search_term: str, randomize: bool = False) -> Optional[bytes]:
@@ -488,7 +488,7 @@ def generate_image_endpoint():
         # Convert to base64
         image_b64 = base64.b64encode(image_bytes).decode('utf-8')
 
-        print(f"✓ Returning image from: {source} ({len(image_bytes)} bytes)")
+        print(f"[OK] Returning image from: {source} ({len(image_bytes)} bytes)")
 
         return jsonify({
             "success": True,

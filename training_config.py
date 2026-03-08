@@ -147,7 +147,7 @@ class TrainingConfig:
         with open(filepath, 'w') as f:
             json.dump(config_dict, f, indent=2)
         
-        print(f"✓ Configuration saved to: {filepath}")
+        print(f"[OK] Configuration saved to: {filepath}")
     
     @classmethod
     def load_config(cls, filepath='models/training_config.json'):
@@ -164,7 +164,7 @@ class TrainingConfig:
             if key != 'saved_at' and hasattr(cls, key):
                 setattr(cls, key, value)
         
-        print(f"✓ Configuration loaded from: {filepath}")
+        print(f"[OK] Configuration loaded from: {filepath}")
         return True
     
     @classmethod
@@ -240,7 +240,7 @@ class TrainingConfig:
         
         # Report results
         if errors:
-            print("\n✗ ERRORS:")
+            print("\n[ERROR] ERRORS:")
             for error in errors:
                 print(f"  - {error}")
             return False
@@ -251,7 +251,7 @@ class TrainingConfig:
                 print(f"  - {warning}")
         
         if not errors:
-            print("\n✓ Configuration is valid!")
+            print("\n[OK] Configuration is valid!")
         
         return True
 
@@ -266,7 +266,7 @@ class PresetConfigs:
         TrainingConfig.EPOCHS = 5
         TrainingConfig.BATCH_SIZE = 64
         TrainingConfig.AUGMENTATION_FACTOR = 1
-        print("✓ Quick test configuration loaded")
+        print("[OK] Quick test configuration loaded")
     
     @staticmethod
     def balanced():
@@ -274,7 +274,7 @@ class PresetConfigs:
         TrainingConfig.EPOCHS = 100
         TrainingConfig.BATCH_SIZE = 32
         TrainingConfig.AUGMENTATION_FACTOR = 2
-        print("✓ Balanced configuration loaded")
+        print("[OK] Balanced configuration loaded")
     
     @staticmethod
     def high_accuracy():
@@ -282,7 +282,7 @@ class PresetConfigs:
         TrainingConfig.EPOCHS = 200
         TrainingConfig.BATCH_SIZE = 16
         TrainingConfig.AUGMENTATION_FACTOR = 3
-        print("✓ High accuracy configuration loaded")
+        print("[OK] High accuracy configuration loaded")
     
     @staticmethod
     def gpu_optimized():
@@ -290,7 +290,7 @@ class PresetConfigs:
         TrainingConfig.EPOCHS = 150
         TrainingConfig.BATCH_SIZE = 64
         TrainingConfig.AUGMENTATION_FACTOR = 2
-        print("✓ GPU optimized configuration loaded")
+        print("[OK] GPU optimized configuration loaded")
     
     @staticmethod
     def cpu_optimized():
@@ -298,7 +298,7 @@ class PresetConfigs:
         TrainingConfig.EPOCHS = 50
         TrainingConfig.BATCH_SIZE = 16
         TrainingConfig.AUGMENTATION_FACTOR = 1
-        print("✓ CPU optimized configuration loaded")
+        print("[OK] CPU optimized configuration loaded")
 
 
 def main():

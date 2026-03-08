@@ -10,6 +10,7 @@ import datetime
 from functools import wraps
 import os
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -22,7 +23,8 @@ auth_bp = Blueprint('auth', __name__)
 # Set MONGO_URI environment variable with your correct MongoDB connection string
 # For MongoDB Atlas: mongodb+srv://username:password@cluster.mongodb.net/
 # For local MongoDB: mongodb://localhost:27017/
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
+# MongoDB Configuration
+MONGO_URI = os.getenv('MONGO_URI', "mongodb+srv://root:Dima2001@customerfeedback.83hfgpu.mongodb.net/?retryWrites=true&w=majority&appName=customerfeedback")
 client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
 db = client['sinhala_learning_app']
 users_collection = db['users']
@@ -59,7 +61,7 @@ def token_required(f):
                 token = token[7:]
             
             data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-            current_user = users_collection.find_one({'_id': data['user_id']})
+            current_user = users_collection.find_one({'_id': ObjectId(data['user_id'])})
             
             if not current_user:
                 return jsonify({'success': False, 'message': 'User not found'}), 401

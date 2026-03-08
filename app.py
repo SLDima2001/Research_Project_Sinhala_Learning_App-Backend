@@ -22,8 +22,22 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 from flask import Flask, request, jsonify, send_file
+from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 from dotenv import load_dotenv
+import io
+from pydub import AudioSegment
+import imageio_ffmpeg
+import os
+
+# Explicitly set ffmpeg path for pydub to the local binary provided by imageio_ffmpeg
+ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
+os.environ["PATH"] += os.pathsep + os.path.dirname(ffmpeg_exe)
+AudioSegment.converter = ffmpeg_exe
+AudioSegment.ffmpeg = ffmpeg_exe
+
+from pymongo import MongoClient
+from bson.binary import Binary
 
 # Load environment variables
 load_dotenv()
@@ -46,10 +60,28 @@ try:
 except ImportError:
     print("Warning: SinhalaHandwritingModel class not found in sinhala_model.py")
 
+try:
+    from modules.speech_feedback.processor import get_word_timestamps
+    from modules.speech_feedback.evaluator import evaluate_pronunciation
+except ImportError as e:
+    print(f"Warning: Could not import speech feedback modules: {e}")
+    get_word_timestamps = None
+    evaluate_pronunciation = None
+
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 # Initialize Flask app
 app = Flask(__name__)
 app.json.ensure_ascii = False  # Support Sinhala characters in JSON
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+# MySQL/MongoDB connection (reusing ORI from .env if possible)
+MONGO_URI = os.getenv('MONGO_URI', "mongodb+srv://root:Dima2001@customerfeedback.83hfgpu.mongodb.net/?retryWrites=true&w=majority&appName=customerfeedback")
+mongo_client = MongoClient(MONGO_URI)
+db = mongo_client['sinhala_learning_app'] # Primary DB for users and stories
+voice_db = mongo_client['customerfeedback'] # DB for voice feedback recordings
 
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -59,7 +91,7 @@ app.register_blueprint(text_to_image_bp, url_prefix='/api/ti')
 # ============================================================
 # CONFIGURATION
 # ============================================================
-PORT = int(os.environ.get("PORT", 5000))
+PORT = int(os.environ.get("PORT", 5002))
 user_sessions = {}
 
 # Primary Handwriting Model Initialization
@@ -156,8 +188,8 @@ def _load_sentences_from_mongo():
                 'text': text,
                 'words': text.split(),
                 'difficulty': difficulty,
-                'hasAudio': True,
-                'audioPath': f"/api/audio/{filename}.wav",
+                'hasAudio': False,  # Audio files not available on unified backend
+                'audioPath': None,
                 'timings': timings_doc.get(filename, [])
             })
 
@@ -338,10 +370,132 @@ def get_random_letter():
     })
 
 # ============================================================
+# VOICE PROCESSING HANDLERS
+# ============================================================
+
+@socketio.on('connect')
+def handle_connect():
+    print("Client connected to SocketIO")
+    emit('connection_response', {'status': 'connected'})
+
+@socketio.on('process_voice')
+def handle_voice(data):
+    """Process full voice recording"""
+    try:
+        from datetime import datetime
+        if 'audio' not in data or 'target' not in data:
+            emit('error', {'message': 'Missing audio or target text'})
+            return
+
+        audio_base64 = data['audio']
+        target_text = data['target']
+
+        if ',' in audio_base64:
+            audio_base64 = audio_base64.split(',')[1]
+        audio_bytes = base64.b64decode(audio_base64)
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        temp_filename = f"{UPLOAD_FOLDER}/temp_{timestamp}.wav"
+        
+        try:
+            audio_io = io.BytesIO(audio_bytes)
+            # Try to load it as whatever format it came in
+            try:
+                audio = AudioSegment.from_file(audio_io)
+            except:
+                # Fallback to m4a/aac since Expo uses that
+                audio_io.seek(0)
+                audio = AudioSegment.from_file(audio_io, format="m4a")
+                
+            audio = audio.set_frame_rate(16000).set_channels(1)
+            audio.export(temp_filename, format="wav")
+            print(f"Successfully converted and saved {temp_filename}")
+        except Exception as e:
+            print(f"Pydub conversion failed: {e}")
+            raise Exception(f"Failed to process and format audio: {e}")
+
+        if not get_word_timestamps or not evaluate_pronunciation:
+            raise Exception("Speech feedback modules not loaded")
+
+        raw_timestamps = get_word_timestamps(temp_filename)
+        
+        with open("debug_voice.txt", "a", encoding="utf-8") as f:
+            f.write("====== VOICE PRACTICE DEBUG (FULL) ======\n")
+            f.write(f"Target Text: '{target_text}'\n")
+            f.write(f"Raw Timestamps (Spoken): {raw_timestamps}\n")
+        
+        final_feedback = evaluate_pronunciation(raw_timestamps, target_text)
+        
+        with open("debug_voice.txt", "a", encoding="utf-8") as f:
+            f.write(f"Final Feedback: {final_feedback}\n")
+            f.write("=========================================\n\n")
+        
+        emit('feedback_ui_update', final_feedback)
+        
+        try:
+            os.remove(temp_filename)
+        except:
+            pass
+            
+    except Exception as e:
+        print(f"Error in handle_voice: {str(e)}")
+        traceback.print_exc()
+        emit('error', {'message': str(e)})
+
+@socketio.on('process_partial_audio')
+def handle_partial_voice(data):
+    """Process partial voice stream"""
+    try:
+        if 'audio' not in data or 'target' not in data:
+            return
+            
+        audio_base64 = data['audio']
+        target_text = data['target']
+        
+        if ',' in audio_base64:
+            audio_base64 = audio_base64.split(',')[1]
+        audio_bytes = base64.b64decode(audio_base64)
+        
+        temp_filename = f"{UPLOAD_FOLDER}/stream_temp_{request.sid}.wav"
+        
+        try:
+            audio_io = io.BytesIO(audio_bytes)
+            try:
+                audio = AudioSegment.from_file(audio_io)
+            except:
+                audio_io.seek(0)
+                audio = AudioSegment.from_file(audio_io, format="m4a")
+                
+            audio = audio.set_frame_rate(16000).set_channels(1)
+            audio.export(temp_filename, format="wav")
+            print(f"Partial stream processed: {temp_filename}")
+        except Exception as e:
+            print(f"Partial pydub conversion failed: {e}")
+            return # Skip this chunk if we can't parse the format
+                
+        if get_word_timestamps and evaluate_pronunciation:
+            raw_timestamps = get_word_timestamps(temp_filename)
+            final_feedback = evaluate_pronunciation(raw_timestamps, target_text)
+            print(f"--- PARTIAL DEBUG ---")
+            print(f"Target: {target_text}")
+            print(f"Spoken: {raw_timestamps}")
+            print(f"Feedback: {final_feedback}")
+            print(f"---------------------")
+            emit('partial_feedback_update', final_feedback)
+            
+        try:
+            os.remove(temp_filename)
+        except:
+            pass
+            
+    except Exception as e:
+        print(f"Partial processing error: {e}")
+
+# ============================================================
 # MAIN
 # ============================================================
 if __name__ == '__main__':
     print("=" * 60)
     print(f"Unified Sinhala Learning API running on http://0.0.0.0:{PORT}")
     print("=" * 60)
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+    socketio.run(app, host='0.0.0.0', port=PORT, debug=True)

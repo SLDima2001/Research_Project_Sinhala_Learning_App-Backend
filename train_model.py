@@ -298,7 +298,7 @@ class SinhalaModelTrainer:
         
         # Save Keras model
         self.model.save(save_path)
-        print(f"✓ Model saved to: {save_path}")
+        print(f"[OK] Model saved to: {save_path}")
         
         # Save class names
         class_info = {
@@ -312,7 +312,7 @@ class SinhalaModelTrainer:
         info_path = save_path.replace('.keras', '_info.json')
         with open(info_path, 'w', encoding='utf-8') as f:
             json.dump(class_info, f, ensure_ascii=False, indent=2)
-        print(f"✓ Model info saved to: {info_path}")
+        print(f"[OK] Model info saved to: {info_path}")
         
         # Save training history
         if self.history:
@@ -321,7 +321,7 @@ class SinhalaModelTrainer:
                           for k, vals in self.history.history.items()}
             with open(history_path, 'w') as f:
                 json.dump(history_dict, f, indent=2)
-            print(f"✓ Training history saved to: {history_path}")
+            print(f"[OK] Training history saved to: {history_path}")
 
 
 def main():

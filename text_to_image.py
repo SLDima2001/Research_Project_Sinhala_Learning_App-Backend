@@ -1,10 +1,12 @@
 import os
 import io
 import json
+import re
 import base64
 import hashlib
 import requests
-from typing import Tuple, Dict, Optional
+import random
+from typing import Tuple, Dict, Optional, List
 from flask import Blueprint, request, jsonify
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
@@ -54,6 +56,42 @@ WORD_TO_ENGLISH: Dict[str, str] = {
     'ළමයා': 'child',
     'එළුවා': 'goat',
     'බුකුටා': 'rooster',
+    'අලියා': 'elephant',
+    'කොටි': 'tiger',
+    'සිංහයා': 'lion',
+    'සමනලයා': 'butterfly',
+    'කුරුල්ලා': 'bird',
+    'මුවා': 'deer',
+    'නරි': 'fox',
+    'වඳුරා': 'monkey',
+    'ගවයා': 'cow',
+    'අශ්වයා': 'horse',
+    'ඇපල්': 'apple',
+    'අඹ': 'mango',
+    'දොඩම්': 'orange',
+    'කෙසෙල්': 'banana',
+    'සොබාදහම': 'nature',
+    'වැව': 'lake',
+    'කන්ද': 'mountain',
+    'මහ රෝහල': 'hospital',
+    'පොලිසිය': 'police station',
+    'සීබ්‍රා': 'zebra',
+    'කැන්ගරු': 'kangaroo',
+    'මීයා': 'rat',
+    'පොල් ගස': 'coconut tree',
+    'තැඹිලි ගස': 'king coconut tree',
+    'ගෙවත්ත': 'garden',
+    'වෙරළ': 'beach',
+    'මුහුද': 'sea',
+    'නැව': 'ship',
+    'යානය': 'airplane',
+    'දුම්රිය': 'train',
+    'පාපැදිය': 'bicycle',
+    'යතුරුපැදිය': 'motorbike',
+    'කිරි': 'milk',
+    'වතුර': 'water',
+    'බත්': 'rice',
+    'පොල්': 'coconut',
 }
 
 # ============================================================
@@ -89,7 +127,7 @@ def get_model():
 
         _model_local = tf.keras.models.Model(inputs=base_model.input, outputs=predictions)
         _model_local.load_weights(MODEL_PATH, by_name=True, skip_mismatch=True)
-        print(f"✓ Model weights loaded from {MODEL_PATH}")
+        print(f"[OK] Model weights loaded from {MODEL_PATH}")
         
         _model = _model_local
     except Exception as e:
@@ -100,7 +138,7 @@ def get_model():
         with open(LABELS_PATH, "r", encoding="utf-8") as f:
             raw = json.load(f)
             _idx_to_label = {int(k): v for k, v in raw.items()}
-        print(f"✓ Loaded {len(_idx_to_label)} labels")
+        print(f"[OK] Loaded {len(_idx_to_label)} labels")
     except Exception as e:
         print(f"Failed to load labels: {e}")
         return None, None
@@ -144,15 +182,26 @@ def get_cached_image(search_term: str) -> Optional[bytes]:
         with open(cache_path, "rb") as f:
             data = f.read()
             if len(data) > 1000:
-                print(f"  ✓ Using cached image for '{search_term}'")
+                print(f"  [OK] Using cached image for '{search_term}'")
                 return data
     return None
+
+def is_accurate_enough(search_term: str, metadata: str) -> bool:
+    """Check if the search term is significantly present in the metadata/filename"""
+    if not metadata: return True  # Can't verify, assume okay if source is trusted
+    term = search_term.lower()
+    meta = metadata.lower()
+    # Check if the term or major parts of it are in the metadata
+    words = [w for w in term.split() if len(w) > 2]
+    if not words: return True
+    return any(word in meta for word in words)
+
 
 def save_to_cache(search_term: str, image_bytes: bytes):
     cache_path = get_cache_path(search_term)
     with open(cache_path, "wb") as f:
         f.write(image_bytes)
-    print(f"  ✓ Cached image for '{search_term}'")
+    print(f"  [OK] Cached image for '{search_term}'")
 
 
 def search_wikimedia(search_term: str, randomize: bool = False) -> Optional[bytes]:
@@ -160,15 +209,19 @@ def search_wikimedia(search_term: str, randomize: bool = False) -> Optional[byte
     try:
         print(f"  Searching Wikimedia Commons for: '{search_term}'...")
         search_url = "https://commons.wikimedia.org/w/api.php"
+        
+        # No more random variants to ensure accuracy
+        query = search_term
+
         params = {
             "action": "query",
             "generator": "search",
             "gsrnamespace": "6",       # File namespace
-            "gsrsearch": f"{search_term} filetype:bitmap",
-            "gsrlimit": "20" if randomize else "5",
+            "gsrsearch": f'"{query}" -icon -diagram -map -clipart -sketch filetype:bitmap',
+            "gsrlimit": "100" if randomize else "10",
             "prop": "imageinfo",
             "iiprop": "url|mime|size",
-            "iiurlwidth": "512",       # Request 512px thumbnail
+            "iiurlwidth": "512",
             "format": "json",
         }
         resp = requests.get(search_url, params=params, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
@@ -187,17 +240,19 @@ def search_wikimedia(search_term: str, randomize: bool = False) -> Optional[byte
             imageinfo = page_data.get("imageinfo", [{}])[0]
             thumb_url = imageinfo.get("thumburl", "")
             mime = imageinfo.get("mime", "")
+            title = page_data.get("title", "")
 
             if thumb_url and mime in ("image/jpeg", "image/png", "image/webp"):
-                img_resp = requests.get(thumb_url, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
-                if img_resp.status_code == 200 and len(img_resp.content) > 1000:
-                    return img_resp.content
+                if is_accurate_enough(search_term, title):
+                    img_resp = requests.get(thumb_url, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
+                    if img_resp.status_code == 200 and len(img_resp.content) > 1000:
+                        return img_resp.content
     except Exception as e:
         print(f"  Wikimedia search failed: {e}")
     return None
 
 
-def search_pixabay(search_term: str) -> Optional[bytes]:
+def search_pixabay(search_term: str, randomize: bool = False) -> Optional[bytes]:
     """Search for a real image on Pixabay (FREE with API key)"""
     if not PIXABAY_API_KEY:
         return None
@@ -209,13 +264,16 @@ def search_pixabay(search_term: str) -> Optional[bytes]:
             "q": search_term,
             "image_type": "photo",
             "safesearch": "true",
-            "per_page": "3",
+            "per_page": "80" if randomize else "3",
         }
         resp = requests.get(url, params=params, timeout=10)
         data = resp.json()
 
         hits = data.get("hits", [])
         if hits:
+            if randomize:
+                import random
+                random.shuffle(hits)
             img_url = hits[0].get("webformatURL", "")
             if img_url:
                 img_resp = requests.get(img_url, timeout=10)
@@ -225,19 +283,80 @@ def search_pixabay(search_term: str) -> Optional[bytes]:
         print(f"  Pixabay search failed: {e}")
     return None
 
+def search_duckduckgo_image(search_term: str, randomize: bool = False) -> Optional[bytes]:
+    """Search for real images using DuckDuckGo (FREE, no API key)"""
+    try:
+        print(f"  Searching DuckDuckGo for: '{search_term}'...")
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+            "Accept": "*/*",
+        }
+        
+        # 1. Get VQD token
+        res = requests.get("https://duckduckgo.com/", params={"q": search_term}, headers=headers, timeout=10)
+        vqd_match = re.search(r'vqd=([0-9-]+)', res.text) or re.search(r'vqd=([^&"\']+)', res.text)
+        if not vqd_match:
+            return None
+        vqd = vqd_match.group(1)
+
+        # 2. Get results
+        search_url = "https://duckduckgo.com/i.js"
+        params = {
+            "l": "wt-wt", "o": "json", "q": search_term,
+            "vqd": vqd, "f": ",,,", "p": "1"
+        }
+        res = requests.get(search_url, params=params, headers=headers, timeout=10)
+        data = res.json()
+        results = data.get("results", [])
+
+        if results:
+            if randomize:
+                random.shuffle(results)
+            
+            # Try top 5 results to find a valid image
+            for i in range(min(5, len(results))):
+                img_url = results[i].get("image", "")
+                if img_url:
+                    try:
+                        # Use a simpler image request
+                        img_res = requests.get(img_url, headers={"User-Agent": headers["User-Agent"]}, timeout=8)
+                        if img_res.status_code == 200 and len(img_res.content) > 10000:
+                            return img_res.content
+                    except:
+                        continue
+    except Exception as e:
+        print(f"  DuckDuckGo search failed: {e}")
+    return None
+
+
 def search_wikipedia_image(search_term: str, randomize: bool = False) -> Optional[bytes]:
     """Search for an image via Wikipedia article (FREE, no API key)"""
     try:
-        # First, find the Wikipedia page
         search_url = "https://en.wikipedia.org/w/api.php"
-        params = {
-            "action": "query",
-            "titles": search_term.split()[0],  # Use first word
-            "prop": "pageimages",
-            "piprop": "thumbnail",
-            "pithumbsize": "512",
-            "format": "json",
-        }
+        
+        if randomize:
+            # Descriptive but strictly relevant search
+            params = {
+                "action": "query",
+                "generator": "search",
+                "gsrsearch": f'"{search_term}" photography',
+                "gsrlimit": "40",
+                "prop": "pageimages",
+                "piprop": "thumbnail",
+                "pithumbsize": "512",
+                "format": "json",
+            }
+        else:
+            # Direct title match for accuracy
+            params = {
+                "action": "query",
+                "titles": search_term,
+                "prop": "pageimages",
+                "piprop": "thumbnail",
+                "pithumbsize": "512",
+                "format": "json",
+            }
+            
         resp = requests.get(search_url, params=params, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
         data = resp.json()
 
@@ -248,16 +367,13 @@ def search_wikipedia_image(search_term: str, randomize: bool = False) -> Optiona
             import random
             random.shuffle(page_items)
 
-        for page_id, page_data in page_items:
-            if page_id == "-1":
-                continue
+        for _, page_data in page_items:
             thumbnail = page_data.get("thumbnail", {})
             img_url = thumbnail.get("source", "")
             if img_url:
                 img_resp = requests.get(img_url, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
                 if img_resp.status_code == 200 and len(img_resp.content) > 1000:
                     return img_resp.content
-
     except Exception as e:
         print(f"  Wikipedia search failed: {e}")
     return None
@@ -317,42 +433,61 @@ def find_real_image(sinhala_text: str, randomize: bool = False) -> Tuple[bytes, 
 
     print(f"\n🔍 Searching real image for: '{sinhala_text}' (English: '{english_term}', Randomize: {randomize})")
 
+    # Use cache only for non-random requests
     if not randomize:
         cached = get_cached_image(english_term)
         if cached:
             return cached, "cache"
 
-    image_bytes = search_wikipedia_image(english_term, randomize)
-    if image_bytes:
-        image_bytes = optimize_image(image_bytes)
-        if not randomize: save_to_cache(english_term, image_bytes)
-        return image_bytes, "Wikipedia"
+    # Define variants to force separate search indexes for variety
+    variants = [
+        english_term,
+        f"{english_term} photo",
+        f"realistic {english_term}",
+        f"{english_term} photography",
+        f"real {english_term}"
+    ]
+    
+    if randomize:
+        random.shuffle(variants)
+    
+    # Strategy: Try sources in order of quality/variety
+    # If randomize is True, we try the shuffled variants to get DIFFERENT images
+    for term in variants:
+        # 1. DuckDuckGo (Most variety, Google-like)
+        image_bytes = search_duckduckgo_image(term, randomize)
+        if image_bytes:
+            image_bytes = optimize_image(image_bytes)
+            if not randomize: save_to_cache(english_term, image_bytes)
+            return image_bytes, "DuckDuckGo (Web)"
 
-    image_bytes = search_wikimedia(english_term, randomize)
-    if image_bytes:
-        image_bytes = optimize_image(image_bytes)
-        if not randomize: save_to_cache(english_term, image_bytes)
-        return image_bytes, "Wikimedia Commons"
+        # 2. Pixabay (High quality photos)
+        image_bytes = search_pixabay(term, randomize)
+        if image_bytes:
+            image_bytes = optimize_image(image_bytes)
+            if not randomize: save_to_cache(english_term, image_bytes)
+            return image_bytes, "Pixabay"
 
-    image_bytes = search_pixabay(english_term)
-    if image_bytes:
-        image_bytes = optimize_image(image_bytes)
-        if not randomize: save_to_cache(english_term, image_bytes)
-        return image_bytes, "Pixabay"
+        # 3. Wikimedia (Large pool)
+        image_bytes = search_wikimedia(term, randomize)
+        if image_bytes:
+            image_bytes = optimize_image(image_bytes)
+            if not randomize: save_to_cache(english_term, image_bytes)
+            return image_bytes, "Wikimedia Commons"
 
+        # 4. Wikipedia
+        image_bytes = search_wikipedia_image(term, randomize)
+        if image_bytes:
+            image_bytes = optimize_image(image_bytes)
+            if not randomize: save_to_cache(english_term, image_bytes)
+            return image_bytes, "Wikipedia"
+
+    # Deep Fallback: Use the very first word only
     simple_term = english_term.split()[0] if " " in english_term else None
     if simple_term:
-        image_bytes = search_wikipedia_image(simple_term, randomize)
-        if image_bytes:
-            image_bytes = optimize_image(image_bytes)
-            if not randomize: save_to_cache(english_term, image_bytes)
-            return image_bytes, "Wikipedia (simple)"
-
-        image_bytes = search_wikimedia(simple_term, randomize)
-        if image_bytes:
-            image_bytes = optimize_image(image_bytes)
-            if not randomize: save_to_cache(english_term, image_bytes)
-            return image_bytes, "Wikimedia (simple)"
+        res, src = find_real_image(simple_term, randomize)
+        if src != "placeholder":
+            return res, f"{src} (simple)"
 
     return generate_simple_placeholder(sinhala_text), "placeholder"
 

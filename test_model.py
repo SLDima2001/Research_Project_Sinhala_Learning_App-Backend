@@ -42,7 +42,7 @@ class ModelTester:
         class_folders = sorted([d for d in self.dataset_path.iterdir() if d.is_dir()],
                               key=lambda x: int(x.name) if x.name.isdigit() else x.name)
         
-        print(f"✓ Found {len(class_folders)} classes")
+        print(f"[OK] Found {len(class_folders)} classes")
         
         total_loaded = 0
         for class_idx, class_folder in enumerate(class_folders):
@@ -61,7 +61,7 @@ class ModelTester:
                 except:
                     continue
         
-        print(f"✓ Loaded {total_loaded} test images")
+        print(f"[OK] Loaded {total_loaded} test images")
         print(f"{'=' * 70}\n")
         
         return len(self.test_images) > 0
@@ -73,7 +73,7 @@ class ModelTester:
         print("=" * 70)
         
         if not os.path.exists(image_path):
-            print(f"✗ Image not found: {image_path}")
+            print(f"[ERROR] Image not found: {image_path}")
             return
         
         print(f"\nImage: {image_path}")
@@ -115,7 +115,7 @@ class ModelTester:
         # Calculate accuracy
         accuracy = accuracy_score(self.test_labels, self.predictions)
         
-        print(f"\n✓ Batch testing completed!")
+        print(f"\n[OK] Batch testing completed!")
         print(f"  Accuracy: {accuracy * 100:.2f}%")
         print(f"  Correct: {sum(np.array(self.predictions) == np.array(self.test_labels))}/{len(self.test_labels)}")
         print(f"\n{'=' * 70}\n")
@@ -125,7 +125,7 @@ class ModelTester:
     def generate_confusion_matrix(self, save_path='models/confusion_matrix.png'):
         """Generate and save confusion matrix"""
         if not self.predictions:
-            print("✗ No predictions available. Run batch_test() first.")
+            print("[ERROR] No predictions available. Run batch_test() first.")
             return
         
         print("Generating confusion matrix...")
@@ -145,13 +145,13 @@ class ModelTester:
         
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         plt.savefig(save_path, dpi=100, bbox_inches='tight')
-        print(f"✓ Confusion matrix saved to: {save_path}")
+        print(f"[OK] Confusion matrix saved to: {save_path}")
         plt.close()
     
     def generate_classification_report(self):
         """Generate classification report"""
         if not self.predictions:
-            print("✗ No predictions available. Run batch_test() first.")
+            print("[ERROR] No predictions available. Run batch_test() first.")
             return
         
         print("\n" + "=" * 70)
@@ -167,7 +167,7 @@ class ModelTester:
         os.makedirs(os.path.dirname(report_path), exist_ok=True)
         with open(report_path, 'w') as f:
             f.write(report)
-        print(f"\n✓ Report saved to: {report_path}")
+        print(f"\n[OK] Report saved to: {report_path}")
     
     def test_model_info(self):
         """Test and display model information"""
@@ -178,13 +178,13 @@ class ModelTester:
         info_path = 'models/sinhala_model_info.json'
         
         if not os.path.exists(info_path):
-            print(f"✗ Model info file not found: {info_path}")
+            print(f"[ERROR] Model info file not found: {info_path}")
             return
         
         with open(info_path, 'r', encoding='utf-8') as f:
             info = json.load(f)
         
-        print(f"\n✓ Model Information:")
+        print(f"\n[OK] Model Information:")
         print(f"  Number of Classes: {info.get('num_classes', 'N/A')}")
         print(f"  Image Size: {info.get('img_width', 'N/A')}x{info.get('img_height', 'N/A')}")
         print(f"  Total Parameters: {info.get('total_parameters', 'N/A'):,}")
@@ -201,7 +201,7 @@ class ModelTester:
         print("=" * 70)
         
         if not os.path.exists(image_path):
-            print(f"✗ Image not found: {image_path}")
+            print(f"[ERROR] Image not found: {image_path}")
             return
         
         print(f"\nImage: {image_path}")
@@ -231,7 +231,7 @@ class ModelTester:
         
         plt.tight_layout()
         plt.savefig('models/preprocessing_test.png', dpi=100, bbox_inches='tight')
-        print(f"\n✓ Preprocessing visualization saved to: models/preprocessing_test.png")
+        print(f"\n[OK] Preprocessing visualization saved to: models/preprocessing_test.png")
         plt.close()
         
         print(f"\n{'=' * 70}\n")
@@ -265,7 +265,7 @@ def main():
         tester.test_preprocessing(test_image_path)
     
     print("=" * 70)
-    print("✓ TESTING COMPLETED!")
+    print("[OK] TESTING COMPLETED!")
     print("=" * 70)
     print("\nGenerated files:")
     print("  - models/confusion_matrix.png")

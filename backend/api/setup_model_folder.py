@@ -32,17 +32,17 @@ if not os.path.exists(models_dir):
     print(f"   ❌ MISSING: models/ folder")
     print(f"   Creating: {models_dir}")
     os.makedirs(models_dir)
-    print(f"   ✓ Created models/ folder")
+    print(f"   [OK] Created models/ folder")
 else:
-    print(f"   ✓ models/ folder exists")
+    print(f"   [OK] models/ folder exists")
 
 if not os.path.exists(sinhala_asr_dir):
     print(f"   ❌ MISSING: sinhala_asr/ folder")
     print(f"   Creating: {sinhala_asr_dir}")
     os.makedirs(sinhala_asr_dir)
-    print(f"   ✓ Created sinhala_asr/ folder")
+    print(f"   [OK] Created sinhala_asr/ folder")
 else:
-    print(f"   ✓ sinhala_asr/ folder exists")
+    print(f"   [OK] sinhala_asr/ folder exists")
 
 # Check for model files
 print(f"\n📋 Checking model files...")
@@ -59,7 +59,7 @@ for file_name in required_files:
     file_path = os.path.join(sinhala_asr_dir, file_name)
     if os.path.exists(file_path):
         file_size = os.path.getsize(file_path) / (1024 * 1024)  # MB
-        print(f"   ✓ {file_name} ({file_size:.2f} MB)")
+        print(f"   [OK] {file_name} ({file_size:.2f} MB)")
     else:
         print(f"   ❌ MISSING: {file_name}")
         missing_files.append(file_name)

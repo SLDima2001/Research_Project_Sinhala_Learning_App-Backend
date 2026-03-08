@@ -30,7 +30,7 @@ class QuickReference:
                 folders = [d for d in path.iterdir() if d.is_dir()]
                 total_images = sum(len(list(f.glob("*.png")) + list(f.glob("*.jpg"))) 
                                  for f in folders)
-                print(f"\n✓ {dataset_type} Dataset:")
+                print(f"\n[OK] {dataset_type} Dataset:")
                 print(f"  Path: {path.absolute()}")
                 print(f"  Classes: {len(folders)}")
                 print(f"  Total Images: {total_images}")
@@ -38,7 +38,7 @@ class QuickReference:
                     avg_per_class = total_images // len(folders)
                     print(f"  Average per class: {avg_per_class}")
             else:
-                print(f"\n✗ {dataset_type} Dataset: NOT FOUND")
+                print(f"\n[ERROR] {dataset_type} Dataset: NOT FOUND")
         
         print(f"\n{'=' * 70}\n")
     
@@ -57,24 +57,24 @@ class QuickReference:
         
         if model_path.exists():
             size_mb = model_path.stat().st_size / (1024 * 1024)
-            print(f"✓ Model: {model_path.name} ({size_mb:.2f} MB)")
+            print(f"[OK] Model: {model_path.name} ({size_mb:.2f} MB)")
         else:
-            print(f"✗ Model: NOT FOUND")
+            print(f"[ERROR] Model: NOT FOUND")
         
         if info_path.exists():
             with open(info_path, 'r', encoding='utf-8') as f:
                 info = json.load(f)
-            print(f"✓ Info: {info_path.name}")
+            print(f"[OK] Info: {info_path.name}")
             print(f"  - Classes: {info.get('num_classes', 'N/A')}")
             print(f"  - Image Size: {info.get('img_width', 'N/A')}x{info.get('img_height', 'N/A')}")
             print(f"  - Parameters: {info.get('total_parameters', 'N/A'):,}")
         else:
-            print(f"✗ Info: NOT FOUND")
+            print(f"[ERROR] Info: NOT FOUND")
         
         if history_path.exists():
             with open(history_path, 'r') as f:
                 history = json.load(f)
-            print(f"✓ History: {history_path.name}")
+            print(f"[OK] History: {history_path.name}")
             print(f"  - Epochs: {len(history.get('loss', []))}")
             if 'accuracy' in history:
                 final_acc = history['accuracy'][-1]
@@ -83,7 +83,7 @@ class QuickReference:
                 final_val_acc = history['val_accuracy'][-1]
                 print(f"  - Final Validation Accuracy: {final_val_acc * 100:.2f}%")
         else:
-            print(f"✗ History: NOT FOUND")
+            print(f"[ERROR] History: NOT FOUND")
         
         print(f"\n{'=' * 70}\n")
     
@@ -95,7 +95,7 @@ class QuickReference:
         print("=" * 70)
         
         if not os.path.exists(image_path):
-            print(f"✗ Image not found: {image_path}")
+            print(f"[ERROR] Image not found: {image_path}")
             return
         
         print(f"\nLoading model...")
@@ -124,7 +124,7 @@ class QuickReference:
         print("=" * 70)
         
         if not os.path.exists(image_path):
-            print(f"✗ Image not found: {image_path}")
+            print(f"[ERROR] Image not found: {image_path}")
             return
         
         print(f"\nLoading model...")
@@ -158,7 +158,7 @@ class QuickReference:
         
         image_folder = Path(image_folder)
         if not image_folder.exists():
-            print(f"✗ Folder not found: {image_folder}")
+            print(f"[ERROR] Folder not found: {image_folder}")
             return
         
         image_files = list(image_folder.glob("*.png")) + \
@@ -166,7 +166,7 @@ class QuickReference:
                      list(image_folder.glob("*.jpeg"))
         
         if not image_files:
-            print(f"✗ No images found in: {image_folder}")
+            print(f"[ERROR] No images found in: {image_folder}")
             return
         
         print(f"\nFound {len(image_files)} images")

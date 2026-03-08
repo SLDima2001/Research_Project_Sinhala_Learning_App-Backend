@@ -20,3 +20,11 @@ fastapi
 uvicorn
 motor
 certifi
+
+# Speech Feedback dependencies (for Voice Practice)
+torch
+transformers
+librosa
+soundfile
+pydub
+imageio-ffmpeg

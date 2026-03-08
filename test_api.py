@@ -56,11 +56,11 @@ def test_health_check():
         assert response.status_code == 200
         assert data['status'] == 'healthy'
         
-        print("✓ Test Passed!")
+        print("[OK] Test Passed!")
         return True
         
     except Exception as e:
-        print(f"✗ Test Failed: {e}")
+        print(f"[ERROR] Test Failed: {e}")
         return False
 
 
@@ -87,11 +87,11 @@ def test_get_all_letters():
         assert data['success'] == True
         assert data['total'] == 59
         
-        print("\n✓ Test Passed!")
+        print("\n[OK] Test Passed!")
         return True
         
     except Exception as e:
-        print(f"✗ Test Failed: {e}")
+        print(f"[ERROR] Test Failed: {e}")
         return False
 
 
@@ -116,11 +116,11 @@ def test_get_random_letter():
         assert 'session_id' in data
         assert 'letter' in data
         
-        print("\n✓ Test Passed!")
+        print("\n[OK] Test Passed!")
         return data  # Return for use in next test
         
     except Exception as e:
-        print(f"✗ Test Failed: {e}")
+        print(f"[ERROR] Test Failed: {e}")
         return None
 
 
@@ -131,7 +131,7 @@ def test_submit_handwriting(session_data):
     print("=" * 60)
     
     if not session_data:
-        print("✗ Skipping test - no session data")
+        print("[ERROR] Skipping test - no session data")
         return False
     
     try:
@@ -167,11 +167,11 @@ def test_submit_handwriting(session_data):
         assert response.status_code == 200
         assert data['success'] == True
         
-        print("\n✓ Test Passed!")
+        print("\n[OK] Test Passed!")
         return True
         
     except Exception as e:
-        print(f"✗ Test Failed: {e}")
+        print(f"[ERROR] Test Failed: {e}")
         return False
 
 
@@ -207,11 +207,11 @@ def test_direct_predict():
         assert response.status_code == 200
         assert data['success'] == True
         
-        print("\n✓ Test Passed!")
+        print("\n[OK] Test Passed!")
         return True
         
     except Exception as e:
-        print(f"✗ Test Failed: {e}")
+        print(f"[ERROR] Test Failed: {e}")
         return False
 
 
@@ -235,10 +235,10 @@ def test_error_handling():
             }
         )
         assert response.status_code == 400
-        print("  ✓ Invalid session handled correctly")
+        print("  [OK] Invalid session handled correctly")
         tests_passed += 1
     except Exception as e:
-        print(f"  ✗ Failed: {e}")
+        print(f"  [ERROR] Failed: {e}")
     
     # Test 2: Missing image
     print("\n6.2: Testing missing image...")
@@ -248,22 +248,22 @@ def test_error_handling():
             json={'session_id': 'test_123'}
         )
         assert response.status_code == 400
-        print("  ✓ Missing image handled correctly")
+        print("  [OK] Missing image handled correctly")
         tests_passed += 1
     except Exception as e:
-        print(f"  ✗ Failed: {e}")
+        print(f"  [ERROR] Failed: {e}")
     
     # Test 3: Invalid endpoint
     print("\n6.3: Testing invalid endpoint...")
     try:
         response = requests.get(f"{API_URL}/invalid-endpoint")
         assert response.status_code == 404
-        print("  ✓ Invalid endpoint handled correctly")
+        print("  [OK] Invalid endpoint handled correctly")
         tests_passed += 1
     except Exception as e:
-        print(f"  ✗ Failed: {e}")
+        print(f"  [ERROR] Failed: {e}")
     
-    print(f"\n✓ Error Handling: {tests_passed}/{total_tests} tests passed")
+    print(f"\n[OK] Error Handling: {tests_passed}/{total_tests} tests passed")
     return tests_passed == total_tests
 
 
@@ -297,7 +297,7 @@ def run_all_tests():
     total = len(results)
     
     for test_name, result in results:
-        status = "✓ PASS" if result else "✗ FAIL"
+        status = "[OK] PASS" if result else "[ERROR] FAIL"
         print(f"{status}: {test_name}")
     
     print(f"\nTotal: {passed}/{total} tests passed")
@@ -324,23 +324,23 @@ def test_connection():
         
         if response.status_code == 200:
             data = response.json()
-            print("\n✓ Connection successful!")
+            print("\n[OK] Connection successful!")
             print(f"  API Status: {data.get('status', 'unknown')}")
             print(f"  Model Status: {data.get('model_status', 'unknown')}")
             return True
         else:
-            print(f"\n✗ Connection failed (Status: {response.status_code})")
+            print(f"\n[ERROR] Connection failed (Status: {response.status_code})")
             return False
             
     except requests.exceptions.ConnectionError:
-        print("\n✗ Connection failed - API not reachable")
+        print("\n[ERROR] Connection failed - API not reachable")
         print("\nMake sure:")
         print("  1. Flask API is running (python app.py)")
         print("  2. API is running on http://localhost:5000")
         print("  3. No firewall is blocking the connection")
         return False
     except Exception as e:
-        print(f"\n✗ Connection failed: {e}")
+        print(f"\n[ERROR] Connection failed: {e}")
         return False
 
 

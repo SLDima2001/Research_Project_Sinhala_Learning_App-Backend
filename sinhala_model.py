@@ -18,7 +18,7 @@ class SinhalaHandwritingModel:
     Automatically loads trained model or falls back to mock mode
     """
     
-    def __init__(self, model_path='models/sinhala_model.keras', num_classes=454):
+    def __init__(self, model_path='model/sinhala_handwriting_model (1).h5', num_classes=454):
         """
         Initialize the Sinhala handwriting recognition model
         

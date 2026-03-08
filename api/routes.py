@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ..services.engine import service
-from ..models.schemas import Story, Scene, StoryListResponse
+from services.engine import service
+from models.schemas import Story, Scene, StoryListResponse
 
 router = APIRouter()
 

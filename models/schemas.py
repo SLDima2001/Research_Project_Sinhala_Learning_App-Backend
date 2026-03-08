@@ -26,12 +26,21 @@ class Scene(BaseModel):
     questions: Optional[List[Dict]] = []
     next_scene_id: Optional[str] = None
 
+class Question(BaseModel):
+    id: str
+    text: str
+    options: List[str]
+    correct_index: int
+    timestamp: Optional[float] = None
+
 class Segment(BaseModel):
     video_id: Optional[str] = None
     video_url: Optional[str] = None
     start_time: int
     end_time: int
     next_segment_id: str
+    question_timestamps: Optional[List[float]] = []
+    question_pool: Optional[List[Question]] = []
 
 class InteractionOption(BaseModel):
     text: str

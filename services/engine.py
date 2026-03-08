@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 from typing import List, Dict, Optional
-from ..models import schemas
-from ..database import db
+from models import schemas
+from database import db
 
 DATA_PATH = Path(__file__).parent.parent / "data" / "stories.json"
 

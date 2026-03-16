@@ -1,34 +1,39 @@
-import sys
 import os
-import hashlib
+import sys
 
-# Add current dir to sys.path
+# Add current directory to path
 sys.path.append(os.getcwd())
 
-try:
-    from text_to_image import find_real_image
-except ImportError as e:
-    print(f"Import failed: {e}")
-    sys.exit(1)
+from sinhala_model import SinhalaHandwritingModel
+import numpy as np
 
-def quick_check():
-    print("Quick Check: Randomization Variety")
+def verify():
+    print("RUNNING FINAL VERIFICATION...")
     
-    # 1. First call
-    img1, src1 = find_real_image("dog", randomize=True)
-    h1 = hashlib.md5(img1).hexdigest() if img1 else "NONE"
+    # 1. Test Model Loading
+    model_path = 'model/sinhala_handwriting_v2.keras'
+    model = SinhalaHandwritingModel(model_path)
     
-    # 2. Second call
-    img2, src2 = find_real_image("dog", randomize=True)
-    h2 = hashlib.md5(img2).hexdigest() if img2 else "NONE"
+    if not model.model_loaded:
+        print("FAIL: Model failed to load!")
+        return
     
-    print(f"Call 1: {src1} ({h1[:8]})")
-    print(f"Call 2: {src2} ({h2[:8]})")
+    print(f"SUCCESS: Model loaded with {len(model.class_names)} classes")
+    print(f"Input dimensions: {model.img_width}x{model.img_height}")
     
-    if h1 != h2 and h1 != "NONE":
-        print("✅ SUCCESS: Different images returned.")
+    # 2. Test Prediction with dummy data
+    dummy_img = np.zeros((32, 32), dtype=np.uint8)
+    prediction = model.predict(dummy_img)
+    
+    print("\nPrediction test:")
+    print(f"Predicted Class: {prediction['predicted_class']}")
+    print(f"Mode: {prediction.get('model_mode', 'unknown')}")
+    print(f"Top 3: {prediction['top_3']}")
+    
+    if prediction.get('model_mode') == 'trained':
+        print("\n✓ VERIFICATION SUCCESSFUL")
     else:
-        print("❌ FAIL: Same image or no image.")
+        print("\n✗ VERIFICATION FAILED: Mock mode still active")
 
 if __name__ == "__main__":
-    quick_check()
+    verify()

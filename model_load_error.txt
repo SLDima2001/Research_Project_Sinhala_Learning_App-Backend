@@ -1,0 +1,54 @@
+Traceback (most recent call last):
+  File "D:\SLIIT\Year4\Reserach Project\MobileAppFrontend\Research_Project_Sinhala_Learning_App-Backend\test_load.py", line 4, in <module>
+    model = keras.models.load_model('model/sinhala_handwriting_model (1).h5')
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\saving\saving_api.py", line 196, in load_model
+    return legacy_h5_format.load_model_from_hdf5(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        filepath,
+        ^^^^^^^^^
+    ...<2 lines>...
+        safe_mode=safe_mode,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\legacy\saving\legacy_h5_format.py", line 137, in load_model_from_hdf5
+    model = saving_utils.model_from_config(
+        model_config, custom_objects=custom_objects
+    )
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\legacy\saving\saving_utils.py", line 83, in model_from_config
+    return serialization.deserialize_keras_object(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        config,
+        ^^^^^^^
+    ...<2 lines>...
+        printable_module_name="layer",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\legacy\saving\serialization.py", line 488, in deserialize_keras_object
+    deserialized_obj = cls.from_config(
+        cls_config,
+    ...<3 lines>...
+        },
+    )
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\models\sequential.py", line 375, in from_config
+    model.add(layer)
+    ~~~~~~~~~^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\models\sequential.py", line 122, in add
+    self._maybe_rebuild()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\models\sequential.py", line 149, in _maybe_rebuild
+    self.build(input_shape)
+    ~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\layers\layer.py", line 232, in build_wrapper
+    original_build_method(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\models\sequential.py", line 195, in build
+    x = layer(x)
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\utils\traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\Dimalsha Praveen\AppData\Roaming\Python\Python313\site-packages\keras\src\layers\input_spec.py", line 161, in assert_input_compatibility
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Layer "dense_2" expects 1 input(s), but it received 2 input tensors. Inputs received: [<KerasTensor shape=(None, 7, 7, 1280), dtype=float32, sparse=False, ragged=False, name=keras_tensor_321>, <KerasTensor shape=(None, 7, 7, 1280), dtype=float32, sparse=False, ragged=False, name=keras_tensor_322>]

@@ -81,11 +81,14 @@ class SinhalaModelTrainer:
             loaded_count = 0
             for img_path in image_files:
                 try:
-                    # Read and preprocess image
-                    img = cv2.imread(str(img_path), cv2.IMREAD_GRAYSCALE)
+                    # Read and preprocess image in color for MobileNetV2
+                    img = cv2.imread(str(img_path))
                     
                     if img is None:
                         continue
+                    
+                    # Convert BGR to RGB
+                    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                     
                     # Resize to target size
                     img = cv2.resize(img, (self.img_width, self.img_height))
@@ -94,8 +97,8 @@ class SinhalaModelTrainer:
                     if np.mean(img) > 127:
                         img = 255 - img
                     
-                    # Normalize to [0, 1]
-                    img = img.astype('float32') / 255.0
+                    # Normalize to [-1, 1] for MobileNetV2
+                    img = keras.applications.mobilenet_v2.preprocess_input(img.astype('float32'))
                     
                     images.append(img)
                     labels.append(class_idx)
@@ -115,8 +118,8 @@ class SinhalaModelTrainer:
         X = np.array(images)
         y = np.array(labels)
         
-        # Add channel dimension (grayscale)
-        X = np.expand_dims(X, axis=-1)
+        # Add channel dimension if needed (handled by RGB)
+        # X = np.expand_dims(X, axis=-1)  (removed because we mapped to 3 channels)
         
         print(f"\n{'=' * 70}")
         print(f"[OK] Dataset loaded successfully!")
@@ -208,44 +211,27 @@ class SinhalaModelTrainer:
         print("STEP 3: BUILDING MODEL ARCHITECTURE")
         print("=" * 70)
         
+        # Use MobileNetV2 as the base model
+        base_model = keras.applications.MobileNetV2(
+            input_shape=(self.img_height, self.img_width, 3),
+            include_top=False,
+            weights='imagenet'
+        )
+        
+        # Unfreeze top layers for fine-tuning
+        base_model.trainable = True
+        fine_tune_at = 100
+        for layer in base_model.layers[:fine_tune_at]:
+            layer.trainable = False
+            
         model = keras.Sequential([
-            # First Convolutional Block
-            layers.Conv2D(32, (3, 3), activation='relu', padding='same',
-                         input_shape=(self.img_height, self.img_width, 1),
-                         name='conv1'),
+            base_model,
+            layers.GlobalAveragePooling2D(name='global_avg_pool'),
             layers.BatchNormalization(name='bn1'),
-            layers.MaxPooling2D((2, 2), name='pool1'),
-            layers.Dropout(0.25, name='dropout1'),
-            
-            # Second Convolutional Block
-            layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='conv2'),
-            layers.BatchNormalization(name='bn2'),
-            layers.MaxPooling2D((2, 2), name='pool2'),
-            layers.Dropout(0.25, name='dropout2'),
-            
-            # Third Convolutional Block
-            layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='conv3'),
-            layers.BatchNormalization(name='bn3'),
-            layers.MaxPooling2D((2, 2), name='pool3'),
-            layers.Dropout(0.25, name='dropout3'),
-            
-            # Fourth Convolutional Block
-            layers.Conv2D(256, (3, 3), activation='relu', padding='same', name='conv4'),
-            layers.BatchNormalization(name='bn4'),
-            layers.MaxPooling2D((2, 2), name='pool4'),
-            layers.Dropout(0.25, name='dropout4'),
-            
-            # Flatten and Dense Layers
-            layers.Flatten(name='flatten'),
+            layers.Dropout(0.3, name='dropout1'),
             layers.Dense(512, activation='relu', name='dense1'),
-            layers.BatchNormalization(name='bn5'),
-            layers.Dropout(0.5, name='dropout5'),
-            
-            layers.Dense(256, activation='relu', name='dense2'),
-            layers.BatchNormalization(name='bn6'),
-            layers.Dropout(0.5, name='dropout6'),
-            
-            # Output Layer
+            layers.BatchNormalization(name='bn2'),
+            layers.Dropout(0.4, name='dropout2'),
             layers.Dense(num_classes, activation='softmax', name='output')
         ])
         
@@ -428,7 +414,7 @@ def main():
     print("=" * 70 + "\n")
     
     # Configuration
-    DATASET_PATH = "../dataset/train"  # Change this to your dataset path
+    DATASET_PATH = "dataset/train"  # Change this to your dataset path
     IMG_SIZE = 128
     EPOCHS = 100
     BATCH_SIZE = 32

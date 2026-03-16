@@ -18,17 +18,18 @@ class SinhalaHandwritingModel:
     Automatically loads trained model or falls back to mock mode
     """
     
-    def __init__(self, model_path='model/sinhala_handwriting_model (1).h5', num_classes=454):
+    def __init__(self, model_path='models/sinhala_model.keras', num_classes=454):
         """
         Initialize the Sinhala handwriting recognition model
         
         Args:
             model_path: Path to the trained Keras model file
-            num_classes: Number of Sinhala letter classes (default: 59)
+            num_classes: Number of Sinhala letter classes (default: 454)
         """
         self.num_classes = num_classes
         self.img_height = 128
         self.img_width = 128
+        self.channels = 1
         self.model = None
         self.class_names = []
         self.model_loaded = False
@@ -37,17 +38,17 @@ class SinhalaHandwritingModel:
         print("Sinhala Handwriting Recognition Model")
         print("=" * 60)
         
-        # Try to load the trained model
+        # Try to load the trained model (try both possible save locations)
+        fallback_path = 'models/best_model.keras'
         if os.path.exists(model_path):
             self.load_model(model_path)
+        elif os.path.exists(fallback_path):
+            print(f"\nPrimary model not found, loading fallback: {fallback_path}")
+            self.load_model(fallback_path)
         else:
             print(f"\n⚠️  Model file not found at: {model_path}")
             print("⚠️  Running in MOCK MODE")
-            print("⚠️  Please train the model first using train_model.py")
-            print("\nTo train the model:")
-            print("  1. Prepare your dataset in 'dataset/' folder")
-            print("  2. Run: python train_model.py")
-            print("  3. Restart this application")
+            print("⚠️  Please train the model first using: python train_model.py")
         
         print("=" * 60 + "\n")
     
@@ -73,19 +74,23 @@ class SinhalaHandwritingModel:
                 with open(info_path, 'r', encoding='utf-8') as f:
                     info = json.load(f)
                     self.class_names = info.get('class_names', [])
-                    self.img_height = info.get('img_height', 128)
-                    self.img_width = info.get('img_width', 128)
+                    self.img_height = info.get('img_height', 32)
+                    self.img_width = info.get('img_width', 32)
                     
                 print(f"✓ Loaded {len(self.class_names)} class names")
-                print(f"✓ Input size: {self.img_height}x{self.img_width}")
+                print(f"✓ Input size: {self.img_width}x{self.img_height}")
                 
                 trained_on = info.get('trained_on', 'Unknown')
                 print(f"✓ Model trained on: {trained_on}")
             else:
                 print("⚠️  Model info file not found, using defaults")
             
+            # Determine channels from model input shape
+            if hasattr(self.model, 'input_shape') and len(self.model.input_shape) >= 4:
+                self.channels = self.model.input_shape[-1]
+            
             # Test the model with a dummy input
-            dummy_input = np.zeros((1, self.img_height, self.img_width, 1))
+            dummy_input = np.zeros((1, self.img_height, self.img_width, self.channels))
             _ = self.model.predict(dummy_input, verbose=0)
             print("✓ Model test successful!")
             
@@ -106,38 +111,43 @@ class SinhalaHandwritingModel:
         Returns:
             Preprocessed image ready for model input (numpy array)
         """
-        # Convert to numpy array based on input type
+        # Convert to GRAYSCALE numpy array (must match training pipeline)
         if isinstance(image_data, str):
-            # File path
             img = cv2.imread(image_data, cv2.IMREAD_GRAYSCALE)
             if img is None:
                 raise ValueError(f"Could not read image from path: {image_data}")
         elif isinstance(image_data, Image.Image):
-            # PIL Image
-            img = np.array(image_data.convert('L'))
+            img = np.array(image_data.convert('L'))  # L = grayscale
         else:
-            # Assume numpy array
             img = image_data
-            if len(img.shape) == 3:
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        
+            # Collapse to single channel if needed
+            if len(img.shape) == 3 and img.shape[2] == 4:
+                img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+            elif len(img.shape) == 3 and img.shape[2] == 3:
+                img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+            elif len(img.shape) == 3 and img.shape[2] == 1:
+                img = np.squeeze(img, axis=2)
+            # If already 2D grayscale, use as-is
+
         # Resize to model input size
         img = cv2.resize(img, (self.img_width, self.img_height))
-        
-        # Invert if background is white (convert to black background)
-        # This helps with consistency in training
+
+        # Invert if white background (training data: black stroke on white bg -> invert to black bg)
         if np.mean(img) > 127:
             img = 255 - img
-        
-        # Normalize pixel values to [0, 1]
+
+        # Add target channel dimension dependent on the loaded model
+        if self.channels == 3:
+            img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        else:
+            img = np.expand_dims(img, axis=-1)
+
+        # Normalize to [0, 1] — MUST match training normalization
         img = img.astype('float32') / 255.0
-        
-        # Add channel dimension for grayscale (height, width, 1)
-        img = np.expand_dims(img, axis=-1)
-        
-        # Add batch dimension (1, height, width, 1)
+
+        # Add batch dimension: (1, H, W, C)
         img = np.expand_dims(img, axis=0)
-        
+
         return img
     
     def predict(self, image_data):
@@ -271,16 +281,16 @@ class SinhalaHandwritingModel:
             top_3_classes = [p['class'] for p in prediction.get('top_3', [])]
             
             if correct_class in top_3_classes:
-                # Close but not perfect - give partial credit
+                # Close but not the top — give a small partial credit (10-20%)
                 correct_class_conf = next(
                     (p['confidence'] for p in prediction['top_3'] 
                      if p['class'] == correct_class),
                     0.0
                 )
-                score = 40 + (correct_class_conf * 30)
+                score = 10 + (correct_class_conf * 10)
             else:
-                # Completely wrong
-                score = 20 + (confidence * 20)
+                # Completely wrong — score near 0
+                score = confidence * 5  # max ~5% even if very confident in wrong answer
         
         # Analyze drawing quality
         quality_info = self._analyze_quality(image_data)
@@ -323,8 +333,11 @@ class SinhalaHandwritingModel:
             img = cv2.imread(image_data, cv2.IMREAD_GRAYSCALE)
         else:
             img = image_data
-            if len(img.shape) == 3:
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            if len(img.shape) == 3 and img.shape[2] in [3, 4]:
+                # Convert color image to grayscale
+                img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY) if img.shape[2] == 3 else cv2.cvtColor(img, cv2.COLOR_RGBA2GRAY)
+            elif len(img.shape) == 3 and img.shape[2] == 1:
+                img = np.squeeze(img, axis=2)
         
         # Resize for consistency
         img = cv2.resize(img, (self.img_width, self.img_height))
@@ -420,11 +433,11 @@ def test_model():
     model = SinhalaHandwritingModel()
     
     # Create a test image (mock handwriting)
-    test_image = np.random.randint(0, 255, (128, 128), dtype=np.uint8)
+    test_image = np.random.randint(0, 255, (128, 128, 3), dtype=np.uint8)
     
     # Add some "handwriting" strokes
-    cv2.line(test_image, (30, 30), (90, 90), 255, 3)
-    cv2.circle(test_image, (64, 64), 20, 255, 2)
+    cv2.line(test_image, (30, 30), (90, 90), (255, 255, 255), 3)
+    cv2.circle(test_image, (64, 64), 20, (255, 255, 255), 2)
     
     print("Testing prediction...")
     result = model.predict(test_image)
@@ -456,4 +469,5 @@ def test_model():
 
 if __name__ == "__main__":
     # Run test when script is executed directly
+    test_model()
     test_model()

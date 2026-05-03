@@ -57,6 +57,7 @@ class Story(BaseModel):
     id: str
     title: str
     type: Optional[str] = "legacy" # legacy, video_interactive
+    category: Optional[str] = None # e.g., easy, folklore
     # Legacy
     scenes: Optional[Dict[str, Scene]] = None
     # Video Interactive
@@ -67,3 +68,4 @@ class Story(BaseModel):
 class StoryListResponse(BaseModel):
     id: str
     title: str
+    category: Optional[str] = None

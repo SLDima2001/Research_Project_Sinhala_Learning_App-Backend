@@ -19,9 +19,9 @@ class StoryService:
             collection = await self.get_collection("stories")
             count = await collection.count_documents({})
             
-            # Always check for updates from JSON (User Requirement: Sync JSON to DB)
-            # if count > 0:
-            #     print("Database already seeded. Checking for updates...")
+            if count > 0:
+                print("Clearing existing stories for fresh sync...")
+                await collection.delete_many({})
 
             if not DATA_PATH.exists():
                 return
@@ -61,7 +61,11 @@ class StoryService:
         stories_cursor = collection.find({})
         results = []
         async for s in stories_cursor:
-            results.append(schemas.StoryListResponse(id=s['id'], title=s['title']))
+            results.append(schemas.StoryListResponse(
+                id=s['id'], 
+                title=s['title'],
+                category=s.get('category')
+            ))
         return results
 
     async def get_story(self, story_id: str) -> Optional[schemas.Story]:

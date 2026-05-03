@@ -46,9 +46,9 @@ class SinhalaHandwritingModel:
             print(f"\nPrimary model not found, loading fallback: {fallback_path}")
             self.load_model(fallback_path)
         else:
-            print(f"\n⚠️  Model file not found at: {model_path}")
-            print("⚠️  Running in MOCK MODE")
-            print("⚠️  Please train the model first using: python train_model.py")
+            print(f"\n[WARN] Model file not found at: {model_path}")
+            print("[WARN] Running in MOCK MODE")
+            print("[WARN] Please train the model first using: python train_model.py")
         
         print("=" * 60 + "\n")
     
@@ -66,7 +66,7 @@ class SinhalaHandwritingModel:
             self.model = keras.models.load_model(model_path)
             self.model_loaded = True
             
-            print("✓ Model loaded successfully!")
+            print("[OK] Model loaded successfully!")
             
             # Load class information (letter names, etc.)
             info_path = model_path.replace('.keras', '_info.json')
@@ -77,13 +77,13 @@ class SinhalaHandwritingModel:
                     self.img_height = info.get('img_height', 32)
                     self.img_width = info.get('img_width', 32)
                     
-                print(f"✓ Loaded {len(self.class_names)} class names")
-                print(f"✓ Input size: {self.img_width}x{self.img_height}")
+                print(f"[OK] Loaded {len(self.class_names)} class names")
+                print(f"[OK] Input size: {self.img_width}x{self.img_height}")
                 
                 trained_on = info.get('trained_on', 'Unknown')
-                print(f"✓ Model trained on: {trained_on}")
+                print(f"[OK] Model trained on: {trained_on}")
             else:
-                print("⚠️  Model info file not found, using defaults")
+                print("[WARN] Model info file not found, using defaults")
             
             # Determine channels from model input shape
             if hasattr(self.model, 'input_shape') and len(self.model.input_shape) >= 4:
@@ -92,11 +92,11 @@ class SinhalaHandwritingModel:
             # Test the model with a dummy input
             dummy_input = np.zeros((1, self.img_height, self.img_width, self.channels))
             _ = self.model.predict(dummy_input, verbose=0)
-            print("✓ Model test successful!")
+            print("[OK] Model test successful!")
             
         except Exception as e:
-            print(f"\n✗ Error loading model: {e}")
-            print("⚠️  Falling back to MOCK MODE")
+            print(f"\n[FAIL] Error loading model: {e}")
+            print("[WARN] Falling back to MOCK MODE")
             self.model_loaded = False
             self.model = None
     

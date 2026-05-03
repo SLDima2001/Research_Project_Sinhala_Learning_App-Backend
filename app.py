@@ -81,9 +81,16 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 # MySQL/MongoDB connection (reusing ORI from .env if possible)
 MONGO_URI = os.getenv('MONGO_URI', "mongodb+srv://root:Dima2001@customerfeedback.83hfgpu.mongodb.net/?retryWrites=true&w=majority&appName=customerfeedback")
-mongo_client = MongoClient(MONGO_URI)
-db = mongo_client['sinhala_learning_app'] # Primary DB for users and stories
-voice_db = mongo_client['customerfeedback'] # DB for voice feedback recordings
+try:
+    mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000, connectTimeoutMS=5000)
+    db = mongo_client['sinhala_learning_app']  # Primary DB for users and stories
+    voice_db = mongo_client['customerfeedback']  # DB for voice feedback recordings
+    print("[OK] MongoDB client initialized (connection will be verified on first use)")
+except Exception as _mongo_err:
+    print(f"[WARN] MongoDB init failed: {_mongo_err} - running without DB")
+    mongo_client = None
+    db = None
+    voice_db = None
 
 # Register Blueprints
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -99,9 +106,9 @@ user_sessions = {}
 # Primary Handwriting Model Initialization
 try:
     model = SinhalaHandwritingModel()
-    print("✓ Primary Handwriting Model (454 classes) Initialized")
+    print("[OK] Primary Handwriting Model (454 classes) Initialized")
 except Exception as e:
-    print(f"✗ Failed to load Primary Handwriting Model: {e}")
+    print(f"[FAIL] Failed to load Primary Handwriting Model: {e}")
     model = None
 
 # Sinhala character mapping (Truncated for brevity, normally loads from info.json)
@@ -612,15 +619,20 @@ def _load_sentences_from_mongo():
     """Load sentences from MongoDB Atlas (same connection as standalone voice backend)"""
     try:
         from pymongo import MongoClient as _MC
+        import pymongo.errors
         _uri = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
-        _client = _MC(_uri, serverSelectionTimeoutMS=5000)
+        # Use short timeouts to prevent hanging on startup
+        _client = _MC(_uri, serverSelectionTimeoutMS=3000, connectTimeoutMS=3000, socketTimeoutMS=3000)
         _db_cf = _client['customerfeedback']
         metadata_col = _db_cf['metadata']
         timings_col = _db_cf['word_timings']
 
+        # Force a quick check to see if server is available before doing a full query
+        _client.admin.command('ping')
+
         metadata_docs = list(metadata_col.find())
         if not metadata_docs:
-            print("⚠️  No sentences found in MongoDB metadata collection")
+            print("[WARN] No sentences found in MongoDB metadata collection")
             return []
 
         # Load timings if available
@@ -644,11 +656,11 @@ def _load_sentences_from_mongo():
                 'timings': timings_doc.get(filename, [])
             })
 
-        print(f"✓ Loaded {len(sentences)} sentences from MongoDB Atlas (customerfeedback/metadata)")
+        print(f"[OK] Loaded {len(sentences)} sentences from MongoDB Atlas (customerfeedback/metadata)")
         return sentences
 
     except Exception as e:
-        print(f"⚠️  MongoDB sentences unavailable: {e}")
+        print(f"[WARN] MongoDB sentences unavailable: {e}")
         return []
 
 # Load sentences at startup
@@ -998,4 +1010,9 @@ if __name__ == '__main__':
     print("=" * 60)
     print(f"Unified Sinhala Learning API running on http://0.0.0.0:{PORT}")
     print("=" * 60)
-    socketio.run(app, host='0.0.0.0', port=PORT, debug=True)
+    # Use '0.0.0.0' with allow_unsafe_werkzeug to prevent Windows socket errors
+    try:
+        socketio.run(app, host='0.0.0.0', port=PORT, debug=False, allow_unsafe_werkzeug=True)
+    except Exception as e:
+        print(f"[WARN] 0.0.0.0 binding failed ({e}), trying 127.0.0.1...")
+        socketio.run(app, host='127.0.0.1', port=PORT, debug=False, allow_unsafe_werkzeug=True)

@@ -36,26 +36,9 @@ _idx_to_label = None
 # Sinhala word -> English translation mapping
 # ============================================================
 WORD_TO_ENGLISH: Dict[str, str] = {
+    # Animals
     'බල්ලා': 'dog',
     'බළලා': 'cat',
-    'ගස': 'tree',
-    'මල': 'flower',
-    'අහස': 'sky',
-    'හිරු': 'sun',
-    'චන්දය': 'moon',
-    'තරු': 'stars',
-    'ගෙදර': 'house',
-    'බස්': 'bus',
-    'කාර්': 'car',
-    'පාසල': 'school',
-    'පුටුව': 'chair',
-    'මේසය': 'table',
-    'පොත': 'book',
-    'පන්සල': 'temple',
-    'මිනිසා': 'person',
-    'ළමයා': 'child',
-    'එළුවා': 'goat',
-    'බුකුටා': 'rooster',
     'අලියා': 'elephant',
     'කොටි': 'tiger',
     'සිංහයා': 'lion',
@@ -66,32 +49,108 @@ WORD_TO_ENGLISH: Dict[str, str] = {
     'වඳුරා': 'monkey',
     'ගවයා': 'cow',
     'අශ්වයා': 'horse',
-    'ඇපල්': 'apple',
-    'අඹ': 'mango',
-    'දොඩම්': 'orange',
-    'කෙසෙල්': 'banana',
-    'සොබාදහම': 'nature',
-    'වැව': 'lake',
-    'කන්ද': 'mountain',
-    'මහ රෝහල': 'hospital',
-    'පොලිසිය': 'police station',
+    'එළුවා': 'goat',
+    'බුකුටා': 'rooster',
     'සීබ්‍රා': 'zebra',
     'කැන්ගරු': 'kangaroo',
     'මීයා': 'rat',
-    'පොල් ගස': 'coconut tree',
-    'තැඹිලි ගස': 'king coconut tree',
+    # Nature
+    'ගස': 'tree',
+    'මල': 'flower',
+    'මල්': 'flower',
+    'අහස': 'sky',
+    'හිරු': 'sun',
+    'චන්දය': 'moon',
+    'තරු': 'stars',
+    'වැව': 'lake',
+    'කන්ද': 'mountain',
     'ගෙවත්ත': 'garden',
     'වෙරළ': 'beach',
     'මුහුද': 'sea',
+    'සොබාදහම': 'nature',
+    'වතුර': 'water',
+    'පොල්': 'coconut',
+    # Objects
+    'ගෙදර': 'house',
+    'පුටුව': 'chair',
+    'මේසය': 'table',
+    'පොත': 'book',
+    'කුඩය': 'umbrella',     # short u = umbrella
+    'කූඩය': 'basket',       # long uu = basket
+    'කූඩු': 'basket',
+    'කූඩේ': 'basket',
+    'කිරි': 'milk',
+    'බත්': 'rice',
+    # Transport
+    'බස්': 'bus',
+    'කාර්': 'car',
     'නැව': 'ship',
     'යානය': 'airplane',
     'දුම්රිය': 'train',
     'පාපැදිය': 'bicycle',
     'යතුරුපැදිය': 'motorbike',
-    'කිරි': 'milk',
-    'වතුර': 'water',
-    'බත්': 'rice',
-    'පොල්': 'coconut',
+    # Places
+    'පාසල': 'school',
+    'පන්සල': 'temple',
+    'මහ රෝහල': 'hospital',
+    'පොලිසිය': 'police station',
+    # People
+    'මිනිසා': 'person',
+    'ළමයා': 'child',
+    # Food / Fruit
+    'ඇපල්': 'apple',
+    'අඹ': 'mango',
+    'දොඩම්': 'orange',
+    'කෙසෙල්': 'banana',
+    # Two-word phrases
+    'මල් කූඩය': 'flower basket',   # long uu = basket
+    'මල කූඩය': 'flower basket',
+    'මල් කූඩේ': 'flower basket',
+    'මල් කූඩු': 'flower basket',
+    'මල් කුඩය': 'flower umbrella', # short u = umbrella
+    'මල කුඩය': 'flower umbrella',
+    'පොල් ගස': 'coconut tree',
+    'තැඹිලි ගස': 'king coconut tree',
+    'ගම් පාර': 'village road',
+    'නිල් අහස': 'blue sky',
+    'රතු මල': 'red flower',
+    'රතු මල්': 'red flower',
+    'ගල් කන්ද': 'rocky mountain',
+    'දිය ඇල්ල': 'waterfall',
+    'දිය ඇල': 'waterfall',
+    'රන් මාළු': 'goldfish',
+    'ගම් දනව්': 'village',
+    'හිරු එළිය': 'sunlight',
+    'හිරු රැස': 'sunbeam',
+    'ළිදු වතුර': 'well water',
+    'ළිඳ': 'water well',
+    'ගිනි කඳ': 'volcano',
+    'ගල් ගෙදර': 'stone house',
+    'වැව් ජලය': 'lake water',
+    'කඳු රට': 'hill country',
+    'සුදු බල්ලා': 'white dog',
+    'කළු බළලා': 'black cat',
+    'කොළ ගස': 'green tree',
+    'කොළ කෙසෙල්': 'green banana',
+    'ලාල් ගෙදර': 'red house',
+    'දිය කෙළිය': 'swimming pool',
+    'මල් වත්ත': 'flower garden',
+    'ගල් පාර': 'stone road',
+    'අලි කූඩය': 'elephant basket',
+    'කුකුළා ඇටය': 'chicken bone',
+    'අල කූඩය': 'potato basket',
+    'ළමා ක්‍රීඩා': 'children playing',
+    'ගෙදර ළමා': 'children at home',
+    'ගල් ලෙනක': 'cave',
+    'කෝකිල ගී': 'cuckoo singing',
+    'ගිනි ගෙදර': 'fire station',
+    'නිල් මල': 'blue flower',
+    'නිල් මල්': 'blue flower',
+    'රතු ගෙදර': 'red house',
+    'හේන් ගොවිතැන': 'farming',
+    'කෙසෙල් ගස': 'banana tree',
+    'ඇපල් ගස': 'apple tree',
+    'අඹ ගස': 'mango tree',
 }
 
 # ============================================================
@@ -419,19 +478,56 @@ def generate_simple_placeholder(text: str) -> bytes:
     return img_byte_arr.getvalue()
 
 
-def find_real_image(sinhala_text: str, randomize: bool = False) -> Tuple[bytes, str]:
-    """Main function to find a REAL image for a Sinhala word."""
-    english_term = WORD_TO_ENGLISH.get(sinhala_text)
-    
-    if not english_term:
-        # Try translating dynamically
-        try:
-            from deep_translator import GoogleTranslator
-            english_term = GoogleTranslator(source='sinhala', target='english').translate(sinhala_text)
-        except Exception:
-            english_term = sinhala_text
+def translate_sinhala_to_english(sinhala_text: str) -> str:
+    """Translate a Sinhala word/phrase to English using the dictionary,
+    word-by-word fallback, and then deep_translator."""
+    text = sinhala_text.strip()
 
-    print(f"\n🔍 Searching real image for: '{sinhala_text}' (English: '{english_term}', Randomize: {randomize})")
+    # 1. Direct dictionary lookup (full phrase)
+    if text in WORD_TO_ENGLISH:
+        return WORD_TO_ENGLISH[text]
+
+    # 2. If multi-word, try each word individually and combine
+    words = text.split()
+    if len(words) > 1:
+        translated_parts = []
+        for word in words:
+            if word in WORD_TO_ENGLISH:
+                translated_parts.append(WORD_TO_ENGLISH[word])
+            else:
+                # Try deep_translator for individual word
+                try:
+                    from deep_translator import GoogleTranslator
+                    t = GoogleTranslator(source='si', target='en').translate(word)
+                    if t and t.strip() and t.strip().lower() != word:
+                        translated_parts.append(t.strip())
+                    else:
+                        translated_parts.append(word)
+                except Exception:
+                    translated_parts.append(word)
+        combined = ' '.join(translated_parts)
+        print(f"  [Word-by-word translation] '{text}' -> '{combined}'")
+        return combined
+
+    # 3. Single unknown word - try deep_translator
+    try:
+        from deep_translator import GoogleTranslator
+        result = GoogleTranslator(source='si', target='en').translate(text)
+        if result and result.strip() and result.strip().lower() != text:
+            print(f"  [deep_translator] '{text}' -> '{result.strip()}'")
+            return result.strip()
+    except Exception as e:
+        print(f"  [deep_translator failed] {e}")
+
+    # 4. Last resort - return as-is (will search by Sinhala, usually fails gracefully)
+    return text
+
+
+def find_real_image(sinhala_text: str, randomize: bool = False) -> Tuple[bytes, str]:
+    """Main function to find a REAL image for a Sinhala word or phrase."""
+    english_term = translate_sinhala_to_english(sinhala_text)
+
+    print(f"\n🔍 Searching real image for: '{sinhala_text}' -> '{english_term}' (randomize={randomize})")
 
     # Use cache only for non-random requests
     if not randomize:
@@ -439,57 +535,65 @@ def find_real_image(sinhala_text: str, randomize: bool = False) -> Tuple[bytes, 
         if cached:
             return cached, "cache"
 
-    # Define variants to force separate search indexes for variety
-    variants = [
-        english_term,
+    # Build search variants (most specific first, then broader)
+    base_words = english_term.split()
+    variants = [english_term]
+    if len(base_words) > 1:
+        # Add the most meaningful single word as a fallback
+        variants.append(base_words[0])
+        variants.append(base_words[-1])
+    variants += [
         f"{english_term} photo",
-        f"realistic {english_term}",
         f"{english_term} photography",
-        f"real {english_term}"
     ]
-    
+    # Remove duplicates while preserving order
+    seen = set()
+    unique_variants = []
+    for v in variants:
+        if v not in seen:
+            seen.add(v)
+            unique_variants.append(v)
+    variants = unique_variants
+
     if randomize:
         random.shuffle(variants)
-    
-    # Strategy: Try sources in order of quality/variety
-    # If randomize is True, we try the shuffled variants to get DIFFERENT images
+
     for term in variants:
-        # 1. DuckDuckGo (Most variety, Google-like)
+        # 1. DuckDuckGo
         image_bytes = search_duckduckgo_image(term, randomize)
         if image_bytes:
             image_bytes = optimize_image(image_bytes)
-            if not randomize: save_to_cache(english_term, image_bytes)
+            if not randomize:
+                save_to_cache(english_term, image_bytes)
             return image_bytes, "DuckDuckGo (Web)"
 
-        # 2. Pixabay (High quality photos)
-        image_bytes = search_pixabay(term, randomize)
-        if image_bytes:
-            image_bytes = optimize_image(image_bytes)
-            if not randomize: save_to_cache(english_term, image_bytes)
-            return image_bytes, "Pixabay"
-
-        # 3. Wikimedia (Large pool)
+        # 2. Wikimedia
         image_bytes = search_wikimedia(term, randomize)
         if image_bytes:
             image_bytes = optimize_image(image_bytes)
-            if not randomize: save_to_cache(english_term, image_bytes)
+            if not randomize:
+                save_to_cache(english_term, image_bytes)
             return image_bytes, "Wikimedia Commons"
 
-        # 4. Wikipedia
+        # 3. Wikipedia
         image_bytes = search_wikipedia_image(term, randomize)
         if image_bytes:
             image_bytes = optimize_image(image_bytes)
-            if not randomize: save_to_cache(english_term, image_bytes)
+            if not randomize:
+                save_to_cache(english_term, image_bytes)
             return image_bytes, "Wikipedia"
 
-    # Deep Fallback: Use the very first word only
-    simple_term = english_term.split()[0] if " " in english_term else None
-    if simple_term:
-        res, src = find_real_image(simple_term, randomize)
-        if src != "placeholder":
-            return res, f"{src} (simple)"
+        # 4. Pixabay (if API key set)
+        image_bytes = search_pixabay(term, randomize)
+        if image_bytes:
+            image_bytes = optimize_image(image_bytes)
+            if not randomize:
+                save_to_cache(english_term, image_bytes)
+            return image_bytes, "Pixabay"
 
-    return generate_simple_placeholder(sinhala_text), "placeholder"
+    # All sources failed - generate placeholder with English label
+    print(f"  ❌ All image sources failed for '{english_term}'. Using placeholder.")
+    return generate_simple_placeholder(f"{sinhala_text}\n({english_term})"), "placeholder"
 
 
 # ============================================================
@@ -507,7 +611,7 @@ def generate_image_endpoint():
             return jsonify({"error": "missing_prompt"}), 400
 
         image_bytes, source = find_real_image(sinhala_text, randomize)
-        english_term = WORD_TO_ENGLISH.get(sinhala_text, sinhala_text)
+        english_term = translate_sinhala_to_english(sinhala_text)
         image_b64 = base64.b64encode(image_bytes).decode('utf-8')
 
         return jsonify({

@@ -715,3 +715,45 @@ Raw Timestamps (Spoken): []
 Final Feedback: {'words': [{'word': 'වාඩිවෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්දැද්දී', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'වාඩිවෙලා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ඉන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කියල', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'දැනගන්නවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
 =========================================
 
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ඔයා කොහොමද'
+Raw Timestamps (Spoken): [{'word': 'ඔයා', 'start': 0.0, 'end': 0.76}, {'word': 'කොහොමද', 'start': 0.0, 'end': 1.66}]
+Final Feedback: {'words': [{'word': 'ඔයා', 'status': 'green', 'start': 0.0, 'end': 0.76, 'similarity': 1.0, 'spoken': 'ඔයා'}, {'word': 'කොහොමද', 'status': 'green', 'start': 0.0, 'end': 1.66, 'similarity': 1.0, 'spoken': 'කොහොමද'}], 'all_correct': True, 'score': 2}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ලංකාව ලස්සන රටක්'
+Raw Timestamps (Spoken): [{'word': 'ලංකාව', 'start': 0.003, 'end': 2.04}, {'word': 'රස්සන', 'start': 0.024, 'end': 2.84}, {'word': 'රඩඈ', 'start': 0.041, 'end': 6.74}]
+Final Feedback: {'words': [{'word': 'ලංකාව', 'status': 'green', 'start': 0.003, 'end': 2.04, 'similarity': 1.0, 'spoken': 'ලංකාව'}, {'word': 'ලස්සන', 'status': 'green', 'start': 0.024, 'end': 2.84, 'similarity': 0.8, 'spoken': 'රස්සන'}, {'word': 'රටක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 2}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ලංකාව ලස්සන රටක්'
+Raw Timestamps (Spoken): [{'word': 'බිලි', 'start': 0.0, 'end': 0.76}, {'word': 'ොඩ', 'start': 0.0, 'end': 1.08}, {'word': 'ලංකාව', 'start': 0.003, 'end': 2.2}, {'word': 'ලස්සන', 'start': 0.031, 'end': 3.26}, {'word': 'රටක්', 'start': 0.048, 'end': 3.94}]
+Final Feedback: {'words': [{'word': 'ලංකාව', 'status': 'green', 'start': 0.003, 'end': 2.2, 'similarity': 1.0, 'spoken': 'ලංකාව'}, {'word': 'ලස්සන', 'status': 'green', 'start': 0.031, 'end': 3.26, 'similarity': 1.0, 'spoken': 'ලස්සන'}, {'word': 'රටක්', 'status': 'green', 'start': 0.048, 'end': 3.94, 'similarity': 1.0, 'spoken': 'රටක්'}], 'all_correct': True, 'score': 3}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'කුරුල්ලෝ ගී කියනවා'
+Raw Timestamps (Spoken): [{'word': 'නාණාන්\u200dය', 'start': 0.0, 'end': 1.52}, {'word': 'නාමානානම්', 'start': 0.011, 'end': 2.72}, {'word': 'මම', 'start': 0.039, 'end': 3.1}]
+Final Feedback: {'words': [{'word': 'කුරුල්ලෝ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගී', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කියනවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'කුරුල්ලෝ ගී කියනවා'
+Raw Timestamps (Spoken): [{'word': 'කුරුල්ලො', 'start': 0.0, 'end': 1.34}, {'word': 'ගී', 'start': 0.012, 'end': 1.68}, {'word': 'ගත්', 'start': 0.017, 'end': 2.1}, {'word': 'ග', 'start': 0.028, 'end': 2.44}, {'word': 'කියනව', 'start': 0.034, 'end': 3.12}]
+Final Feedback: {'words': [{'word': 'කුරුල්ලෝ', 'status': 'green', 'start': 0.0, 'end': 1.34, 'similarity': 0.88, 'spoken': 'කුරුල්ලො'}, {'word': 'ගී', 'status': 'green', 'start': 0.012, 'end': 1.68, 'similarity': 1.0, 'spoken': 'ගී'}, {'word': 'කියනවා', 'status': 'green', 'start': 0.034, 'end': 3.12, 'similarity': 0.91, 'spoken': 'කියනව'}], 'all_correct': True, 'score': 3}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'කුරුල්ලෝ ගී කියනවා'
+Raw Timestamps (Spoken): [{'word': 'කුරුල්ලෝ', 'start': 0.0, 'end': 1.2}, {'word': 'හී', 'start': 0.018, 'end': 2.02}, {'word': 'ගයනව', 'start': 0.056, 'end': 4.26}]
+Final Feedback: {'words': [{'word': 'කුරුල්ලෝ', 'status': 'green', 'start': 0.0, 'end': 1.2, 'similarity': 1.0, 'spoken': 'කුරුල්ලෝ'}, {'word': 'ගී', 'status': 'red', 'start': 0.018, 'end': 2.02, 'similarity': 0.5, 'spoken': 'හී'}, {'word': 'කියනවා', 'status': 'red', 'start': 0.056, 'end': 4.26, 'similarity': 0.6, 'spoken': 'ගයනව'}], 'all_correct': False, 'score': 1}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අද පාසලේ අපට නව ගුරුවරයෙක් හමුවුණා'
+Raw Timestamps (Spoken): [{'word': 'ආධ්\u200dයපාසලය', 'start': 0.0, 'end': 1.76}, {'word': 'අපට', 'start': 0.018, 'end': 2.24}, {'word': 'නව', 'start': 0.027, 'end': 2.54}, {'word': 'ගුරුවරේ', 'start': 0.034, 'end': 3.22}, {'word': 'කමුවුණ', 'start': 0.047, 'end': 3.84}]
+Final Feedback: {'words': [{'word': 'අද', 'status': 'red', 'start': 0.018, 'end': 2.24, 'similarity': 0.4, 'spoken': 'අපට'}, {'word': 'පාසලේ', 'status': 'red', 'start': 0.0, 'end': 1.76, 'similarity': 0.53, 'spoken': 'ආධ්\u200dයපාසලය'}, {'word': 'අපට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'නව', 'status': 'green', 'start': 0.027, 'end': 2.54, 'similarity': 1.0, 'spoken': 'නව'}, {'word': 'ගුරුවරයෙක්', 'status': 'green', 'start': 0.034, 'end': 3.22, 'similarity': 0.71, 'spoken': 'ගුරුවරේ'}, {'word': 'හමුවුණා', 'status': 'green', 'start': 0.047, 'end': 3.84, 'similarity': 0.77, 'spoken': 'කමුවුණ'}], 'all_correct': False, 'score': 3}
+=========================================
+

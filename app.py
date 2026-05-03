@@ -97,11 +97,23 @@ app.register_blueprint(auth_bp, url_prefix='/api/auth')
 app.register_blueprint(stories_bp, url_prefix='/api')
 app.register_blueprint(text_to_image_bp, url_prefix='/api/ti')
 
+# Speech feedback imports
+try:
+    from modules.speech_feedback.processor import get_word_timestamps
+    from modules.speech_feedback.evaluator import evaluate_pronunciation
+except ImportError as e:
+    print(f"Warning: Could not import speech feedback modules: {e}")
+
 # ============================================================
 # CONFIGURATION
 # ============================================================
 PORT = int(os.environ.get("PORT", 5002))
 user_sessions = {}
+
+# Create uploads directory for temporary voice files
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 # Primary Handwriting Model Initialization
 try:
@@ -651,8 +663,8 @@ def _load_sentences_from_mongo():
                 'text': text,
                 'words': text.split(),
                 'difficulty': difficulty,
-                'hasAudio': False,  # Audio files not available on unified backend
-                'audioPath': None,
+                'hasAudio': True,
+                'audioPath': f"/api/audio/{filename}.wav",
                 'timings': timings_doc.get(filename, [])
             })
 
@@ -668,21 +680,21 @@ _SENTENCES_DATA = _load_sentences_from_mongo()
 
 # Offline fallback (used when MongoDB is unavailable)
 _OFFLINE_SENTENCES = [
-    {"id": "off_001", "text": "ආයුබෝවන් සුභ දවසක්", "words": ["ආයුබෝවන්", "සුභ", "දවසක්"], "difficulty": "easy"},
-    {"id": "off_002", "text": "ඔබ කොහෙද යන්නේ", "words": ["ඔබ", "කොහෙද", "යන්නේ"], "difficulty": "easy"},
-    {"id": "off_003", "text": "මගේ නම සිතාරා", "words": ["මගේ", "නම", "සිතාරා"], "difficulty": "easy"},
-    {"id": "off_004", "text": "ඔබට ස්තූතියි", "words": ["ඔබට", "ස්තූතියි"], "difficulty": "easy"},
-    {"id": "off_005", "text": "සිංහල ඉගෙනීම ප්‍රසාදජනකයි", "words": ["සිංහල", "ඉගෙනීම", "ප්‍රසාදජනකයි"], "difficulty": "medium"},
-    {"id": "off_006", "text": "ගෙදර යමු", "words": ["ගෙදර", "යමු"], "difficulty": "easy"},
-    {"id": "off_007", "text": "ඔයා කොහොමද", "words": ["ඔයා", "කොහොමද"], "difficulty": "easy"},
-    {"id": "off_008", "text": "අම්මා හොඳ කෑම හදනවා", "words": ["අම්මා", "හොඳ", "කෑම", "හදනවා"], "difficulty": "easy"},
-    {"id": "off_009", "text": "ලංකාව ලස්සන රටක්", "words": ["ලංකාව", "ලස්සන", "රටක්"], "difficulty": "easy"},
-    {"id": "off_010", "text": "හිරු එළිය ලස්සනයි", "words": ["හිරු", "එළිය", "ලස්සනයි"], "difficulty": "easy"},
-    {"id": "off_011", "text": "කලාව ජීවිතය සුන්දර කරයි", "words": ["කලාව", "ජීවිතය", "සුන්දර", "කරයි"], "difficulty": "medium"},
-    {"id": "off_012", "text": "මම ළමයෙක්", "words": ["මම", "ළමයෙක්"], "difficulty": "easy"},
-    {"id": "off_013", "text": "මට පොත් ආසයි", "words": ["මට", "පොත්", "ආසයි"], "difficulty": "easy"},
-    {"id": "off_014", "text": "කුරුල්ලෝ ගී කියනවා", "words": ["කුරුල්ලෝ", "ගී", "කියනවා"], "difficulty": "easy"},
-    {"id": "off_015", "text": "පාසල ළඟ ගස් තිබෙනවා", "words": ["පාසල", "ළඟ", "ගස්", "තිබෙනවා"], "difficulty": "medium"},
+    {"id": "off_001", "text": "ආයුබෝවන් සුභ දවසක්", "words": ["ආයුබෝවන්", "සුභ", "දවසක්"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_001.wav"},
+    {"id": "off_002", "text": "ඔබ කොහෙද යන්නේ", "words": ["ඔබ", "කොහෙද", "යන්නේ"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_002.wav"},
+    {"id": "off_003", "text": "මගේ නම සිතාරා", "words": ["මගේ", "නම", "සිතාරා"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_003.wav"},
+    {"id": "off_004", "text": "ඔබට ස්තූතියි", "words": ["ඔබට", "ස්තූතියි"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_004.wav"},
+    {"id": "off_005", "text": "සිංහල ඉගෙනීම ප්‍රසාදජනකයි", "words": ["සිංහල", "ඉගෙනීම", "ප්‍රසාදජනකයි"], "difficulty": "medium", "hasAudio": True, "audioPath": "/api/audio/off_005.wav"},
+    {"id": "off_006", "text": "ගෙදර යමු", "words": ["ගෙදර", "යමු"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_006.wav"},
+    {"id": "off_007", "text": "ඔයා කොහොමද", "words": ["ඔයා", "කොහොමද"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_007.wav"},
+    {"id": "off_008", "text": "අම්මා හොඳ කෑම හදනවා", "words": ["අම්මා", "හොඳ", "කෑම", "හදනවා"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_008.wav"},
+    {"id": "off_009", "text": "ලංකාව ලස්සන රටක්", "words": ["ලංකාව", "ලස්සන", "රටක්"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_009.wav"},
+    {"id": "off_010", "text": "හිරු එළිය ලස්සනයි", "words": ["හිරු", "එළිය", "ලස්සනයි"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_010.wav"},
+    {"id": "off_011", "text": "කලාව ජීවිතය සුන්දර කරයි", "words": ["කලාව", "ජීවිතය", "සුන්දර", "කරයි"], "difficulty": "medium", "hasAudio": True, "audioPath": "/api/audio/off_011.wav"},
+    {"id": "off_012", "text": "මම ළමයෙක්", "words": ["මම", "ළමයෙක්"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_012.wav"},
+    {"id": "off_013", "text": "මට පොත් ආසයි", "words": ["මට", "පොත්", "ආසයි"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_013.wav"},
+    {"id": "off_014", "text": "කුරුල්ලෝ ගී කියනවා", "words": ["කුරුල්ලෝ", "ගී", "කියනවා"], "difficulty": "easy", "hasAudio": True, "audioPath": "/api/audio/off_014.wav"},
+    {"id": "off_015", "text": "පාසල ළඟ ගස් තිබෙනවා", "words": ["පාසල", "ළඟ", "ගස්", "තිබෙනවා"], "difficulty": "medium", "hasAudio": True, "audioPath": "/api/audio/off_015.wav"},
 ]
 
 def _get_active_sentences():
@@ -881,6 +893,84 @@ def get_random_letter():
         'session_id': session_id
     })
 
+@app.route('/api/audio/<filename>', methods=['GET'])
+def serve_audio(filename):
+    """Serve audio files from MongoDB, local fallback, or generate on-the-fly"""
+    try:
+        if '..' in filename or filename.startswith('/'):
+            return jsonify({'error': 'Invalid filename'}), 400
+            
+        # Remove trailing .wav if it was accidentally doubled (e.g., voice_14.wav.wav)
+        clean_filename = filename
+        if clean_filename.endswith('.wav.wav'):
+            clean_filename = clean_filename[:-4]
+            
+        # 1. Check local fallback audio first
+        local_path = os.path.join("fallback_audio", clean_filename)
+        if not local_path.endswith('.wav'):
+            local_path += '.wav'
+        if os.path.exists(local_path):
+            return send_file(local_path, mimetype='audio/wav', as_attachment=False)
+        
+        # 2. Try fetching from MongoDB (using voice_db, not db)
+        audio_collection = voice_db['audio'] if voice_db is not None else None
+        
+        if audio_collection is not None:
+            possible_filenames = [
+                clean_filename,
+                f"{clean_filename}.wav" if not clean_filename.endswith('.wav') else clean_filename
+            ]
+            
+            for fname in possible_filenames:
+                audio_doc = audio_collection.find_one({'filename': fname})
+                if audio_doc:
+                    audio_data = audio_doc['audio_data']
+                    return send_file(
+                        io.BytesIO(audio_data),
+                        mimetype='audio/wav',
+                        as_attachment=False
+                    )
+        
+        # 3. If not found anywhere, generate it on-the-fly!
+        # First, find the text for this sentence from _get_active_sentences()
+        target_text = None
+        base_id = clean_filename.replace('.wav', '')
+        for sentence in _get_active_sentences():
+            if sentence['id'] == base_id or sentence['id'] == clean_filename:
+                target_text = sentence['text']
+                break
+                
+        if target_text:
+            try:
+                import subprocess
+                from gtts import gTTS
+                if not os.path.exists("fallback_audio"):
+                    os.makedirs("fallback_audio")
+                
+                temp_mp3 = os.path.join("fallback_audio", f"{base_id}_temp.mp3")
+                final_wav = local_path
+                
+                tts = gTTS(target_text, lang='si')
+                tts.save(temp_mp3)
+                
+                subprocess.run([
+                    ffmpeg_exe, "-y", "-i", temp_mp3, "-ar", "16000", "-ac", "1", final_wav
+                ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                
+                try: os.remove(temp_mp3)
+                except: pass
+                
+                if os.path.exists(final_wav):
+                    return send_file(final_wav, mimetype='audio/wav', as_attachment=False)
+            except Exception as e:
+                print(f"Failed to generate TTS on the fly: {e}")
+        
+        return jsonify({'error': 'Audio file not found and could not be generated'}), 404
+        
+    except Exception as e:
+        print(f"Error serving audio: {e}")
+        return jsonify({'error': str(e)}), 500
+
 # ============================================================
 # VOICE PROCESSING HANDLERS
 # ============================================================
@@ -910,20 +1000,23 @@ def handle_voice(data):
         temp_filename = f"{UPLOAD_FOLDER}/temp_{timestamp}.wav"
         
         try:
-            audio_io = io.BytesIO(audio_bytes)
-            # Try to load it as whatever format it came in
-            try:
-                audio = AudioSegment.from_file(audio_io)
-            except:
-                # Fallback to m4a/aac since Expo uses that
-                audio_io.seek(0)
-                audio = AudioSegment.from_file(audio_io, format="m4a")
+            import subprocess
+            temp_input = f"{temp_filename}_input.m4a"
+            with open(temp_input, 'wb') as f:
+                f.write(audio_bytes)
                 
-            audio = audio.set_frame_rate(16000).set_channels(1)
-            audio.export(temp_filename, format="wav")
+            # Use ffmpeg directly to bypass pydub/ffprobe requirements
+            subprocess.run([
+                ffmpeg_exe, "-y", "-i", temp_input, "-ar", "16000", "-ac", "1", temp_filename
+            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+            
+            try:
+                os.remove(temp_input)
+            except:
+                pass
             print(f"Successfully converted and saved {temp_filename}")
         except Exception as e:
-            print(f"Pydub conversion failed: {e}")
+            print(f"FFmpeg conversion failed: {e}")
             raise Exception(f"Failed to process and format audio: {e}")
 
         if not get_word_timestamps or not evaluate_pronunciation:
@@ -971,18 +1064,23 @@ def handle_partial_voice(data):
         temp_filename = f"{UPLOAD_FOLDER}/stream_temp_{request.sid}.wav"
         
         try:
-            audio_io = io.BytesIO(audio_bytes)
-            try:
-                audio = AudioSegment.from_file(audio_io)
-            except:
-                audio_io.seek(0)
-                audio = AudioSegment.from_file(audio_io, format="m4a")
+            import subprocess
+            temp_input = f"{temp_filename}_input.m4a"
+            with open(temp_input, 'wb') as f:
+                f.write(audio_bytes)
                 
-            audio = audio.set_frame_rate(16000).set_channels(1)
-            audio.export(temp_filename, format="wav")
+            # Use ffmpeg directly to bypass pydub/ffprobe requirements
+            subprocess.run([
+                ffmpeg_exe, "-y", "-i", temp_input, "-ar", "16000", "-ac", "1", temp_filename
+            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+            
+            try:
+                os.remove(temp_input)
+            except:
+                pass
             print(f"Partial stream processed: {temp_filename}")
         except Exception as e:
-            print(f"Partial pydub conversion failed: {e}")
+            print(f"Partial FFmpeg conversion failed: {e}")
             return # Skip this chunk if we can't parse the format
                 
         if get_word_timestamps and evaluate_pronunciation:

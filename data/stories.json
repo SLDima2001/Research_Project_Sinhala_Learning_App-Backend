@@ -431,6 +431,14 @@
             "timestamp": 10000
           }
         ]
+      },
+      "branch_b": {
+        "video_id": "deer_B.mp4",
+        "start_time": 0,
+        "end_time": 300000,
+        "next_segment_id": "end_screen",
+        "question_timestamps": [],
+        "question_pool": []
       }
     },
     "interactions": {
@@ -441,6 +449,10 @@
           {
             "text": "A) වනාන්තරයේ ඇවිදීම",
             "next_segment_id": "branch_a"
+          },
+          {
+            "text": "B) දඩයක්කාරයෙකු දැකීම",
+            "next_segment_id": "branch_b"
           }
         ]
       }

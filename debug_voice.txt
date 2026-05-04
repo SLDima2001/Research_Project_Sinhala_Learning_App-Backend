@@ -757,3 +757,129 @@ Raw Timestamps (Spoken): [{'word': 'ආධ්\u200dයපාසලය', 'start':
 Final Feedback: {'words': [{'word': 'අද', 'status': 'red', 'start': 0.018, 'end': 2.24, 'similarity': 0.4, 'spoken': 'අපට'}, {'word': 'පාසලේ', 'status': 'red', 'start': 0.0, 'end': 1.76, 'similarity': 0.53, 'spoken': 'ආධ්\u200dයපාසලය'}, {'word': 'අපට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'නව', 'status': 'green', 'start': 0.027, 'end': 2.54, 'similarity': 1.0, 'spoken': 'නව'}, {'word': 'ගුරුවරයෙක්', 'status': 'green', 'start': 0.034, 'end': 3.22, 'similarity': 0.71, 'spoken': 'ගුරුවරේ'}, {'word': 'හමුවුණා', 'status': 'green', 'start': 0.047, 'end': 3.84, 'similarity': 0.77, 'spoken': 'කමුවුණ'}], 'all_correct': False, 'score': 3}
 =========================================
 
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අද පාසලේ අපට නව ගුරුවරයෙක් හමුවුණා'
+Raw Timestamps (Spoken): [{'word': 'අද්ද', 'start': 0.0, 'end': 0.9}, {'word': 'පාසලේ', 'start': 0.001, 'end': 1.62}, {'word': 'අපට', 'start': 0.014, 'end': 2.02}, {'word': 'නව', 'start': 0.022, 'end': 2.26}, {'word': 'ගුරුවරේ', 'start': 0.028, 'end': 2.88}, {'word': 'කමුවුණ', 'start': 0.04, 'end': 3.5}]
+Final Feedback: {'words': [{'word': 'අද', 'status': 'red', 'start': 0.0, 'end': 0.9, 'similarity': 0.67, 'spoken': 'අද්ද'}, {'word': 'පාසලේ', 'status': 'green', 'start': 0.001, 'end': 1.62, 'similarity': 1.0, 'spoken': 'පාසලේ'}, {'word': 'අපට', 'status': 'green', 'start': 0.014, 'end': 2.02, 'similarity': 1.0, 'spoken': 'අපට'}, {'word': 'නව', 'status': 'green', 'start': 0.022, 'end': 2.26, 'similarity': 1.0, 'spoken': 'නව'}, {'word': 'ගුරුවරයෙක්', 'status': 'green', 'start': 0.028, 'end': 2.88, 'similarity': 0.71, 'spoken': 'ගුරුවරේ'}, {'word': 'හමුවුණා', 'status': 'green', 'start': 0.04, 'end': 3.5, 'similarity': 0.77, 'spoken': 'කමුවුණ'}], 'all_correct': False, 'score': 5}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අපේ', 'start': 0.0, 'end': 1.26}, {'word': 'නගරයේ', 'start': 0.008, 'end': 1.92}, {'word': 'විශාල', 'start': 0.022, 'end': 2.8}, {'word': 'පුස්තකාලයක්', 'start': 0.04, 'end': 3.96}, {'word': 'තිබේ', 'start': 0.06, 'end': 4.3}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'green', 'start': 0.0, 'end': 1.26, 'similarity': 1.0, 'spoken': 'අපේ'}, {'word': 'නගරයේ', 'status': 'green', 'start': 0.008, 'end': 1.92, 'similarity': 1.0, 'spoken': 'නගරයේ'}, {'word': 'විශාල', 'status': 'green', 'start': 0.022, 'end': 2.8, 'similarity': 1.0, 'spoken': 'විශාල'}, {'word': 'පුස්තකාලයක්', 'status': 'green', 'start': 0.04, 'end': 3.96, 'similarity': 1.0, 'spoken': 'පුස්තකාලයක්'}, {'word': 'තිබේ', 'status': 'green', 'start': 0.06, 'end': 4.3, 'similarity': 1.0, 'spoken': 'තිබේ'}], 'all_correct': True, 'score': 5}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'නායණනාණනානානල්', 'start': 0.0, 'end': 2.4}, {'word': 'අනානා', 'start': 0.031, 'end': 3.14}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'නගරයේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විශාල', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'පුස්තකාලයක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'තිබේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අපේ', 'start': 0.0, 'end': 1.2}, {'word': 'නගරයේ', 'start': 0.007, 'end': 1.78}, {'word': 'නාණ', 'start': 0.019, 'end': 2.24}, {'word': 'නාණනා', 'start': 0.027, 'end': 2.84}, {'word': 'නානාලා', 'start': 0.039, 'end': 3.68}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'green', 'start': 0.0, 'end': 1.2, 'similarity': 1.0, 'spoken': 'අපේ'}, {'word': 'නගරයේ', 'status': 'green', 'start': 0.007, 'end': 1.78, 'similarity': 1.0, 'spoken': 'නගරයේ'}, {'word': 'විශාල', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'පුස්තකාලයක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'තිබේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 2}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ගුරුතුමිය අපට අලුත් ගීයක් ඉගැන්වුවා'
+Raw Timestamps (Spoken): [{'word': 'ගුරුතුමිය', 'start': 0.013, 'end': 2.3}, {'word': 'අපට', 'start': 0.03, 'end': 2.88}, {'word': 'අලුත්', 'start': 0.039, 'end': 3.32}, {'word': 'ගීතයක්', 'start': 0.05, 'end': 4.08}, {'word': 'ඉගැනුව', 'start': 0.063, 'end': 4.7}]
+Final Feedback: {'words': [{'word': 'ගුරුතුමිය', 'status': 'green', 'start': 0.013, 'end': 2.3, 'similarity': 1.0, 'spoken': 'ගුරුතුමිය'}, {'word': 'අපට', 'status': 'green', 'start': 0.03, 'end': 2.88, 'similarity': 1.0, 'spoken': 'අපට'}, {'word': 'අලුත්', 'status': 'green', 'start': 0.039, 'end': 3.32, 'similarity': 1.0, 'spoken': 'අලුත්'}, {'word': 'ගීයක්', 'status': 'green', 'start': 0.05, 'end': 4.08, 'similarity': 0.91, 'spoken': 'ගීතයක්'}, {'word': 'ඉගැන්වුවා', 'status': 'green', 'start': 0.063, 'end': 4.7, 'similarity': 0.8, 'spoken': 'ඉගැනුව'}], 'all_correct': True, 'score': 5}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ගුරුතුමිය අපට අලුත් ගීයක් ඉගැන්වුවා'
+Raw Timestamps (Spoken): [{'word': 'ගුරුදුමිය', 'start': 0.0, 'end': 1.78}, {'word': 'ආනාණනාණනා', 'start': 0.042, 'end': 4.24}, {'word': 'ගීයක්', 'start': 0.072, 'end': 5.04}, {'word': 'ඉගැන්නුව', 'start': 0.082, 'end': 5.58}]
+Final Feedback: {'words': [{'word': 'ගුරුතුමිය', 'status': 'green', 'start': 0.0, 'end': 1.78, 'similarity': 0.89, 'spoken': 'ගුරුදුමිය'}, {'word': 'අපට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'අලුත්', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගීයක්', 'status': 'green', 'start': 0.072, 'end': 5.04, 'similarity': 1.0, 'spoken': 'ගීයක්'}, {'word': 'ඉගැන්වුවා', 'status': 'green', 'start': 0.082, 'end': 5.58, 'similarity': 0.82, 'spoken': 'ඉගැන්නුව'}], 'all_correct': False, 'score': 3}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ගුරුතුමිය අපට අලුත් ගීයක් ඉගැන්වුවා'
+Raw Timestamps (Spoken): [{'word': 'ඉන්න', 'start': 0.0, 'end': 1.26}, {'word': 'ගඩ්ඩා', 'start': 0.008, 'end': 1.8}, {'word': 'හරිදෙකය', 'start': 0.018, 'end': 2.48}]
+Final Feedback: {'words': [{'word': 'ගුරුතුමිය', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'අපට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'අලුත්', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගීයක්', 'status': 'red', 'start': 0.008, 'end': 1.8, 'similarity': 0.4, 'spoken': 'ගඩ්ඩා'}, {'word': 'ඉගැන්වුවා', 'status': 'red', 'start': 0.0, 'end': 1.26, 'similarity': 0.46, 'spoken': 'ඉන්න'}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අරය', 'start': 0.0, 'end': 1.16}, {'word': 'නගරයේ', 'start': 0.007, 'end': 1.92}, {'word': 'විශාල', 'start': 0.022, 'end': 2.56}, {'word': 'පුස්ත', 'start': 0.034, 'end': 3.0}, {'word': 'කාලයක්', 'start': 0.042, 'end': 3.66}, {'word': 'තිබේ', 'start': 0.055, 'end': 4.02}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'නගරයේ', 'status': 'green', 'start': 0.007, 'end': 1.92, 'similarity': 1.0, 'spoken': 'නගරයේ'}, {'word': 'විශාල', 'status': 'green', 'start': 0.022, 'end': 2.56, 'similarity': 1.0, 'spoken': 'විශාල'}, {'word': 'පුස්තකාලයක්', 'status': 'green', 'start': 0.042, 'end': 3.66, 'similarity': 0.71, 'spoken': 'කාලයක්'}, {'word': 'තිබේ', 'status': 'green', 'start': 0.055, 'end': 4.02, 'similarity': 1.0, 'spoken': 'තිබේ'}], 'all_correct': False, 'score': 4}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අපේ', 'start': 0.0, 'end': 0.86}, {'word': 'නගරයේ', 'start': 0.0, 'end': 1.54}, {'word': 'විශාල', 'start': 0.014, 'end': 2.14}, {'word': 'පස්ථකාලයක්', 'start': 0.024, 'end': 3.08}, {'word': 'තිබේ', 'start': 0.043, 'end': 3.42}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'green', 'start': 0.0, 'end': 0.86, 'similarity': 1.0, 'spoken': 'අපේ'}, {'word': 'නගරයේ', 'status': 'green', 'start': 0.0, 'end': 1.54, 'similarity': 1.0, 'spoken': 'නගරයේ'}, {'word': 'විශාල', 'status': 'green', 'start': 0.014, 'end': 2.14, 'similarity': 1.0, 'spoken': 'විශාල'}, {'word': 'පුස්තකාලයක්', 'status': 'green', 'start': 0.024, 'end': 3.08, 'similarity': 0.86, 'spoken': 'පස්ථකාලයක්'}, {'word': 'තිබේ', 'status': 'green', 'start': 0.043, 'end': 3.42, 'similarity': 1.0, 'spoken': 'තිබේ'}], 'all_correct': True, 'score': 5}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අප්හේ', 'start': 0.0, 'end': 1.18}, {'word': 'විශාල', 'start': 0.006, 'end': 1.7}, {'word': 'මිස්තරකාලයක්', 'start': 0.016, 'end': 2.56}, {'word': 'තිබේ', 'start': 0.033, 'end': 2.9}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'green', 'start': 0.0, 'end': 1.18, 'similarity': 0.75, 'spoken': 'අප්හේ'}, {'word': 'නගරයේ', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'විශාල', 'status': 'green', 'start': 0.006, 'end': 1.7, 'similarity': 1.0, 'spoken': 'විශාල'}, {'word': 'පුස්තකාලයක්', 'status': 'green', 'start': 0.016, 'end': 2.56, 'similarity': 0.78, 'spoken': 'මිස්තරකාලයක්'}, {'word': 'තිබේ', 'status': 'green', 'start': 0.033, 'end': 2.9, 'similarity': 1.0, 'spoken': 'තිබේ'}], 'all_correct': False, 'score': 4}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අපේ', 'start': 0.0, 'end': 1.16}, {'word': 'නගර', 'start': 0.005, 'end': 1.52}, {'word': 'මෛ\u200dියේ', 'start': 0.012, 'end': 2.12}, {'word': 'විශාල', 'start': 0.025, 'end': 2.66}, {'word': 'භුස්ථ', 'start': 0.034, 'end': 2.98}, {'word': 'කාලයක්', 'start': 0.041, 'end': 3.46}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'green', 'start': 0.0, 'end': 1.16, 'similarity': 1.0, 'spoken': 'අපේ'}, {'word': 'නගරයේ', 'status': 'green', 'start': 0.005, 'end': 1.52, 'similarity': 0.75, 'spoken': 'නගර'}, {'word': 'විශාල', 'status': 'green', 'start': 0.025, 'end': 2.66, 'similarity': 1.0, 'spoken': 'විශාල'}, {'word': 'පුස්තකාලයක්', 'status': 'green', 'start': 0.041, 'end': 3.46, 'similarity': 0.71, 'spoken': 'කාලයක්'}, {'word': 'තිබේ', 'status': 'red', 'start': 0.012, 'end': 2.12, 'similarity': 0.4, 'spoken': 'මෛ\u200dියේ'}], 'all_correct': False, 'score': 4}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අපේ නගරයේ විශාල පුස්තකාලයක් තිබේ'
+Raw Timestamps (Spoken): [{'word': 'අපපේ', 'start': 0.011, 'end': 1.94}, {'word': 'නගර', 'start': 0.025, 'end': 2.8}, {'word': 'මදු\u200dයයේ', 'start': 0.046, 'end': 4.18}, {'word': 'විශාල', 'start': 0.068, 'end': 5.08}, {'word': 'පුස්තකාලයා', 'start': 0.086, 'end': 6.4}, {'word': 'ඉතිලේය', 'start': 0.112, 'end': 7.32}]
+Final Feedback: {'words': [{'word': 'අපේ', 'status': 'green', 'start': 0.011, 'end': 1.94, 'similarity': 0.86, 'spoken': 'අපපේ'}, {'word': 'නගරයේ', 'status': 'green', 'start': 0.025, 'end': 2.8, 'similarity': 0.75, 'spoken': 'නගර'}, {'word': 'විශාල', 'status': 'green', 'start': 0.068, 'end': 5.08, 'similarity': 1.0, 'spoken': 'විශාල'}, {'word': 'පුස්තකාලයක්', 'status': 'green', 'start': 0.086, 'end': 6.4, 'similarity': 0.86, 'spoken': 'පුස්තකාලයා'}, {'word': 'තිබේ', 'status': 'red', 'start': 0.112, 'end': 7.32, 'similarity': 0.6, 'spoken': 'ඉතිලේය'}], 'all_correct': False, 'score': 4}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අද පාසලේ අපට නව ගුරුවරයෙක් හමුවුණා'
+Raw Timestamps (Spoken): [{'word': 'අද', 'start': 0.024, 'end': 2.4}, {'word': 'පාං්තරියේඅපට', 'start': 0.03, 'end': 4.04}, {'word': 'නව', 'start': 0.063, 'end': 4.38}, {'word': 'යුරුවරයෙක්', 'start': 0.072, 'end': 5.24}, {'word': 'හමවුණා', 'start': 0.086, 'end': 5.82}]
+Final Feedback: {'words': [{'word': 'අද', 'status': 'green', 'start': 0.024, 'end': 2.4, 'similarity': 1.0, 'spoken': 'අද'}, {'word': 'පාසලේ', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'අපට', 'status': 'red', 'start': 0.03, 'end': 4.04, 'similarity': 0.4, 'spoken': 'පාං්තරියේඅපට'}, {'word': 'නව', 'status': 'green', 'start': 0.063, 'end': 4.38, 'similarity': 1.0, 'spoken': 'නව'}, {'word': 'ගුරුවරයෙක්', 'status': 'green', 'start': 0.072, 'end': 5.24, 'similarity': 0.9, 'spoken': 'යුරුවරයෙක්'}, {'word': 'හමුවුණා', 'status': 'green', 'start': 0.086, 'end': 5.82, 'similarity': 0.92, 'spoken': 'හමවුණා'}], 'all_correct': False, 'score': 4}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අද පාසලේ අපට නව ගුරුවරයෙක් හමුවුණා'
+Raw Timestamps (Spoken): [{'word': 'නබරූ', 'start': 0.0, 'end': 0.8}, {'word': 'හරිජේව', 'start': 0.0, 'end': 1.4}, {'word': 'විතර', 'start': 0.009, 'end': 1.64}, {'word': 'හරතු', 'start': 0.014, 'end': 1.96}, {'word': 'ආදයි', 'start': 0.021, 'end': 2.74}]
+Final Feedback: {'words': [{'word': 'අද', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'පාසලේ', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'අපට', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'නව', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගුරුවරයෙක්', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'හමුවුණා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අද පාසලේ අපට නව ගුරුවරයෙක් හමුවුණා'
+Raw Timestamps (Spoken): [{'word': 'යපාසට', 'start': 0.0, 'end': 1.18}, {'word': 'එහි', 'start': 0.004, 'end': 1.36}, {'word': 'අපිට', 'start': 0.01, 'end': 1.86}, {'word': 'නව', 'start': 0.019, 'end': 2.14}, {'word': 'ගුරුවරුයෙක්', 'start': 0.026, 'end': 3.02}, {'word': 'හමු', 'start': 0.042, 'end': 3.4}, {'word': 'වඋණා', 'start': 0.048, 'end': 3.72}]
+Final Feedback: {'words': [{'word': 'අද', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'පාසලේ', 'status': 'red', 'start': 0.0, 'end': 1.18, 'similarity': 0.6, 'spoken': 'යපාසට'}, {'word': 'අපට', 'status': 'green', 'start': 0.01, 'end': 1.86, 'similarity': 0.86, 'spoken': 'අපිට'}, {'word': 'නව', 'status': 'green', 'start': 0.019, 'end': 2.14, 'similarity': 1.0, 'spoken': 'නව'}, {'word': 'ගුරුවරයෙක්', 'status': 'green', 'start': 0.026, 'end': 3.02, 'similarity': 0.95, 'spoken': 'ගුරුවරුයෙක්'}, {'word': 'හමුවුණා', 'status': 'red', 'start': 0.042, 'end': 3.4, 'similarity': 0.6, 'spoken': 'හමු'}], 'all_correct': False, 'score': 3}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'අද පාසලේ අපට නව ගුරුවරයෙක් හමුවුණා'
+Raw Timestamps (Spoken): [{'word': 'අද', 'start': 0.0, 'end': 0.88}, {'word': 'පාසලේ', 'start': 0.0, 'end': 1.52}, {'word': 'අපට', 'start': 0.012, 'end': 1.94}, {'word': 'නව', 'start': 0.02, 'end': 2.18}, {'word': 'ගුරුවරයෙකම', 'start': 0.026, 'end': 3.08}]
+Final Feedback: {'words': [{'word': 'අද', 'status': 'green', 'start': 0.0, 'end': 0.88, 'similarity': 1.0, 'spoken': 'අද'}, {'word': 'පාසලේ', 'status': 'green', 'start': 0.0, 'end': 1.52, 'similarity': 1.0, 'spoken': 'පාසලේ'}, {'word': 'අපට', 'status': 'green', 'start': 0.012, 'end': 1.94, 'similarity': 1.0, 'spoken': 'අපට'}, {'word': 'නව', 'status': 'green', 'start': 0.02, 'end': 2.18, 'similarity': 1.0, 'spoken': 'නව'}, {'word': 'ගුරුවරයෙක්', 'status': 'green', 'start': 0.026, 'end': 3.08, 'similarity': 0.9, 'spoken': 'ගුරුවරයෙකම'}, {'word': 'හමුවුණා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 5}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'මම ගුරුතුමියට ගෞරවයෙන් කතා කරමි'
+Raw Timestamps (Spoken): [{'word': 'මමහඹ', 'start': 0.0, 'end': 1.5}, {'word': 'මඩසිළිමෙන්න', 'start': 0.011, 'end': 2.32}, {'word': 'තකපකකබතූරම', 'start': 0.071, 'end': 6.12}, {'word': 'කියම්', 'start': 0.105, 'end': 6.52}, {'word': 'වෙට', 'start': 0.111, 'end': 6.7}, {'word': 'ිවලයි.මෙන්න', 'start': 0.116, 'end': 9.12}, {'word': 'මේ', 'start': 0.164, 'end': 9.34}, {'word': 'සමහරවඩ', 'start': 0.17, 'end': 10.16}]
+Final Feedback: {'words': [{'word': 'මම', 'status': 'red', 'start': 0.0, 'end': 1.5, 'similarity': 0.67, 'spoken': 'මමහඹ'}, {'word': 'ගුරුතුමියට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගෞරවයෙන්', 'status': 'red', 'start': 0.116, 'end': 9.12, 'similarity': 0.53, 'spoken': 'ිවලයි.මෙන්න'}, {'word': 'කතා', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කරමි', 'status': 'red', 'start': 0.105, 'end': 6.52, 'similarity': 0.44, 'spoken': 'කියම්'}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'මම ගුරුතුමියට ගෞරවයෙන් කතා කරමි'
+Raw Timestamps (Spoken): [{'word': 'ඒකත්වමම', 'start': 0.0, 'end': 1.88}, {'word': 'ගුරුතුමියට', 'start': 0.02, 'end': 2.62}, {'word': 'ගෞරවයෙන්', 'start': 0.034, 'end': 3.3}, {'word': 'කතාකරමි', 'start': 0.047, 'end': 4.02}]
+Final Feedback: {'words': [{'word': 'මම', 'status': 'red', 'start': 0.0, 'end': 1.88, 'similarity': 0.44, 'spoken': 'ඒකත්වමම'}, {'word': 'ගුරුතුමියට', 'status': 'green', 'start': 0.02, 'end': 2.62, 'similarity': 1.0, 'spoken': 'ගුරුතුමියට'}, {'word': 'ගෞරවයෙන්', 'status': 'green', 'start': 0.034, 'end': 3.3, 'similarity': 1.0, 'spoken': 'ගෞරවයෙන්'}, {'word': 'කතා', 'status': 'red', 'start': 0.047, 'end': 4.02, 'similarity': 0.6, 'spoken': 'කතාකරමි'}, {'word': 'කරමි', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 2}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'මම ගුරුතුමියට ගෞරවයෙන් කතා කරමි'
+Raw Timestamps (Spoken): [{'word': 'මාමයදුවරයුත්තු', 'start': 0.0, 'end': 1.3}, {'word': 'දැන්මල', 'start': 0.007, 'end': 1.72}, {'word': 'අරගෙම්', 'start': 0.016, 'end': 2.14}, {'word': 'අයිෂ්ටෝනොකොම', 'start': 0.023, 'end': 2.84}, {'word': 'ඉඳල', 'start': 0.038, 'end': 3.12}]
+Final Feedback: {'words': [{'word': 'මම', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගුරුතුමියට', 'status': 'red', 'start': 0.0, 'end': 1.3, 'similarity': 0.42, 'spoken': 'මාමයදුවරයුත්තු'}, {'word': 'ගෞරවයෙන්', 'status': 'red', 'start': 0.016, 'end': 2.14, 'similarity': 0.43, 'spoken': 'අරගෙම්'}, {'word': 'කතා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කරමි', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 0}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ගුරුතුමිය අපට අලුත් ගීයක් ඉගැන්වුවා'
+Raw Timestamps (Spoken): [{'word': 'ගූර', 'start': 0.0, 'end': 1.08}, {'word': 'ඉතිගූ', 'start': 0.003, 'end': 1.42}, {'word': 'මොව', 'start': 0.01, 'end': 1.66}, {'word': 'පේරට', 'start': 0.015, 'end': 2.02}, {'word': 'සිහකලෙන්', 'start': 0.02, 'end': 2.44}, {'word': 'ම', 'start': 0.03, 'end': 2.54}, {'word': 'මීයක්න', 'start': 0.032, 'end': 3.4}]
+Final Feedback: {'words': [{'word': 'ගුරුතුමිය', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'අපට', 'status': 'red', 'start': 0.015, 'end': 2.02, 'similarity': 0.57, 'spoken': 'පේරට'}, {'word': 'අලුත්', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'ගීයක්', 'status': 'green', 'start': 0.032, 'end': 3.4, 'similarity': 0.73, 'spoken': 'මීයක්න'}, {'word': 'ඉගැන්වුවා', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 1}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'ගුරුතුමිය අපට අලුත් ගීයක් ඉගැන්වුවා'
+Raw Timestamps (Spoken): [{'word': 'රුටුම', 'start': 0.0, 'end': 0.92}, {'word': 'අපට', 'start': 0.004, 'end': 1.54}, {'word': 'අලුත්', 'start': 0.013, 'end': 1.96}, {'word': 'ගීයක්', 'start': 0.022, 'end': 2.5}, {'word': 'ඉගැනවූවා', 'start': 0.033, 'end': 3.3}]
+Final Feedback: {'words': [{'word': 'ගුරුතුමිය', 'status': 'red', 'start': 0.0, 'end': 0.92, 'similarity': 0.57, 'spoken': 'රුටුම'}, {'word': 'අපට', 'status': 'green', 'start': 0.004, 'end': 1.54, 'similarity': 1.0, 'spoken': 'අපට'}, {'word': 'අලුත්', 'status': 'green', 'start': 0.013, 'end': 1.96, 'similarity': 1.0, 'spoken': 'අලුත්'}, {'word': 'ගීයක්', 'status': 'green', 'start': 0.022, 'end': 2.5, 'similarity': 1.0, 'spoken': 'ගීයක්'}, {'word': 'ඉගැන්වුවා', 'status': 'green', 'start': 0.033, 'end': 3.3, 'similarity': 0.82, 'spoken': 'ඉගැනවූවා'}], 'all_correct': False, 'score': 4}
+=========================================
+

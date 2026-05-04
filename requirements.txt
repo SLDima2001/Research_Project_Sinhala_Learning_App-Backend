@@ -28,3 +28,7 @@ librosa
 soundfile
 pydub
 imageio-ffmpeg
+gtts
+
+# AI Insights
+# Using OpenRouter via requests

@@ -16,6 +16,7 @@ import traceback
 import datetime
 import uuid
 import time
+import requests
 from io import BytesIO
 from typing import Tuple, Dict, Optional, List
 
@@ -82,14 +83,16 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 # MySQL/MongoDB connection (reusing ORI from .env if possible)
 MONGO_URI = os.getenv('MONGO_URI', "mongodb+srv://root:Dima2001@customerfeedback.83hfgpu.mongodb.net/?retryWrites=true&w=majority&appName=customerfeedback")
 try:
-    mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000, connectTimeoutMS=5000)
+    mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    mongo_client.admin.command('ping')
     db = mongo_client['sinhala_learning_app']  # Primary DB for users and stories
+    users_collection = db['users']
     voice_db = mongo_client['customerfeedback']  # DB for voice feedback recordings
-    print("[OK] MongoDB client initialized (connection will be verified on first use)")
-except Exception as _mongo_err:
-    print(f"[WARN] MongoDB init failed: {_mongo_err} - running without DB")
-    mongo_client = None
+    print("[OK] Connected to MongoDB Atlas")
+except Exception as e:
+    print(f"[ERROR] MongoDB connection failed: {e}")
     db = None
+    users_collection = None
     voice_db = None
 
 # Register Blueprints
@@ -730,6 +733,110 @@ def get_all_sentences():
         return jsonify({'sentences': _OFFLINE_SENTENCES, 'total': len(_OFFLINE_SENTENCES), 'source': 'offline', 'error': str(e)})
 
 # ============================================================
+# AI PROGRESS INSIGHTS (OpenRouter AI)
+# ============================================================
+def generate_insight_with_openrouter(records):
+    """Generate a detailed psychological and educational report about the child using OpenRouter"""
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
+        print("[WARN] OPENROUTER_API_KEY not found in environment")
+        return None
+    
+    try:
+        # Map internal module keys to human-readable labels
+        module_labels = {
+            'text_to_image': 'Visual Vocabulary (Text-to-Image)',
+            'storytelling': 'Listening & Reading (Storytelling)',
+            'handwriting': 'Writing Skills (Handwriting)',
+            'voice_feedback': 'Speaking & Pronunciation (Voice Feedback)'
+        }
+        
+        summary = {}
+        for r in records:
+            mod = r.get('module', 'unknown')
+            label = module_labels.get(mod, mod.replace('_', ' ').title())
+            if label not in summary:
+                summary[label] = []
+            summary[label].append(r.get('score', 0) / max(r.get('maxScore', 1), 1) * 100)
+        
+        performance_str = "\n".join([f"- {label}: Average {sum(scores)/len(scores):.1f}% over {len(scores)} sessions" for label, scores in summary.items()])
+        
+        prompt = f"""
+        You are an expert child educational psychologist and Sinhala language tutor. 
+        Based on the following game performance data of a child learning Sinhala, provide a 3-4 sentence "Real Idea" (Insight) about this child.
+        
+        Focus on:
+        1. Their learning style (e.g., visual vs auditory).
+        2. Potential cognitive strengths (e.g., high handwriting score suggests fine motor skills, high voice feedback suggests strong auditory/verbal processing).
+        3. Specific areas where the child is excelling or needs more encouragement.
+        4. Practical advice for parents to support their child's Sinhala learning journey.
+        
+        Performance Data:
+        {performance_str}
+        
+        Total sessions across all modules: {len(records)}
+        
+        Provide the response in a friendly, encouraging, and professional tone. Do not use bullet points. Keep it concise (max 4 sentences).
+        """
+        
+        # OpenRouter API call
+        response = requests.post(
+            url="https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "http://localhost:5002", # Required by OpenRouter
+                "X-Title": "Sinhala Learning App",
+            },
+            data=json.dumps({
+                "model": "google/gemini-2.0-flash-001", # High quality, fast, and often free/cheap on OpenRouter
+                "messages": [
+                    {"role": "user", "content": prompt}
+                ]
+            }),
+            timeout=15
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            return result['choices'][0]['message']['content'].strip()
+        else:
+            print(f"OpenRouter Error: {response.status_code} - {response.text}")
+            return None
+            
+    except Exception as e:
+        print(f"OpenRouter generation error: {e}")
+        return None
+
+@app.route('/api/generate-insight', methods=['POST'])
+def generate_ai_insight():
+    """Endpoint to generate AI-powered student analysis"""
+    try:
+        data = request.get_json()
+        records = data.get('records', [])
+        
+        if not records:
+            return jsonify({
+                'success': True, 
+                'insight': "🚀 Start playing to see your progress! Your journey to mastering Sinhala starts here."
+            })
+            
+        # Try OpenRouter first
+        insight = generate_insight_with_openrouter(records)
+        
+        # Fallback if AI fails or no API key
+        if not insight:
+            insight = "Based on your performance, you are showing steady growth! Keep practicing to unlock more rewards and master Sinhala."
+            
+        return jsonify({
+            'success': True,
+            'insight': insight
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+
+# ============================================================
 # HANDWRITING MODULE ROUTES
 # ============================================================
 @app.route('/api/predict', methods=['POST'])
@@ -916,52 +1023,100 @@ def serve_audio(filename):
         audio_collection = voice_db['audio'] if voice_db is not None else None
         
         if audio_collection is not None:
-            possible_filenames = [
+            # Try matching with and without .wav extension
+            base_id = clean_filename.replace('.wav', '')
+            possible_filenames = list(set([
                 clean_filename,
-                f"{clean_filename}.wav" if not clean_filename.endswith('.wav') else clean_filename
-            ]
+                base_id,
+                f"{base_id}.wav",
+                filename
+            ]))
             
+            print(f"[DEBUG] Searching MongoDB 'audio' for: {possible_filenames}")
             for fname in possible_filenames:
                 audio_doc = audio_collection.find_one({'filename': fname})
                 if audio_doc:
+                    print(f"[OK] Found audio in MongoDB: {fname}")
                     audio_data = audio_doc['audio_data']
                     return send_file(
                         io.BytesIO(audio_data),
                         mimetype='audio/wav',
                         as_attachment=False
                     )
+        print(f"[WARN] Audio not found in MongoDB for {clean_filename}")
         
         # 3. If not found anywhere, generate it on-the-fly!
         # First, find the text for this sentence from _get_active_sentences()
         target_text = None
         base_id = clean_filename.replace('.wav', '')
+        
+        # Check in-memory data first
         for sentence in _get_active_sentences():
-            if sentence['id'] == base_id or sentence['id'] == clean_filename:
+            # Match by ID, by filename, or by base_id
+            if (sentence['id'] == clean_filename or 
+                sentence['id'] == base_id or 
+                sentence.get('filename') == clean_filename or
+                sentence['id'] == filename):
                 target_text = sentence['text']
                 break
+        
+        # If not in memory (maybe server restarted but app has cached ID), try MongoDB directly
+        if not target_text and voice_db is not None:
+            try:
+                meta_col = voice_db['metadata']
+                # Try various possible filename matches in the DB
+                query = {'$or': [
+                    {'filename': base_id},
+                    {'filename': clean_filename},
+                    {'filename': f"{base_id}.wav"}
+                ]}
+                doc = meta_col.find_one(query)
+                if doc:
+                    target_text = doc.get('text')
+                    print(f"[DEBUG] Found target_text in DB for {clean_filename}: {target_text}")
+            except Exception as db_err:
+                print(f"[DEBUG] DB lookup failed during audio serve: {db_err}")
                 
         if target_text:
             try:
                 import subprocess
-                from gtts import gTTS
+                try:
+                    from gtts import gTTS
+                except ImportError:
+                    print("[ERROR] gTTS library not found. Please run 'pip install gTTS'")
+                    return jsonify({'error': 'TTS engine not installed on server'}), 500
+                
                 if not os.path.exists("fallback_audio"):
                     os.makedirs("fallback_audio")
                 
                 temp_mp3 = os.path.join("fallback_audio", f"{base_id}_temp.mp3")
                 final_wav = local_path
                 
-                tts = gTTS(target_text, lang='si')
+                print(f"[DEBUG] Generating TTS (si-LK) for: {target_text[:30]}...")
+                tts = gTTS(target_text, lang='si') # 'si' is the correct code for Sinhala
                 tts.save(temp_mp3)
+                print(f"[DEBUG] Saved temp MP3 to {temp_mp3}")
                 
-                subprocess.run([
-                    ffmpeg_exe, "-y", "-i", temp_mp3, "-ar", "16000", "-ac", "1", final_wav
-                ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                # Convert to WAV using pydub (which handles ffmpeg path internally)
+                try:
+                    from pydub import AudioSegment
+                    audio = AudioSegment.from_mp3(temp_mp3)
+                    audio.export(final_wav, format="wav", parameters=["-ar", "16000", "-ac", "1"])
+                    print(f"[DEBUG] Successfully generated WAV via pydub: {final_wav}")
+                except Exception as pydub_err:
+                    print(f"[ERROR] pydub/ffmpeg export failed: {pydub_err}")
+                    # Fallback to subprocess if pydub fails
+                    subprocess.run([
+                        ffmpeg_exe, "-y", "-i", temp_mp3, "-ar", "16000", "-ac", "1", final_wav
+                    ], capture_output=True, text=True)
                 
                 try: os.remove(temp_mp3)
                 except: pass
                 
                 if os.path.exists(final_wav):
                     return send_file(final_wav, mimetype='audio/wav', as_attachment=False)
+                else:
+                    print(f"[ERROR] final_wav does not exist after generation: {final_wav}")
             except Exception as e:
                 print(f"Failed to generate TTS on the fly: {e}")
         

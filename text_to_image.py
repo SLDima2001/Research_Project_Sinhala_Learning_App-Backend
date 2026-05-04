@@ -60,8 +60,10 @@ WORD_TO_ENGLISH: Dict[str, str] = {
     'මල්': 'flower',
     'අහස': 'sky',
     'හිරු': 'sun',
-    'චන්දය': 'moon',
+    'හඳ': 'moon',
+    'චන්ද්‍රයා': 'moon',
     'තරු': 'stars',
+    'චන්දය': 'election vote',
     'වැව': 'lake',
     'කන්ද': 'mountain',
     'ගෙවත්ත': 'garden',
@@ -245,14 +247,29 @@ def get_cached_image(search_term: str) -> Optional[bytes]:
                 return data
     return None
 
-def is_accurate_enough(search_term: str, metadata: str) -> bool:
+def is_accurate_enough(search_term: str, metadata: str, strict: bool = False) -> bool:
     """Check if the search term is significantly present in the metadata/filename"""
-    if not metadata: return True  # Can't verify, assume okay if source is trusted
+    if not metadata: 
+        # For mini-games (strict mode), if we can't verify, reject it
+        return not strict 
+    
     term = search_term.lower()
     meta = metadata.lower()
+    
+    # Exclude common irrelevant terms that clutter results
+    exclude_terms = ['person', 'people', 'man', 'woman', 'crowd', 'group', 'office', 'room', 'portrait', 'face']
+    
+    # If the search term itself isn't 'person' or 'child', exclude images mentioning people
+    if not any(p in term for p in ['person', 'child', 'man', 'boy', 'girl', 'human', 'lady']):
+        if any(ex in meta for ex in exclude_terms):
+            print(f"  [DEBUG] Skipping result '{metadata}' - contains excluded term")
+            return False
+
     # Check if the term or major parts of it are in the metadata
     words = [w for w in term.split() if len(w) > 2]
     if not words: return True
+    
+    # Require at least one word to be present
     return any(word in meta for word in words)
 
 
@@ -269,14 +286,16 @@ def search_wikimedia(search_term: str, randomize: bool = False) -> Optional[byte
         print(f"  Searching Wikimedia Commons for: '{search_term}'...")
         search_url = "https://commons.wikimedia.org/w/api.php"
         
-        # No more random variants to ensure accuracy
-        query = search_term
+        # Exclude people and text-heavy images if searching for objects/animals
+        negatives = "-icon -diagram -map -clipart -sketch -face -text -typography -alphabet -letter -font -words"
+        if 'person' not in search_term.lower() and 'child' not in search_term.lower() and 'man' not in search_term.lower():
+            negatives += " -person -people -man -woman -handler -owner -crowd"
 
         params = {
             "action": "query",
             "generator": "search",
             "gsrnamespace": "6",       # File namespace
-            "gsrsearch": f'"{query}" -icon -diagram -map -clipart -sketch filetype:bitmap',
+            "gsrsearch": f'"{query}" {negatives} filetype:bitmap',
             "gsrlimit": "100" if randomize else "10",
             "prop": "imageinfo",
             "iiprop": "url|mime|size",
@@ -302,7 +321,7 @@ def search_wikimedia(search_term: str, randomize: bool = False) -> Optional[byte
             title = page_data.get("title", "")
 
             if thumb_url and mime in ("image/jpeg", "image/png", "image/webp"):
-                if is_accurate_enough(search_term, title):
+                if is_accurate_enough(search_term, title, strict=randomize):
                     img_resp = requests.get(thumb_url, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
                     if img_resp.status_code == 200 and len(img_resp.content) > 1000:
                         return img_resp.content
@@ -372,10 +391,15 @@ def search_duckduckgo_image(search_term: str, randomize: bool = False) -> Option
             if randomize:
                 random.shuffle(results)
             
-            # Try top 5 results to find a valid image
-            for i in range(min(5, len(results))):
+            # Try top 10 results to find a valid image
+            for i in range(min(10, len(results))):
                 img_url = results[i].get("image", "")
+                img_title = results[i].get("title", "")
                 if img_url:
+                    # Verify accuracy for randomized searches (games)
+                    if not is_accurate_enough(search_term, img_title, strict=randomize):
+                        continue
+                        
                     try:
                         # Use a simpler image request
                         img_res = requests.get(img_url, headers={"User-Agent": headers["User-Agent"]}, timeout=8)
@@ -429,10 +453,13 @@ def search_wikipedia_image(search_term: str, randomize: bool = False) -> Optiona
         for _, page_data in page_items:
             thumbnail = page_data.get("thumbnail", {})
             img_url = thumbnail.get("source", "")
+            img_title = page_data.get("title", "")
+            
             if img_url:
-                img_resp = requests.get(img_url, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
-                if img_resp.status_code == 200 and len(img_resp.content) > 1000:
-                    return img_resp.content
+                if is_accurate_enough(search_term, img_title, strict=randomize):
+                    img_resp = requests.get(img_url, timeout=10, headers={"User-Agent": "SinhalaLearningApp/1.0"})
+                    if img_resp.status_code == 200 and len(img_resp.content) > 1000:
+                        return img_resp.content
     except Exception as e:
         print(f"  Wikipedia search failed: {e}")
     return None
@@ -543,9 +570,21 @@ def find_real_image(sinhala_text: str, randomize: bool = False) -> Tuple[bytes, 
         variants.append(base_words[0])
         variants.append(base_words[-1])
     variants += [
-        f"{english_term} photo",
-        f"{english_term} photography",
+        f"clear photo of {english_term} without any text",
+        f"single {english_term} isolated on white background",
+        f"{english_term} clipart illustration",
+        f"educational photo of {english_term}",
     ]
+    
+    # Specific boosters for problematic words
+    if 'star' in english_term.lower():
+        variants.insert(0, "twinkling stars in night sky photography")
+    if 'school' in english_term.lower():
+        variants.insert(0, "primary school building exterior")
+    if 'sky' in english_term.lower():
+        variants.insert(0, "clear blue sky with white clouds")
+    if 'sun' in english_term.lower():
+        variants.insert(0, "bright sun in the sky")
     # Remove duplicates while preserving order
     seen = set()
     unique_variants = []

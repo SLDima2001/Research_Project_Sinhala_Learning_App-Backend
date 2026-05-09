@@ -16,7 +16,6 @@ export const ScoreDisplay: React.FC<ScoreDisplayProps> = ({
     const scaleAnim = useRef(new Animated.Value(1)).current;
     const prevScore = useRef(score);
 
-    // Animate when score changes
     useEffect(() => {
         if (score !== prevScore.current) {
             Animated.sequence([

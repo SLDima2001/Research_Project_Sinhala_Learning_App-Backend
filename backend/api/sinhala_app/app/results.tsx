@@ -36,18 +36,18 @@ export default function ResultsScreen() {
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}
             >
-                {/* Main Message */}
+                {}
                 <View style={styles.messageContainer}>
                     <Text style={styles.messageTitle}>{getMessage()}</Text>
                     <Text style={styles.messageSubtitle}>{getEncouragement()}</Text>
                 </View>
 
-                {/* Score Display */}
+                {}
                 <View style={styles.scoreContainer}>
                     <ScoreDisplay score={score} maxScore={maxScore} showStars={true} />
                 </View>
 
-                {/* Detailed Stats */}
+                {}
                 <View style={styles.statsContainer}>
                     <Text style={styles.statsTitle}>Your Performance</Text>
 
@@ -65,7 +65,7 @@ export default function ResultsScreen() {
                         </Text>
                     </View>
 
-                    {/* Progress Bar */}
+                    {}
                     <View style={styles.progressBarContainer}>
                         <View
                             style={[
@@ -83,7 +83,7 @@ export default function ResultsScreen() {
                     </View>
                 </View>
 
-                {/* Action Buttons */}
+                {}
                 <View style={styles.actionsContainer}>
                     <TouchableOpacity
                         style={[styles.button, styles.primaryButton]}
@@ -102,7 +102,7 @@ export default function ResultsScreen() {
                     </TouchableOpacity>
                 </View>
 
-                {/* Tips */}
+                {}
                 <View style={styles.tipsContainer}>
                     <Text style={styles.tipsTitle}>💡 Tips for Better Pronunciation:</Text>
                     <Text style={styles.tipText}>• Listen carefully to each word</Text>

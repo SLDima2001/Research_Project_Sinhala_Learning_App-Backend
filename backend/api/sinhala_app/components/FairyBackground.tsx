@@ -17,9 +17,9 @@ const { width, height } = Dimensions.get('window');
 const BUBBLE_COUNT = 15;
 
 const Bubble = ({ index }: { index: number }) => {
-    const size = Math.random() * 40 + 20; // 20-60px
+    const size = Math.random() * 40 + 20; 
     const startX = Math.random() * width;
-    const duration = Math.random() * 5000 + 5000; // 5-10s
+    const duration = Math.random() * 5000 + 5000; 
     const delay = Math.random() * 5000;
 
     const translateY = useSharedValue(height + 100);
@@ -27,14 +27,12 @@ const Bubble = ({ index }: { index: number }) => {
     const opacity = useSharedValue(0.6);
 
     useEffect(() => {
-        // Vertical movement
         translateY.value = withDelay(delay, withRepeat(
             withTiming(-100, { duration, easing: Easing.linear }),
-            -1, // Infinite
+            -1, 
             false
         ));
 
-        // Horizontal squiggle
         translateX.value = withDelay(delay, withRepeat(
             withSequence(
                 withTiming(startX + 30, { duration: duration / 2, easing: Easing.sin }),
@@ -44,7 +42,6 @@ const Bubble = ({ index }: { index: number }) => {
             true
         ));
 
-        // Opacity oscillation
         opacity.value = withDelay(delay, withRepeat(
             withSequence(
                 withTiming(0.8, { duration: 2000 }),
@@ -91,24 +88,24 @@ export default function FairyBackground({ children }: { children?: React.ReactNo
     return (
         <View style={styles.container}>
             <LinearGradient
-                colors={['#E8F5E9', '#A5D6A7']} // Fresh Green Meadow
+                colors={['#E8F5E9', '#A5D6A7']} 
                 style={StyleSheet.absoluteFill}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
             />
 
-            {/* Overlay Gradient for more magic */}
+            {}
             <LinearGradient
                 colors={['hsla(0, 0%, 100%, 0.40)', 'transparent', 'rgba(160, 68, 255, 0.1)']}
                 style={StyleSheet.absoluteFill}
             />
 
-            {/* Bubbles */}
+            {}
             {Array.from({ length: BUBBLE_COUNT }).map((_, i) => (
                 <Bubble key={i} index={i} />
             ))}
 
-            {/* Content */}
+            {}
             <View style={styles.content}>
                 {children}
             </View>

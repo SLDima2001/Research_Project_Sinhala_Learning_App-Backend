@@ -26,13 +26,11 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
     onPress,
     style,
 }) => {
-    // Animation Values
     const scaleX = useSharedValue(1);
     const scaleY = useSharedValue(1);
     const translateY = useSharedValue(0);
     const innerLightOpacity = useSharedValue(0.6);
 
-    // Continuous breathing animation for current/completed levels
     useEffect(() => {
         if (status !== 'locked') {
             translateY.value = withRepeat(
@@ -48,7 +46,6 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
 
     const handlePressIn = () => {
         if (status === 'locked') return;
-        // Squish effect
         scaleX.value = withSpring(1.15, { damping: 10 });
         scaleY.value = withSpring(0.85, { damping: 10 });
         innerLightOpacity.value = withTiming(0.8);
@@ -56,7 +53,6 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
 
     const handlePressOut = () => {
         if (status === 'locked') return;
-        // Boing back
         scaleX.value = withSpring(1, { damping: 4, stiffness: 200 });
         scaleY.value = withSpring(1, { damping: 4, stiffness: 200 });
         innerLightOpacity.value = withTiming(0.6);
@@ -71,16 +67,12 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
         ]
     }));
 
-    // Visual configurations based on status
     const isLocked = status === 'locked';
 
-    // Transparent Green Jelly Colors
-    // Glassmorphism: Much more transparent to let BlurView do the work
     const jellyColors = isLocked
-        ? ['rgba(209, 213, 219, 0.3)', 'rgba(156, 163, 175, 0.4)'] // Transparent Grey
-        : ['#1EBF54', '#169940']; // Requested Green to Darker Green
+        ? ['rgba(209, 213, 219, 0.3)', 'rgba(156, 163, 175, 0.4)'] 
+        : ['#1EBF54', '#169940']; 
 
-    // Border color
     const borderColor = isLocked ? 'rgba(107, 114, 128, 0.5)' : '#148F3E';
 
     return (
@@ -91,18 +83,18 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
                 disabled={isLocked}
                 style={[styles.buttonWrapper]}
             >
-                {/* Main Jelly Body */}
+                {}
                 <View
                     style={[styles.jellyBody, { borderColor: borderColor, overflow: 'hidden', backgroundColor: 'transparent' }]}
                 >
-                    {/* Glass Blur Effect */}
+                    {}
                     <BlurView
                         intensity={40}
                         tint="light"
                         style={StyleSheet.absoluteFill}
                     />
 
-                    {/* Color Tint Overlay */}
+                    {}
                     <LinearGradient
                         colors={jellyColors as any}
                         style={StyleSheet.absoluteFill}
@@ -110,13 +102,13 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
                         end={{ x: 0.8, y: 1 }}
                     />
 
-                    {/* Inner Refraction/Highlight (The "Jelly" Shine) */}
+                    {}
                     <View style={styles.highlightContainer}>
                         <View style={styles.shineWait} />
                         <View style={styles.shineDot} />
                     </View>
 
-                    {/* Content */}
+                    {}
                     {isLocked ? (
                         <Ionicons name="lock-closed" size={24} color="rgba(255,255,255,0.7)" />
                     ) : (
@@ -124,9 +116,7 @@ export const GameLevelButton: React.FC<GameLevelButtonProps> = ({
                     )}
                 </View>
 
-                {/* Shadow (Separate to not scale with squish weirdly, or maybe it should?) 
-                    Actually putting shadow on the wrapper or separate view below is better for 'floating' jelly
-                */}
+                {}
             </Pressable>
         </Animated.View>
     );
@@ -136,7 +126,6 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        // Drop shadow for the whole button
         shadowColor: '#4ca302',
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.3,
@@ -153,8 +142,8 @@ const styles = StyleSheet.create({
         borderRadius: 35,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1, // Subtle rim
-        borderBottomWidth: 4, // Thicker bottom for depth
+        borderWidth: 1, 
+        borderBottomWidth: 4, 
     },
     highlightContainer: {
         position: 'absolute',

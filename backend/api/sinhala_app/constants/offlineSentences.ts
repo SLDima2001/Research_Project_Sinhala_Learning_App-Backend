@@ -1,7 +1,4 @@
-/**
- * Offline Sentences for Sinhala Learning App
- * Easy sentences for 7-12 year olds (used when backend is unavailable)
- */
+
 
 export interface OfflineSentence {
     id: string;

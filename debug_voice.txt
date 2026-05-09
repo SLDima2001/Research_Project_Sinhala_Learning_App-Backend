@@ -883,3 +883,33 @@ Raw Timestamps (Spoken): [{'word': 'රුටුම', 'start': 0.0, 'end': 0.92}
 Final Feedback: {'words': [{'word': 'ගුරුතුමිය', 'status': 'red', 'start': 0.0, 'end': 0.92, 'similarity': 0.57, 'spoken': 'රුටුම'}, {'word': 'අපට', 'status': 'green', 'start': 0.004, 'end': 1.54, 'similarity': 1.0, 'spoken': 'අපට'}, {'word': 'අලුත්', 'status': 'green', 'start': 0.013, 'end': 1.96, 'similarity': 1.0, 'spoken': 'අලුත්'}, {'word': 'ගීයක්', 'status': 'green', 'start': 0.022, 'end': 2.5, 'similarity': 1.0, 'spoken': 'ගීයක්'}, {'word': 'ඉගැන්වුවා', 'status': 'green', 'start': 0.033, 'end': 3.3, 'similarity': 0.82, 'spoken': 'ඉගැනවූවා'}], 'all_correct': False, 'score': 4}
 =========================================
 
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'මම සවසට මගේ මිතුරන් සමඟ ක්‍රීඩා කිරීමට කැමතියි'
+Raw Timestamps (Spoken): [{'word': 'මම', 'start': 0.008, 'end': 1.64}, {'word': 'සවසට', 'start': 0.016, 'end': 2.34}, {'word': 'මගේ', 'start': 0.029, 'end': 2.72}, {'word': 'මිතුරන්', 'start': 0.037, 'end': 3.34}, {'word': 'සමඟ', 'start': 0.048, 'end': 3.76}, {'word': 'ක්\u200dරීඩා', 'start': 0.057, 'end': 4.3}, {'word': 'කිරීමට', 'start': 0.068, 'end': 4.9}, {'word': 'එගැමට', 'start': 0.079, 'end': 5.32}]
+Final Feedback: {'words': [{'word': 'මම', 'status': 'green', 'start': 0.008, 'end': 1.64, 'similarity': 1.0, 'spoken': 'මම'}, {'word': 'සවසට', 'status': 'green', 'start': 0.016, 'end': 2.34, 'similarity': 1.0, 'spoken': 'සවසට'}, {'word': 'මගේ', 'status': 'green', 'start': 0.029, 'end': 2.72, 'similarity': 1.0, 'spoken': 'මගේ'}, {'word': 'මිතුරන්', 'status': 'green', 'start': 0.037, 'end': 3.34, 'similarity': 1.0, 'spoken': 'මිතුරන්'}, {'word': 'සමඟ', 'status': 'green', 'start': 0.048, 'end': 3.76, 'similarity': 1.0, 'spoken': 'සමඟ'}, {'word': 'ක්\u200dරීඩා', 'status': 'green', 'start': 0.057, 'end': 4.3, 'similarity': 1.0, 'spoken': 'ක්\u200dරීඩා'}, {'word': 'කිරීමට', 'status': 'green', 'start': 0.068, 'end': 4.9, 'similarity': 1.0, 'spoken': 'කිරීමට'}, {'word': 'කැමතියි', 'status': 'pending', 'start': None, 'end': None, 'similarity': 0.0}], 'all_correct': False, 'score': 7}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'මම සවසට මගේ මිතුරන් සමඟ ක්‍රීඩා කිරීමට කැමතියි'
+Raw Timestamps (Spoken): [{'word': 'මම', 'start': 0.0, 'end': 0.8}, {'word': 'මගේ', 'start': 0.0, 'end': 1.22}, {'word': 'මිතුරන්', 'start': 0.007, 'end': 1.82}, {'word': 'සමඟ', 'start': 0.018, 'end': 2.2}, {'word': 'ෆ්\u200dරීඩා', 'start': 0.026, 'end': 2.68}, {'word': 'කිරීමට', 'start': 0.036, 'end': 3.26}, {'word': 'කැමති', 'start': 0.047, 'end': 3.74}]
+Final Feedback: {'words': [{'word': 'මම', 'status': 'green', 'start': 0.0, 'end': 0.8, 'similarity': 1.0, 'spoken': 'මම'}, {'word': 'සවසට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'මගේ', 'status': 'green', 'start': 0.0, 'end': 1.22, 'similarity': 1.0, 'spoken': 'මගේ'}, {'word': 'මිතුරන්', 'status': 'green', 'start': 0.007, 'end': 1.82, 'similarity': 1.0, 'spoken': 'මිතුරන්'}, {'word': 'සමඟ', 'status': 'green', 'start': 0.018, 'end': 2.2, 'similarity': 1.0, 'spoken': 'සමඟ'}, {'word': 'ක්\u200dරීඩා', 'status': 'green', 'start': 0.026, 'end': 2.68, 'similarity': 0.86, 'spoken': 'ෆ්\u200dරීඩා'}, {'word': 'කිරීමට', 'status': 'green', 'start': 0.036, 'end': 3.26, 'similarity': 1.0, 'spoken': 'කිරීමට'}, {'word': 'කැමතියි', 'status': 'green', 'start': 0.047, 'end': 3.74, 'similarity': 0.83, 'spoken': 'කැමති'}], 'all_correct': False, 'score': 7}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'මම සවසට මගේ මිතුරන් සමඟ ක්‍රීඩා කිරීමට කැමතියි'
+Raw Timestamps (Spoken): [{'word': 'මම', 'start': 0.0, 'end': 0.98}, {'word': 'උදෑසනුට', 'start': 0.007, 'end': 2.12}, {'word': 'මගේ', 'start': 0.024, 'end': 2.52}, {'word': 'මිතුරුන්', 'start': 0.032, 'end': 3.08}, {'word': 'සමගි', 'start': 0.043, 'end': 3.48}, {'word': 'රීඩා', 'start': 0.051, 'end': 3.88}, {'word': 'කිරීමට', 'start': 0.06, 'end': 4.44}, {'word': 'කැමතියි', 'start': 0.07, 'end': 5.0}]
+Final Feedback: {'words': [{'word': 'මම', 'status': 'green', 'start': 0.0, 'end': 0.98, 'similarity': 1.0, 'spoken': 'මම'}, {'word': 'සවසට', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'මගේ', 'status': 'green', 'start': 0.024, 'end': 2.52, 'similarity': 1.0, 'spoken': 'මගේ'}, {'word': 'මිතුරන්', 'status': 'green', 'start': 0.032, 'end': 3.08, 'similarity': 0.93, 'spoken': 'මිතුරුන්'}, {'word': 'සමඟ', 'status': 'red', 'start': 0.043, 'end': 3.48, 'similarity': 0.57, 'spoken': 'සමගි'}, {'word': 'ක්\u200dරීඩා', 'status': 'green', 'start': 0.051, 'end': 3.88, 'similarity': 0.73, 'spoken': 'රීඩා'}, {'word': 'කිරීමට', 'status': 'green', 'start': 0.06, 'end': 4.44, 'similarity': 1.0, 'spoken': 'කිරීමට'}, {'word': 'කැමතියි', 'status': 'green', 'start': 0.07, 'end': 5.0, 'similarity': 1.0, 'spoken': 'කැමතියි'}], 'all_correct': False, 'score': 6}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'කුරුල්ලෝ ගී කියනවා'
+Raw Timestamps (Spoken): [{'word': 'කුරුල්ලෝ', 'start': 0.003, 'end': 1.66}, {'word': 'ගී', 'start': 0.016, 'end': 1.92}, {'word': 'කියනවා', 'start': 0.022, 'end': 2.6}]
+Final Feedback: {'words': [{'word': 'කුරුල්ලෝ', 'status': 'green', 'start': 0.003, 'end': 1.66, 'similarity': 1.0, 'spoken': 'කුරුල්ලෝ'}, {'word': 'ගී', 'status': 'green', 'start': 0.016, 'end': 1.92, 'similarity': 1.0, 'spoken': 'ගී'}, {'word': 'කියනවා', 'status': 'green', 'start': 0.022, 'end': 2.6, 'similarity': 1.0, 'spoken': 'කියනවා'}], 'all_correct': True, 'score': 3}
+=========================================
+
+====== VOICE PRACTICE DEBUG (FULL) ======
+Target Text: 'කුරුල්ලෝ ගී කියනවා'
+Raw Timestamps (Spoken): [{'word': 'කුරුල්ලොව', 'start': 0.0, 'end': 1.38}, {'word': 'කියනවා', 'start': 0.01, 'end': 2.04}]
+Final Feedback: {'words': [{'word': 'කුරුල්ලෝ', 'status': 'green', 'start': 0.0, 'end': 1.38, 'similarity': 0.82, 'spoken': 'කුරුල්ලොව'}, {'word': 'ගී', 'status': 'gray', 'start': None, 'end': None, 'similarity': 0.0}, {'word': 'කියනවා', 'status': 'green', 'start': 0.01, 'end': 2.04, 'similarity': 1.0, 'spoken': 'කියනවා'}], 'all_correct': False, 'score': 2}
+=========================================
+

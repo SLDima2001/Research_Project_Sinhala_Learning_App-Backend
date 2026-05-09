@@ -10,7 +10,7 @@ export interface RecorderState {
     error: string | null;
 }
 
-// Global variable to track recording instance across re-renders/hot-reloads
+
 let globalRecordingInstance: Audio.Recording | null = null;
 
 export const useAudioRecorder = () => {
@@ -24,12 +24,9 @@ export const useAudioRecorder = () => {
 
     const streamIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Cleanup on unmount
     useEffect(() => {
         return () => {
             if (globalRecordingInstance) {
-                // Determine if we should unload? 
-                // Usually yes, if component unmounts we stop recording.
                 cleanupRecording();
             }
         };
@@ -43,23 +40,17 @@ export const useAudioRecorder = () => {
 
         if (globalRecordingInstance) {
             try {
-                // Just try to unload directly. It might throw if already unloaded.
                 await globalRecordingInstance.stopAndUnloadAsync();
             } catch (error) {
-                // Ignore errors (e.g., if already unloaded)
             }
             globalRecordingInstance = null;
         }
     };
 
     const startRecording = useCallback(async (onStreamData?: (base64: string) => void) => {
-        // Reset error state
         setState(prev => ({ ...prev, error: null }));
 
         try {
-            // 1. Force cleanup of ANY existing global recording
-            // This fixes the "Only one Recording object" error by finding the
-            // orphan instance (from previous render) and killing it.
             if (globalRecordingInstance) {
                 console.log('Found existing global recording, cleaning up...');
                 await cleanupRecording();
@@ -125,25 +116,20 @@ export const useAudioRecorder = () => {
 
                 await recording.startAsync();
 
-                // Assign to global ASAP
                 globalRecordingInstance = recording;
 
-                // Start Streaming Interval if callback provided
                 if (onStreamData) {
                     streamIntervalRef.current = setInterval(async () => {
                         try {
                             const uri = recording.getURI();
                             if (uri) {
-                                // Read the latest file content
-                                // Note: This reads the WHOLE file every time. 
-                                // For files < 1MB (approx 30s of wav), this is performant enough for a prototype.
                                 const base64 = await readAsStringAsync(uri, { encoding: 'base64' });
                                 onStreamData(base64);
                             }
                         } catch (e) {
                             console.error('Streaming read error:', e);
                         }
-                    }, 500) as unknown as NodeJS.Timeout; // Optimized for real-time feedback
+                    }, 500) as unknown as NodeJS.Timeout; 
                 }
 
                 setState(prev => ({
@@ -156,7 +142,6 @@ export const useAudioRecorder = () => {
 
             } catch (setupError) {
                 console.error('Recording setup failed:', setupError);
-                // Clean up the local instance immediately if setup failed
                 try {
                     await recording.stopAndUnloadAsync();
                 } catch (e) { }
@@ -171,7 +156,6 @@ export const useAudioRecorder = () => {
     }, []);
 
     const stopRecording = useCallback(async () => {
-        // Clear streaming interval
         if (streamIntervalRef.current) {
             clearInterval(streamIntervalRef.current);
             streamIntervalRef.current = null;

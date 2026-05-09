@@ -17,7 +17,6 @@ export const RecordingButton: React.FC<RecordingButtonProps> = ({
     const pulseAnim = useRef(new Animated.Value(1)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
 
-    // Pulsing animation while recording
     useEffect(() => {
         if (isRecording) {
             Animated.loop(
@@ -66,13 +65,10 @@ export const RecordingButton: React.FC<RecordingButtonProps> = ({
                 style={[
                     styles.button,
                     {
-                        // Default to white background, or transparent if we want just the icon
-                        // But user typically wants a button.
-                        // Let's go with: White Background, Green Icon (standard clean look)
                         backgroundColor: '#FFFFFF',
                         transform: [{ scale: pulseAnim }],
                         opacity: isDisabled ? 0.5 : opacityAnim,
-                        borderColor: isRecording ? Colors.error : '#1EBF54', // Green border or Red when recording
+                        borderColor: isRecording ? Colors.error : '#1EBF54', 
                         borderWidth: 2,
                     },
                 ]}
@@ -80,7 +76,7 @@ export const RecordingButton: React.FC<RecordingButtonProps> = ({
                 <Ionicons
                     name={isRecording ? "mic" : "mic-outline"}
                     size={40}
-                    color={isRecording ? Colors.error : '#1EBF54'} // Green icon
+                    color={isRecording ? Colors.error : '#1EBF54'} 
                 />
             </Animated.View>
             <Text style={styles.label}>
@@ -101,12 +97,10 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        // Shadow/Elevation removed to prevent artifacts
     },
-    // Removed innerCircle/innerSquare as we use Icon now
     label: {
         marginTop: 8,
-        fontSize: 14, // Same as Listen button
+        fontSize: 14, 
         fontWeight: '600',
         color: Colors.text,
     },

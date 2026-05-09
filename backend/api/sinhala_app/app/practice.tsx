@@ -18,10 +18,8 @@ type ScreenMode = 'idle' | 'playing' | 'recording' | 'feedback';
 
 export default function PracticeScreen() {
     const router = useRouter();
-    // Get sentence ID from params
     const { sentenceId } = useLocalSearchParams();
 
-    // Fetch sentences from backend (with offline fallback)
     const {
         currentSentence,
         isLoading: sentencesLoading,
@@ -34,14 +32,12 @@ export default function PracticeScreen() {
         sentences,
     } = useSentences(20);
 
-    // Effect to select the correct sentence on load
     useEffect(() => {
         if (sentenceId && sentences.length > 0) {
             selectSentence(sentenceId as string);
         }
     }, [sentenceId, sentences.length, selectSentence]);
 
-    // State
     const [mode, setMode] = useState<ScreenMode>('idle');
     const [currentWordIndex, setCurrentWordIndex] = useState(-1);
     const [karaokeWords, setKaraokeWords] = useState<KaraokeWord[]>([]);
@@ -49,12 +45,10 @@ export default function PracticeScreen() {
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [wordTimings, setWordTimings] = useState<WordTiming[]>([]);
 
-    // Generate audio URL from backend
     const audioUri = currentSentence?.hasAudio && currentSentence?.audioPath
         ? `${Config.API_BASE_URL}${currentSentence.audioPath}`
         : null;
 
-    // Initialize karaoke words when sentence changes
     useEffect(() => {
         if (currentSentence) {
             setKaraokeWords(
@@ -64,7 +58,6 @@ export default function PracticeScreen() {
             let timings: WordTiming[] = [];
 
             if (currentSentence.timings && currentSentence.timings.length > 0) {
-                // Use backend timestamps (convert seconds to ms)
                 timings = currentSentence.timings.map(t => ({
                     word: t.word,
                     startTime: t.start * 1000,
@@ -72,7 +65,6 @@ export default function PracticeScreen() {
                 }));
                 console.log('Using backend timestamps for:', currentSentence.id);
             } else {
-                // Fallback: Generate simple word timings
                 timings = currentSentence.words.map((word, index) => ({
                     word,
                     startTime: index * 600,
@@ -85,7 +77,6 @@ export default function PracticeScreen() {
         }
     }, [currentSentence]);
 
-    // Hooks
     const audioPlayer = useAudioPlayer(
         audioUri,
         wordTimings,
@@ -99,7 +90,6 @@ export default function PracticeScreen() {
 
     const pronunciationFeedback = usePronunciationFeedback(currentSentence?.id || null);
 
-    // Feed audio metering to simulation (offline mode only)
     useEffect(() => {
         if (audioRecorder.isRecording && !pronunciationFeedback.isConnected) {
             pronunciationFeedback.processAudioLevel(
@@ -109,7 +99,6 @@ export default function PracticeScreen() {
         }
     }, [audioRecorder.metering, audioRecorder.isRecording, pronunciationFeedback.isConnected, currentSentence?.words.length, pronunciationFeedback]);
 
-    // Handle play button
     const handlePlay = useCallback(async () => {
         if (!audioUri) {
             Alert.alert(
@@ -121,7 +110,6 @@ export default function PracticeScreen() {
             return;
         }
 
-        // If recording, stop recording first
         if (audioRecorder.isRecording) {
             await audioRecorder.stopRecording();
             pronunciationFeedback.endSession();
@@ -132,34 +120,28 @@ export default function PracticeScreen() {
         await audioPlayer.play();
     }, [audioPlayer, audioUri, isOnline, audioRecorder, pronunciationFeedback]);
 
-    // Handle record button
     const handleRecord = useCallback(async () => {
         if (!currentSentence) return;
 
         if (audioRecorder.isRecording) {
-            // Stop recording
             setMode('feedback');
             const uri = await audioRecorder.stopRecording();
             pronunciationFeedback.endSession();
 
-            // Analyze with backend if connected
             if (uri && currentSentence) {
                 await pronunciationFeedback.analyzeAudio(uri, currentSentence.text);
             }
         } else {
-            // Start recording
-            audioPlayer.stop(); // Stop playback if playing
+            audioPlayer.stop(); 
             setMode('recording');
             setCurrentWordIndex(-1);
             setIsCorrect(null);
             setShowFeedback(false);
 
-            // Reset word statuses
             setKaraokeWords(currentSentence.words.map(word => ({ text: word, status: 'pending' })));
 
             pronunciationFeedback.startSession(currentSentence.words.length);
 
-            // Enable streaming if connected
             await audioRecorder.startRecording((base64) => {
                 if (pronunciationFeedback.isConnected) {
                     pronunciationFeedback.analyzePartialAudio(base64, currentSentence.text);
@@ -168,14 +150,12 @@ export default function PracticeScreen() {
         }
     }, [audioRecorder, pronunciationFeedback, currentSentence, audioPlayer]);
 
-    // React to final score update
     useEffect(() => {
         if (pronunciationFeedback.finalScore && mode === 'feedback') {
             evaluatePronunciation();
         }
     }, [pronunciationFeedback.finalScore, mode]);
 
-    // Update karaoke display based on pronunciation feedback
     useEffect(() => {
         if ((mode === 'recording' || mode === 'feedback') && currentSentence) {
             const updatedWords = currentSentence.words.map((word, index) => ({
@@ -193,7 +173,6 @@ export default function PracticeScreen() {
         currentSentence,
     ]);
 
-    // Evaluate pronunciation and show feedback
     const evaluatePronunciation = useCallback(() => {
         const finalScore = pronunciationFeedback.finalScore;
 
@@ -202,7 +181,6 @@ export default function PracticeScreen() {
             setIsCorrect(percentage >= 70);
             setShowFeedback(true);
 
-            // Hide feedback after 3 seconds
             setTimeout(() => {
                 setShowFeedback(false);
                 setMode('idle');
@@ -210,7 +188,6 @@ export default function PracticeScreen() {
         }
     }, [pronunciationFeedback.finalScore]);
 
-    // Handle audio player completion
     useEffect(() => {
         if (!audioPlayer.isPlaying && !audioPlayer.isLoading && mode === 'playing') {
             setMode('idle');
@@ -218,7 +195,6 @@ export default function PracticeScreen() {
         }
     }, [audioPlayer.isPlaying, audioPlayer.isLoading, mode]);
 
-    // Handle next sentence
     const handleNextSentence = useCallback(() => {
         setMode('idle');
         setCurrentWordIndex(-1);
@@ -227,7 +203,6 @@ export default function PracticeScreen() {
         nextSentence();
     }, [nextSentence]);
 
-    // Handle previous sentence
     const handlePreviousSentence = useCallback(() => {
         setMode('idle');
         setCurrentWordIndex(-1);
@@ -236,7 +211,6 @@ export default function PracticeScreen() {
         previousSentence();
     }, [previousSentence]);
 
-    // Loading state
     if (sentencesLoading) {
         return (
             <SafeAreaView style={styles.container}>
@@ -248,7 +222,6 @@ export default function PracticeScreen() {
         );
     }
 
-    // Error state
     if (!currentSentence) {
         return (
             <SafeAreaView style={styles.container}>
@@ -263,7 +236,7 @@ export default function PracticeScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            {/* Header */}
+            {}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
                     <Ionicons name="arrow-back" size={24} color={Colors.text} />
@@ -280,7 +253,7 @@ export default function PracticeScreen() {
                 <View style={styles.placeholder} />
             </View>
 
-            {/* Offline Mode Warning */}
+            {}
             {!isOnline && (
                 <View style={styles.offlineWarning}>
                     <Ionicons name="cloud-offline-outline" size={20} color={Colors.warning} />
@@ -291,7 +264,7 @@ export default function PracticeScreen() {
             )}
 
             <ScrollView contentContainerStyle={styles.content}>
-                {/* Sentence Display */}
+                {}
                 <View style={styles.sentenceContainer}>
                     <KaraokeDisplay
                         words={karaokeWords}
@@ -301,21 +274,21 @@ export default function PracticeScreen() {
                     />
                 </View>
 
-                {/* Translation (if available) */}
+                {}
                 {currentSentence.translation && (
                     <View style={styles.translationContainer}>
                         <Text style={styles.translationText}>{currentSentence.translation}</Text>
                     </View>
                 )}
 
-                {/* Control Buttons */}
+                {}
                 <View style={styles.controlsContainer}>
                     <TouchableOpacity
                         style={[styles.controlButton, (!audioUri || mode !== 'idle') && styles.controlButtonDisabled]}
                         onPress={handlePlay}
                         disabled={!audioUri || mode !== 'idle'}
                     >
-                        {/* Circle Button Container */}
+                        {}
                         <View style={[styles.circleButton, { borderColor: '#1EBF54', borderWidth: 2 }]}>
                             <Ionicons name="play" size={40} color={'#1EBF54'} />
                         </View>
@@ -333,7 +306,7 @@ export default function PracticeScreen() {
 
 
 
-                {/* Navigation Buttons */}
+                {}
                 <View style={styles.navigationContainer}>
                     <TouchableOpacity
                         style={[styles.navButton, currentIndex === 0 && styles.navButtonDisabled]}
@@ -358,10 +331,10 @@ export default function PracticeScreen() {
                     </TouchableOpacity>
                 </View>
 
-                {/* Connection Status Removed */}
+                {}
             </ScrollView>
 
-            {/* Feedback Overlay */}
+            {}
             {showFeedback && (
                 <FeedbackDisplay
                     isCorrect={isCorrect ?? false}
@@ -486,12 +459,11 @@ const styles = StyleSheet.create({
     controlsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'flex-start', // Align to top so text aligns if buttons somehow differ
+        alignItems: 'flex-start', 
         marginBottom: 24,
     },
     controlButton: {
         alignItems: 'center',
-        // padding: 16, // Layout is handled by container
     },
     circleButton: {
         width: 70,
@@ -500,7 +472,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
-        // Shadow/Elevation removed to prevent artifacts
     },
     controlButtonDisabled: {
         opacity: 0.4,
@@ -531,12 +502,11 @@ const styles = StyleSheet.create({
     },
     navButtonText: {
         fontSize: 16,
-        color: '#1EBF54', // Green text
+        color: '#1EBF54', 
         fontWeight: '600',
         marginHorizontal: 4,
     },
     navButtonTextDisabled: {
         color: Colors.textSecondary,
     },
-    // connectionStatus styles removed
 });

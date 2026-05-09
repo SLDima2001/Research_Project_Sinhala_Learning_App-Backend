@@ -32,31 +32,27 @@ export const useAudioPlayer = (
     const soundRef = useRef<Sound | null>(null);
     const playbackIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Load audio
     const loadAudio = useCallback(async () => {
         if (!audioUri) return;
 
         try {
             setState(prev => ({ ...prev, isLoading: true, error: null }));
 
-            // Unload previous sound
             if (soundRef.current) {
                 await soundRef.current.unloadAsync();
             }
 
-            // Configure audio mode
             await Audio.setAudioModeAsync({
                 allowsRecordingIOS: false,
                 playsInSilentModeIOS: true,
                 staysActiveInBackground: false,
             });
 
-            // Load new sound
             const { sound } = await Audio.Sound.createAsync(
                 { uri: audioUri },
                 {
                     shouldPlay: false,
-                    progressUpdateIntervalMillis: 16 // MAX PRECISION (60fps)
+                    progressUpdateIntervalMillis: 16 
                 }
             );
 
@@ -70,7 +66,6 @@ export const useAudioPlayer = (
 
     const currentWordIndexRef = useRef<number>(-1);
 
-    // Stop audio
     const stop = useCallback(async () => {
         try {
             if (audioUri && soundRef.current) {
@@ -91,9 +86,7 @@ export const useAudioPlayer = (
         }
     }, [audioUri, text]);
 
-    // Play audio with word highlighting
     const play = useCallback(async () => {
-        // If we have an audio URI but no sound loaded, try loading it
         if (audioUri && !soundRef.current) {
             await loadAudio();
         }
@@ -103,11 +96,8 @@ export const useAudioPlayer = (
             currentWordIndexRef.current = -1;
 
             if (audioUri && soundRef.current) {
-                // Determine update interval (default is usually 500ms on Android, we need faster)
-                // We'll set this when loading, but just in case
                 await soundRef.current.setProgressUpdateIntervalAsync(16);
 
-                // Setup status update listener based on ACTUAL playback position
                 soundRef.current.setOnPlaybackStatusUpdate((status) => {
                     if (!status.isLoaded) return;
 
@@ -119,13 +109,10 @@ export const useAudioPlayer = (
                     if (status.isPlaying) {
                         const currentTime = status.positionMillis;
 
-                        // Find current word based on accurate playback time
                         const newIndex = wordTimings.findIndex(
                             (timing) => currentTime >= timing.startTime && currentTime < timing.endTime
                         );
 
-                        // Debug logging (temporary)
-                        // console.log(`Playback: ${currentTime}ms, Index: ${newIndex}`);
 
                         if (newIndex !== -1 && newIndex !== currentWordIndexRef.current) {
                             console.log(`Highlight change: ${currentWordIndexRef.current} -> ${newIndex} at ${currentTime}ms`);
@@ -136,11 +123,9 @@ export const useAudioPlayer = (
                     }
                 });
 
-                // Play recorded audio
                 await soundRef.current.playAsync();
 
             } else if (text) {
-                // Fallback for TTS (keep interval logic only for TTS)
                 Speech.speak(text, {
                     language: 'si-LK',
                     onError: (e) => console.error('Speech error:', e)
@@ -176,13 +161,12 @@ export const useAudioPlayer = (
         }
     }, [loadAudio, wordTimings, onWordHighlight, audioUri, text, stop]);
 
-    // Pause audio
     const pause = useCallback(async () => {
         try {
             if (audioUri && soundRef.current) {
                 await soundRef.current.pauseAsync();
             } else if (text) {
-                await Speech.stop(); // TTS doesn't support pause well, so we stop
+                await Speech.stop(); 
             }
 
             setState(prev => ({ ...prev, isPlaying: false }));
@@ -198,7 +182,6 @@ export const useAudioPlayer = (
 
 
 
-    // Cleanup on unmount
     useEffect(() => {
         return () => {
             if (soundRef.current) {
@@ -211,7 +194,6 @@ export const useAudioPlayer = (
         };
     }, []);
 
-    // Load audio when URI changes
     useEffect(() => {
         if (audioUri) {
             loadAudio();

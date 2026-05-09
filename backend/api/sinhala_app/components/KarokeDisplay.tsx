@@ -22,12 +22,10 @@ export const KaraokeDisplay: React.FC<KaraokeDisplayProps> = ({
     fontSize = 32,
 }) => {
     const getWordColor = (word: KaraokeWord, index: number): string => {
-        // During playback, highlight current word in green (Duolingo style)
         if (mode === 'playback') {
             return index === currentWordIndex ? '#58CC02' : Colors.text;
         }
 
-        // During/after recording, show feedback colors
         if (mode === 'recording') {
             switch (word.status) {
                 case 'correct':
@@ -41,7 +39,6 @@ export const KaraokeDisplay: React.FC<KaraokeDisplayProps> = ({
             }
         }
 
-        // Idle mode - default text color
         return Colors.text;
     };
 

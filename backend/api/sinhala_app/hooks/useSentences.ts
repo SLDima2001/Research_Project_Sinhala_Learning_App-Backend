@@ -1,8 +1,4 @@
-/**
- * useSentences Hook
- * Fetches sentences from backend API with offline fallback
- * Implements network detection and caching
- */
+
 import { useState, useCallback, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
@@ -43,7 +39,6 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
     const [isConnected, setIsConnected] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Monitor network status
     useEffect(() => {
         const unsubscribe = NetInfo.addEventListener(state => {
             setIsConnected(state.isConnected ?? false);
@@ -51,7 +46,6 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
         return () => unsubscribe();
     }, []);
 
-    // Cache helper
     const cacheSentences = async (data: Sentence[]) => {
         try {
             await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(data));
@@ -60,10 +54,8 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
         }
     };
 
-    // Initialize from cache or offline on mount
     useEffect(() => {
         const loadInitialData = async () => {
-            // Only load from cache if we haven't loaded anything yet
             if (sentences.length > 0) return;
 
             try {
@@ -77,7 +69,6 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
                 }
             } catch (e) { console.warn(e); }
 
-            // Fallback
             console.log('No cache, loading offline sentences defaults');
             setSentences(OFFLINE_SENTENCES);
             setIsLoading(false);
@@ -85,7 +76,6 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
         loadInitialData();
     }, []);
 
-    // Fetch sentences based on category
     const fetchSentences = useCallback(async (category: string = 'offline', fetchCount: number = 40): Promise<void> => {
         setIsLoading(true);
         setError(null);
@@ -93,21 +83,18 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
         try {
             let newSentences: Sentence[] = [];
 
-            // Handle Offline Category
             if (category === 'offline') {
                 console.log('Loading offline sentences');
-                await new Promise(resolve => setTimeout(resolve, 2500)); // Increased delay for animation
+                await new Promise(resolve => setTimeout(resolve, 2500)); 
                 newSentences = OFFLINE_SENTENCES;
             }
-            // Check connection for other categories
             else if (!isConnected) {
                 console.log('Offline mode detected, falling back to offline sentences');
-                await new Promise(resolve => setTimeout(resolve, 2500)); // Consistent delay
+                await new Promise(resolve => setTimeout(resolve, 2500)); 
                 newSentences = OFFLINE_SENTENCES;
                 setError('Offline mode: Showing offline sentences');
             }
             else {
-                // Add artificial delay for online fetch as well to show the cute chicken
                 await new Promise(resolve => setTimeout(resolve, 2500));
 
                 const difficulty = category.toLowerCase();
@@ -137,7 +124,7 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
 
             setSentences(newSentences);
             setCurrentIndex(0);
-            cacheSentences(newSentences); // Cache for PracticeScreen
+            cacheSentences(newSentences); 
 
         } catch (err) {
             console.error('Error fetching sentences:', err);
@@ -148,7 +135,6 @@ export const useSentences = (count: number = 20): UseSentencesReturn => {
         }
     }, [isConnected]);
 
-    // Navigation
     const nextSentence = useCallback(() => {
         setCurrentIndex(prev => (prev + 1) % sentences.length);
     }, [sentences.length]);

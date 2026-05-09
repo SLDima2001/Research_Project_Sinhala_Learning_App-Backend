@@ -13,7 +13,6 @@ export const useWebSocket = () => {
     const socketRef = useRef<Socket | null>(null);
     const messageHandlersRef = useRef<Map<string, (data: any) => void>>(new Map());
 
-    // Connect to WebSocket
     const connect = useCallback(() => {
         try {
             const socket = io(Config.WEBSOCKET_URL, {
@@ -39,7 +38,6 @@ export const useWebSocket = () => {
                 setError(err.message || 'WebSocket error');
             });
 
-            // Handle incoming messages
             socket.onAny((eventName: string, data: any) => {
                 const handler = messageHandlersRef.current.get(eventName);
                 if (handler) {
@@ -53,7 +51,6 @@ export const useWebSocket = () => {
         }
     }, []);
 
-    // Disconnect from WebSocket
     const disconnect = useCallback(() => {
         if (socketRef.current) {
             socketRef.current.disconnect();
@@ -62,7 +59,6 @@ export const useWebSocket = () => {
         }
     }, []);
 
-    // Send message
     const sendMessage = useCallback((type: string, data: any = {}) => {
         if (socketRef.current && isConnected) {
             socketRef.current.emit(type, data);
@@ -71,17 +67,14 @@ export const useWebSocket = () => {
         }
     }, [isConnected]);
 
-    // Register message handler
     const onMessage = useCallback((type: string, handler: (data: any) => void) => {
         messageHandlersRef.current.set(type, handler);
     }, []);
 
-    // Unregister message handler
     const offMessage = useCallback((type: string) => {
         messageHandlersRef.current.delete(type);
     }, []);
 
-    // Auto-connect on mount
     useEffect(() => {
         connect();
         return () => {

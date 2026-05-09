@@ -24,7 +24,6 @@ export const FeedbackDisplay: React.FC<FeedbackDisplayProps> = ({
 
     useEffect(() => {
         if (visible) {
-            // Entrance animation
             Animated.parallel([
                 Animated.spring(scaleAnim, {
                     toValue: 1,
@@ -39,7 +38,6 @@ export const FeedbackDisplay: React.FC<FeedbackDisplayProps> = ({
                 }),
             ]).start();
         } else {
-            // Exit animation
             Animated.parallel([
                 Animated.timing(scaleAnim, {
                     toValue: 0,
@@ -60,15 +58,12 @@ export const FeedbackDisplay: React.FC<FeedbackDisplayProps> = ({
 
     const defaultMessage = isCorrect ? 'Excellent!' : 'Try Again!';
 
-    // Colors
     const GREEN_COLOR = '#58CC02';
     const BROWN_COLOR = '#747250';
 
-    // Glassy Styles based on correctness
     const headerColor = isCorrect ? 'rgba(88, 204, 2, 0.95)' : 'rgba(116, 114, 80, 0.95)';
     const containerBorderColor = isCorrect ? 'rgba(88, 204, 2, 0.5)' : 'rgba(116, 114, 80, 0.5)';
-    const blurTint = isCorrect ? 'default' : 'dark'; // Use dark tint for brown for better contrast if needed, or 'default'
-    // Actually, let's stick to a light/default tint but perhaps colored background for the body
+    const blurTint = isCorrect ? 'default' : 'dark'; 
     const bodyBgColor = isCorrect ? 'rgba(88, 204, 2, 0.1)' : 'rgba(116, 114, 80, 0.1)';
 
     return (
@@ -84,7 +79,7 @@ export const FeedbackDisplay: React.FC<FeedbackDisplayProps> = ({
         >
             <View style={styles.overflowContainer}>
                 <BlurView intensity={80} tint="light" style={[styles.blurContainer, { backgroundColor: bodyBgColor }]}>
-                    {/* Header Section */}
+                    {}
                     <View style={[styles.header, { backgroundColor: headerColor }]}>
                         <Image
                             source={isCorrect
@@ -97,7 +92,7 @@ export const FeedbackDisplay: React.FC<FeedbackDisplayProps> = ({
                         <Text style={styles.headerText}>{message || defaultMessage}</Text>
                     </View>
 
-                    {/* Body Section */}
+                    {}
                     <View style={styles.body}>
                         {(score !== undefined && maxScore !== undefined) && (
                             <View style={styles.scoreContainer}>
@@ -131,7 +126,7 @@ const styles = StyleSheet.create({
         borderWidth: 1.5,
     },
     overflowContainer: {
-        borderRadius: 22, // Slightly less than container to fit inside border
+        borderRadius: 22, 
         overflow: 'hidden',
     },
     blurContainer: {
@@ -155,7 +150,7 @@ const styles = StyleSheet.create({
         textShadowRadius: 2,
     },
     image: {
-        width: 60, // Slightly reduced to fit better linearly without making header too tall
+        width: 60, 
         height: 60,
     },
     body: {

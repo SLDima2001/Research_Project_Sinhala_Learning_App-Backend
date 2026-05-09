@@ -31,18 +31,14 @@ const LoadingChicken = () => {
     const [sound, setSound] = useState<Audio.Sound | null>(null);
 
     React.useEffect(() => {
-        // Animation
         transY.value = withRepeat(
-            withTiming(-20, { duration: 600 }), // Increased movement for larger image
+            withTiming(-20, { duration: 600 }), 
             -1,
             true
         );
 
-        // Sound
         const playSound = async () => {
             try {
-                // Try to load the sound - user needs to add 'loading_sound.mp3' to assets/sounds/
-                // If it doesn't exist, this will safely fail without crashing
                 const { sound: playbackObject } = await Audio.Sound.createAsync(
                     require('../assets/sounds/loading_sound.mp3'),
                     { shouldPlay: true, isLooping: true }
@@ -62,7 +58,6 @@ const LoadingChicken = () => {
         };
     }, []);
 
-    // Cleanup sound when unmounting if it was set later
     React.useEffect(() => {
         return () => {
             if (sound) {
@@ -91,7 +86,6 @@ export default function HomeScreen() {
 
     const { sentences, isLoading, refetch: fetchByCategory } = useSentences();
 
-    // ... (Keep existing handlers)
     const handleCategoryPress = (category: CategoryType) => {
         setSelectedCategory(category);
         fetchByCategory(category, 40);
@@ -108,10 +102,8 @@ export default function HomeScreen() {
         });
     };
 
-    // Scroll to bottom when category is selected and sentences loaded
     React.useEffect(() => {
         if (selectedCategory && sentences.length > 0) {
-            // Slight delay to ensure layout is ready
             setTimeout(() => {
                 scrollViewRef.current?.scrollToEnd({ animated: false });
             }, 100);
@@ -133,7 +125,6 @@ export default function HomeScreen() {
         }
     };
 
-    // Handle hardware back button when in sentence list view
     React.useEffect(() => {
         const backAction = () => {
             if (selectedCategory) {
@@ -179,10 +170,9 @@ export default function HomeScreen() {
         </View>
     );
 
-    // Game Path Configuration
     const { width: SCREEN_WIDTH } = useWindowDimensions();
     const BUTTON_SIZE = 60;
-    const VERTICAL_SPACING = 110; // Spacing for vertical layout
+    const VERTICAL_SPACING = 110; 
 
     const renderSentenceList = () => {
         if (isLoading) {
@@ -205,33 +195,24 @@ export default function HomeScreen() {
         const containerWidth = SCREEN_WIDTH;
         const centerOffset = containerWidth / 2;
 
-        // Perspective Configuration
-        const BASE_AMPLITUDE = containerWidth * 0.35; // Wide at bottom
-        const MIN_AMPLITUDE = containerWidth * 0.1;   // Narrow at top
-        const START_SCALE = 1.1; // Larger at bottom
-        const END_SCALE = 0.6;   // Smaller at top
+        const BASE_AMPLITUDE = containerWidth * 0.35; 
+        const MIN_AMPLITUDE = containerWidth * 0.1;   
+        const START_SCALE = 1.1; 
+        const END_SCALE = 0.6;   
 
-        // Layout Spacing
-        const BOTTOM_PADDING = 150; // Start point padding
-        const TOP_PADDING = 100;    // End point padding
+        const BOTTOM_PADDING = 150; 
+        const TOP_PADDING = 100;    
 
         const containerHeight = (sentences.length * VERTICAL_SPACING) + BOTTOM_PADDING + TOP_PADDING;
 
-        // Generate Path Data from BOTTOM up
-        // Index 0 (Level 1) is at the BOTTOM
         const points = sentences.map((_, index) => {
-            // 1. Calculate Progress (0 = Bottom/Start, 1 = Top/End)
             const progress = index / Math.max(sentences.length - 1, 1);
 
-            // 2. Determine Y Position (Inverted)
-            // Level 1 at Bottom
             const y = containerHeight - BOTTOM_PADDING - (index * VERTICAL_SPACING);
 
-            // 3. Determine Perspective Factors
             const currentAmplitude = BASE_AMPLITUDE * (1 - (progress * 0.6));
             const currentScale = START_SCALE - (progress * (START_SCALE - END_SCALE));
 
-            // 4. Calculate X Position
             const x = centerOffset + Math.sin(index * 0.6) * currentAmplitude;
 
             return { x, y, scale: currentScale };
@@ -241,14 +222,12 @@ export default function HomeScreen() {
 
         return (
             <View style={{ height: containerHeight, position: 'relative' }}>
-                
 
-                {/* Buttons Layer */}
+                {}
                 {sentences.map((sentence, index) => {
                     const isCompleted = sentence.completed;
                     const { x: left, y: top, scale } = points[index];
 
-                    // Unlock all buttons as per user request
                     const displayStatus = isCompleted ? 'completed' : 'current';
 
                     return (
@@ -261,7 +240,7 @@ export default function HomeScreen() {
                                 position: 'absolute',
                                 left: left - (BUTTON_SIZE / 2),
                                 top: top - (BUTTON_SIZE / 2),
-                                transform: [{ scale: scale }] // Apply perspective scale
+                                transform: [{ scale: scale }] 
                             }}
                         />
                     );
@@ -310,8 +289,8 @@ export default function HomeScreen() {
                     contentContainerStyle={styles.scrollContent}
                     showsVerticalScrollIndicator={false}
                 >
-                    {/* Header */}
-                    {/* Header */}
+                    {}
+                    {}
                     {!selectedCategory && (
                         <View style={styles.header}>
                             <Text style={styles.title}>Welcome! 🎓</Text>
@@ -332,7 +311,7 @@ export default function HomeScreen() {
                         </View>
                     )}
 
-                    {/* Main Content */}
+                    {}
                     {selectedCategory ? renderSentenceList() : renderCategoryButtons()}
 
                 </ScrollView>
@@ -369,7 +348,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        // backgroundColor: Colors.background, // Removed for FairyBackground
     },
     scrollContent: {
         flexGrow: 1,
@@ -475,28 +453,27 @@ const styles = StyleSheet.create({
     sentenceGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 140, // Increased spacing significantly
+        gap: 140, 
         justifyContent: 'center',
         paddingHorizontal: 10,
     },
     sentenceButton: {
         width: 80,
         height: 80,
-        borderRadius: 40, // Circle shape
-        backgroundColor: '#58CC02', // Duolingo Green
+        borderRadius: 40, 
+        backgroundColor: '#58CC02', 
         alignItems: 'center',
         justifyContent: 'center',
 
-        borderColor: '#58CC02', // Hide other borders by matching bg, or just use transparent
-        borderBottomColor: '#46A302', // Darker green for 3D effect
-        // Remove shadow/elevation for cleaner 3D look
+        borderColor: '#58CC02', 
+        borderBottomColor: '#46A302', 
         elevation: 0,
         shadowOpacity: 0,
     },
     completedButton: {
-        backgroundColor: '#FFC800', // Gold for completed
+        backgroundColor: '#FFC800', 
         borderColor: '#FFC800',
-        borderBottomColor: '#D7A700', // Darker gold
+        borderBottomColor: '#D7A700', 
     },
     sentenceButtonText: {
         fontSize: 26,
@@ -507,7 +484,7 @@ const styles = StyleSheet.create({
         textShadowRadius: 2,
     },
     completedButtonText: {
-        color: '#ffffff', // Keep white for contrast
+        color: '#ffffff', 
     },
     checkIcon: {
         position: 'absolute',
@@ -530,14 +507,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: Colors.textSecondary,
         padding: 20,
-        width: '100%', // Ensure it takes full width in flex wrap
+        width: '100%', 
     },
     emptyText: {
         textAlign: 'center',
         fontSize: 16,
         color: Colors.textSecondary,
         padding: 20,
-        width: '100%', // Ensure it takes full width in flex wrap
+        width: '100%', 
     },
     shine: {
         position: 'absolute',
